@@ -19,6 +19,12 @@
             android:name=".DescripcionRecorridoActivity"
             android:exported="false" />
         <activity
+            android:name=".PerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PublicarActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
