@@ -2,7 +2,7 @@
 
 Este proyecto tiene como objetivo el desarrollo de una aplicación que permita a los senderistas elegir nuevas rutas, ver sus estadisticas y contactarse con otros que tengan aficion en este hobbie.
 
-## Authors
+## Autores
 
 - [@CryoWarrior](https://github.com/CryoWarrior)
 - [@Fabiotriana07](https://github.com/Fabiotriana07)
