@@ -5,15 +5,15 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EmergenciaActivity">
+    tools:context=".CalificarRecorridoActivity">
 
     <TextView
         android:id="@+id/textoEmergencia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
-        android:layout_marginTop="108dp"
-        android:text="Botones de Emergencia"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="72dp"
+        android:text="Recorrido Finalizado"
         android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,42 +24,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="50dp"
         android:backgroundTint="@color/darkBlue"
-        android:text="Llamada 123"
+        android:text="Marcar como favorito"
+        android:fontFamily=""
         android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/botonGuardarRecorrido"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoEmergencia" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/botonGuardarRecorrido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="50dp"
         android:backgroundTint="@color/darkBlue"
-        android:text="Contacto Emergencia"
+        android:text="Guardar Recorrido"
         android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/botonAcabarRecorrido"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonMarcarFavorito" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/botonAcabarRecorrido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginBottom="50dp"
         android:backgroundTint="@color/darkBlue"
-        android:text="Compartir Recorrido"
+        android:text="Acabarr Recorrido"
         android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonGuardarRecorrido" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imagenMapa"
@@ -70,4 +71,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/mapa_recortado" />
 
+    <TextView
+        android:id="@+id/textoCalificaRecorrido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="25dp"
+        android:textSize="18dp"
+        android:fontFamily="@font/inter"
+        android:text="Califica el recorrido:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoEmergencia" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoCalificaRecorrido" />
 </androidx.constraintlayout.widget.ConstraintLayout>
