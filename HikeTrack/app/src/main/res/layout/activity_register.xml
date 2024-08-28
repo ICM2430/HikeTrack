@@ -19,7 +19,6 @@
         android:textColor="@android:color/white"
         android:textSize="48sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_margin="32dp"
         app:layout_constraintBottom_toTopOf="@+id/EmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
