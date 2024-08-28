@@ -113,6 +113,7 @@
             android:text="Descripción breve del usuario..."
             android:textSize="14sp"/>
 
+
     </LinearLayout>
 
 
@@ -150,6 +151,20 @@
             android:textSize="14sp"/>
 
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="30dp"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        app:srcCompat="@drawable/setting"
+        android:scaleType="fitCenter"
+        android:layout_marginLeft="300dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintStart_toStartOf="@id/userInfoLayout"
+        app:layout_constraintTop_toTopOf="@id/userInfoLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
