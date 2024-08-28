@@ -231,9 +231,8 @@
             android:scaleType="centerCrop"
             android:padding="12dp"
             app:srcCompat="@drawable/send_icon"
-            android:background = "@drawable/circuloEnviar"
+            android:background = "@drawable/circulo_enviar"
             />
-
     </LinearLayout>
 
 
