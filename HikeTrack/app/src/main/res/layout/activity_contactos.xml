@@ -14,13 +14,16 @@
         android:background="@color/purpuraClaro"
         />
 
-    <Button
-        android:id="@+id/perfil"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="8dp"
-        android:layout_alignParentTop="true"
-        android:contentDescription="Perfil"/>
+    <ImageButton
+        android:id="@+id/profile_icon"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/boy"
+        android:background = "@drawable/circulo_enviar"
+        android:layout_gravity="center_vertical"/>
 
     <ImageButton
         android:id="@+id/listaContactos"
@@ -63,14 +66,13 @@
 
     <ImageButton
         android:id="@+id/seleccionarRecorrido"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="85dp"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="45dp"
         android:layout_toEndOf="@id/estadisticas"
-        android:layout_alignParentBottom="true"
-        android:contentDescription="Seleccionar recorrido"
         android:background="@drawable/corredor"
-        />
+        android:contentDescription="Seleccionar recorrido" />
 
     <Button
         android:id="@+id/botonRetos"

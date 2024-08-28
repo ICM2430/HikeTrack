@@ -123,25 +123,90 @@
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/flotante"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:src="@drawable/circuloboton"
-        app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
+        app:layout_constraintBottom_toTopOf="@id/franjaInferior"
         app:layout_constraintEnd_toEndOf="parent"
         app:backgroundTint="@color/violeta" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+    <View
+        android:id="@+id/franjaInferior"
         android:layout_width="0dp"
         android:layout_height="90dp"
-        android:background="@color/azulClaro"
-        app:menu="@menu/bottom_navigation_menu"
+        android:background="@color/celeste"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="6dp"
+        android:contentDescription="Home"
+        android:background="@drawable/ic_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/franjaInferior"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <Button
+        android:id="@+id/estadisticas"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="6dp"
+        android:background="@drawable/ic_stats"
+        android:contentDescription="Estadisticas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/home"
+        app:layout_constraintTop_toTopOf="@id/franjaInferior"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <ImageButton
+        android:id="@+id/seleccionarRecorrido"
+        android:layout_width="98dp"
+        android:layout_height="84dp"
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/corredor"
+        android:contentDescription="Seleccionar recorrido"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/estadisticas"
+        app:layout_constraintTop_toTopOf="@id/franjaInferior"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <Button
+        android:id="@+id/botonRetos"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="6dp"
+        android:contentDescription="Retos"
+        android:background="@drawable/ic_trophies"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/seleccionarRecorrido"
+        app:layout_constraintTop_toTopOf="@id/franjaInferior"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <Button
+        android:id="@+id/contactos"
+        android:layout_width="68dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="-4dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="13dp"
+        android:background="@drawable/nav_profile"
+        android:contentDescription="Contactos"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/botonRetos"
+        app:layout_constraintTop_toTopOf="@id/franjaInferior"
+        app:layout_constraintVertical_bias="0.5"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
