@@ -12,4 +12,10 @@
     <string name="_50_km">50 km</string>
     <string name="_90_min">90 min</string>
     <string name="lorem_impsun_dolor_sip_amend_lorem_impsum_lore_ipsum_lore_ipsum">Lorem impsun dolor sip amend, lorem impsum, lore ipsum, lore ipsum</string>
+
+    <string name="nav_home">Inicio</string>
+    <string name="nav_stats">Estadísticas</string>
+    <string name="nav_challenges">Retos</string>
+    <string name="nav_trophies">Trofeos</string>
+    <string name="nav_profile">Perfil</string>
 </resources>
