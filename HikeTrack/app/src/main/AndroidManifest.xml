@@ -22,11 +22,11 @@
             android:name=".Contactos"
             android:exported="false" />
         <activity
-            android:name=".Retos"
+            android:name=".RetosActivity"
             android:exported="false">
         </activity>
         <activity
-            android:name=".Reto"
+            android:name=".RetoActivity"
             android:exported="false">
         </activity>
         <activity
@@ -34,6 +34,9 @@
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CalificarRecorridoActivity"
             android:exported="false" />
         <activity
             android:name=".FeedActivity"

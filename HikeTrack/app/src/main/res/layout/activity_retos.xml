@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Retos">
+    tools:context=".RetosActivity">
 
 
     <View
@@ -23,13 +23,16 @@
         android:layout_margin="20dp"
         app:srcCompat="@drawable/lupa" />
 
-    <Button
-        android:id="@+id/perfil"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="8dp"
-        android:layout_alignParentTop="true"
-        android:contentDescription="Perfil"/>
+    <ImageButton
+        android:id="@+id/profile_icon"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/boy"
+        android:background = "@drawable/circulo_enviar"
+        android:layout_gravity="center_vertical"/>
 
     <TextView
         android:id="@+id/populares"
@@ -77,12 +80,11 @@
         android:id="@+id/listaRetosPa"
         android:layout_width="290dp"
         android:layout_height="200dp"
-        android:contentDescription="Retos en los que esta participando"
-        android:background="@drawable/retos"
         android:layout_above="@id/franjaInferior"
         android:layout_marginStart="40dp"
-        android:layout_marginBottom="10dp"
-        />
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/retos"
+        android:contentDescription="Retos en los que esta participando" />
 
     <View
         android:id="@+id/franjaInferior"
@@ -114,14 +116,13 @@
 
     <ImageButton
         android:id="@+id/seleccionarRecorrido"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="98dp"
+        android:layout_height="84dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginBottom="45dp"
         android:layout_toEndOf="@id/estadisticas"
-        android:layout_alignParentBottom="true"
-        android:contentDescription="Seleccionar recorrido"
         android:background="@drawable/corredor"
-        />
+        android:contentDescription="Seleccionar recorrido" />
 
     <Button
         android:id="@+id/botonRetos"
@@ -136,11 +137,16 @@
 
     <Button
         android:id="@+id/contactos"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="6dp"
-        android:layout_toEndOf="@id/botonRetos"
+        android:layout_width="68dp"
+        android:layout_height="63dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="-4dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="13dp"
+        android:layout_toEndOf="@id/botonRetos"
         android:background="@drawable/nav_profile"
         android:contentDescription="Contactos" />
 </RelativeLayout>
