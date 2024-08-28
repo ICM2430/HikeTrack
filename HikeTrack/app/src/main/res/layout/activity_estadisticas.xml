@@ -22,15 +22,15 @@
             android:background="@color/violeta"
             android:padding="8dp">
 
-            <!-- Icono de perfil -->
-            <ImageView
+            <ImageButton
                 android:id="@+id/profile_icon"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/perfil"
+                android:scaleType="centerCrop"
+                android:src="@drawable/boy"
+                android:background = "@drawable/circulo_enviar"
                 android:layout_gravity="center_vertical"/>
 
-            <!-- Campo de búsqueda -->
             <EditText
                 android:id="@+id/search_field"
                 android:layout_width="0dp"
@@ -40,7 +40,6 @@
                 android:padding="8dp"
                 android:layout_gravity="center_vertical"/>
 
-            <!-- Icono de búsqueda -->
             <ImageView
                 android:id="@+id/search_icon"
                 android:layout_width="60dp"

@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Barra de navegación superior -->
         <LinearLayout
             android:id="@+id/top_bar"
             android:layout_width="match_parent"
@@ -21,15 +20,15 @@
             android:background="@color/violeta"
             android:padding="8dp">
 
-            <!-- Icono de perfil -->
-            <ImageView
+            <ImageButton
                 android:id="@+id/profile_icon"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/perfil"
+                android:scaleType="centerCrop"
+                android:src="@drawable/boy"
+                android:background = "@drawable/circulo_enviar"
                 android:layout_gravity="center_vertical"/>
 
-            <!-- Campo de búsqueda -->
             <EditText
                 android:id="@+id/search_field"
                 android:layout_width="0dp"
@@ -39,7 +38,6 @@
                 android:padding="8dp"
                 android:layout_gravity="center_vertical"/>
 
-            <!-- Icono de búsqueda -->
             <ImageView
                 android:id="@+id/search_icon"
                 android:layout_width="60dp"
@@ -48,9 +46,74 @@
                 android:layout_gravity="center_vertical"/>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/publicacion1"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            android:padding="25dp"
+            android:layout_below="@id/top_bar"
+            android:background="@android:color/holo_purple">
 
+            <TextView
+                android:id="@+id/tituloPublicacion1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="Que hermoso es el bosque"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bosque"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/descripcionPublicacion1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="El senderismo es lo mejor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/publicacion2"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_below="@id/publicacion1"
+            android:orientation="horizontal"
+            android:background="@color/azulClaro">
+
+            <ImageView
+                android:id="@+id/perfilReto"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/perfil"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_marginTop="32sp"
+                android:layout_marginStart="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter"
+                android:textSize="16sp"
+                android:text="Marta ha completado el reto 1" />
+
+
+        </LinearLayout>
 
     </RelativeLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feed_recycler_view"
@@ -70,8 +133,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
