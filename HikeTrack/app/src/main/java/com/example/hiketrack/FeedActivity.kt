@@ -57,6 +57,12 @@ class FeedActivity : AppCompatActivity() {
                 }
                 else -> false
             }
+
+        }
+
+        binding.flotante.setOnClickListener {
+            val intent = Intent(this, PublicarActivity::class.java)
+            startActivity(intent)
         }
     }
 }
