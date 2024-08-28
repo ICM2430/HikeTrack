@@ -118,6 +118,7 @@
 
 
     <LinearLayout
+        android:id="@+id/publicationFeed"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -153,7 +154,7 @@
     </LinearLayout>
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/settingsButton"
         android:layout_width="30dp"
         android:layout_height="40dp"
         android:background="@color/white"
@@ -165,6 +166,19 @@
         app:layout_constraintTop_toTopOf="@id/userInfoLayout"
         app:layout_constraintEnd_toEndOf="parent"
         />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/publishFloatingButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="60dp"
+        android:layout_marginRight="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.822"
+        app:srcCompat="@drawable/feathers" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

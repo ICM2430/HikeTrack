@@ -1,5 +1,6 @@
 package com.example.hiketrack
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,5 +12,15 @@ class TrackerRecorridoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTrackerRecorridoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.botonEmergencia.setOnClickListener {
+            val intent = Intent(this, EmergenciaActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.botonFinalizarRecorrido.setOnClickListener {
+            val intent = Intent(this, CalificarRecorridoActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
