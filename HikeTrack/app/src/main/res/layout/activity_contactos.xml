@@ -22,12 +22,17 @@
         android:layout_alignParentTop="true"
         android:contentDescription="Perfil"/>
 
-    <ListView
+    <ImageButton
+        android:id="@+id/listaContactos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="Lista de contactos"
         android:layout_margin="15dp"
         android:layout_below="@id/imageView"
-        android:layout_above="@id/franjaInferior" />
+        android:layout_above="@id/franjaInferior"
+        android:background="@drawable/contactos"
+        />
+
     <View
         android:id="@+id/franjaInferior"
         android:layout_width="wrap_content"

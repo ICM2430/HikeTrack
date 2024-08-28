@@ -41,15 +41,18 @@ class FeedActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_challenges -> {
-
+                    val intent = Intent(this, SeleccionarRecorrido::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.navigation_trophies -> {
-
+                    val intent = Intent(this,Retos::class.java)
+                    startActivity(intent)
                     true
                 }
                 R.id.navigation_profile -> {
-
+                    val intent = Intent(this,Contactos::class.java)
+                    startActivity(intent)
                     true
                 }
                 else -> false

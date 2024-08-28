@@ -44,7 +44,7 @@
         android:layout_below="@id/imageView"/>
 
     <ImageButton
-        android:id="@+id/listaRecorridosP"
+        android:id="@+id/listaRetosP"
         android:layout_width="290dp"
         android:layout_height="200dp"
         android:contentDescription="Retos populares"
@@ -74,7 +74,7 @@
         android:layout_above="@id/franjaInferior"/>
 
     <ImageButton
-        android:id="@+id/listaRecorridosPa"
+        android:id="@+id/listaRetosPa"
         android:layout_width="290dp"
         android:layout_height="200dp"
         android:contentDescription="Retos en los que esta participando"
