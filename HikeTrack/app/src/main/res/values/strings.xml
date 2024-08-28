@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">HikeTrack</string>
+    <string name="a_donde_quieres_recorres_este_fin_de_semana">A donde quieres recorres este fin de semana?</string>
+    <string name="vamos_al_parque_simon_bolivar">Vamos al parque Simon Bolivar</string>
+    <string name="buena_idea">Buena idea!</string>
+    <string name="asi_exploramos_un_poco_los_alrededores">Asi exploramos un poco los alrededores</string>
+    <string name="y_podemos_llevar_los_botilitos_que_compramos_ayer">Y podemos llevar los botilitos que compramos ayer!</string>
+    <string name="tatiana">Tatiana</string>
+    <string name="escribe_un_mensaje">Escribe un mensaje</string>
+    <string name="plus">+</string>
+    <string name="recorrido_1">Recorrido 1</string>
+    <string name="_50_km">50 km</string>
+    <string name="_90_min">90 min</string>
+    <string name="lorem_impsun_dolor_sip_amend_lorem_impsum_lore_ipsum_lore_ipsum">Lorem impsun dolor sip amend, lorem impsum, lore ipsum, lore ipsum</string>
 </resources>
