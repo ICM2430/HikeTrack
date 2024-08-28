@@ -133,13 +133,13 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="8dp">
 
-                <!-- Ejemplo de puntos para racha semanal -->
+
                 <View
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:background="@drawable/racha_point"
                     android:layout_margin="4dp" />
-                <!-- Repite el View para más puntos -->
+
             </LinearLayout>
         </LinearLayout>
 

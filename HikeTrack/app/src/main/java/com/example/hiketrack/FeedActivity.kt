@@ -16,7 +16,7 @@ class FeedActivity : AppCompatActivity() {
         binding = ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Set up onClickListeners for the icons
+
         binding.profileIcon.setOnClickListener {
             val intent = Intent(this, PerfilActivity::class.java)
             startActivity(intent)
@@ -27,7 +27,7 @@ class FeedActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        // Set up bottom navigation item selection
+
         binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_home -> {
