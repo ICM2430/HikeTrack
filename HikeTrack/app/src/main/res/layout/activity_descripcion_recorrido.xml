@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="116dp"
-        android:text="@string/recorrido_1"
+        android:text="Recorrido 1"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,7 @@
             android:layout_marginEnd="24dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/_50_km"
+            android:text="50 km"
             android:textSize="20sp" />
 
         <TextView
@@ -47,7 +47,7 @@
             android:layout_weight="1"
             android:gravity="center"
 
-            android:text="@string/_90_min"
+            android:text="90 min"
             android:textSize="20sp" />
 
 
@@ -62,7 +62,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/lorem_impsun_dolor_sip_amend_lorem_impsum_lore_ipsum_lore_ipsum"
+        android:text="Lorem impsun dolor sip amend, lorem impsum, lore ipsum, lore ipsum"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
