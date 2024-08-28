@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">HikeTrack</string>
+
+    <string name="nav_home">Inicio</string>
+    <string name="nav_stats">Estadísticas</string>
+    <string name="nav_challenges">Retos</string>
+    <string name="nav_trophies">Trofeos</string>
+    <string name="nav_profile">Perfil</string>
 </resources>
