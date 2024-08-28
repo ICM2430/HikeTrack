@@ -5,15 +5,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.hiketrack.databinding.ActivityPublicarBinding
+import com.example.hiketrack.databinding.ActivityConfiguracionBinding
 
-class PublicarActivity : AppCompatActivity() {
+class ConfiguracionActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityPublicarBinding
+    private lateinit var binding: ActivityConfiguracionBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        binding = ActivityConfiguracionBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        binding = ActivityPublicarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
     }
 }

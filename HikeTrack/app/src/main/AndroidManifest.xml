@@ -13,6 +13,12 @@
         android:theme="@style/Theme.HikeTrack"
         tools:targetApi="31">
         <activity
+            android:name=".BuscarPerfilActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConfiguracionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ChatActivity"
             android:exported="false" />
         <activity
