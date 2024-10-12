@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="@drawable/loginbg"
     android:padding="16dp"
     tools:context=".LoginActivity">
 
@@ -14,95 +14,84 @@
         android:id="@+id/loginTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="200dp"
         android:fontFamily="sans-serif-light"
-        android:text="Log in"
+        android:text="Iniciar Sesión"
         android:textColor="@android:color/white"
-        android:textSize="48sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/usernameEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="40sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="100dp"/>
 
     <EditText
         android:id="@+id/usernameEditText"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="47dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="300dp"
         android:background="@drawable/edit_text_background"
         android:hint="Username"
         android:padding="10dp"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@id/passwordEditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginTitle" />
+        android:textColor="@android:color/black" />
 
-    <!-- Campo de contraseña -->
     <EditText
         android:id="@+id/passwordEditText"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="2dp"
         android:layout_marginEnd="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="350dp"
         android:background="@drawable/edit_text_background"
         android:hint="Password"
         android:inputType="textPassword"
         android:padding="10dp"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toTopOf="@id/loginButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/usernameEditText" />
+        android:textColor="@android:color/black" />
 
-    <!-- Botón de inicio de sesión -->
     <Button
         android:id="@+id/loginButton"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="100dp"
-        android:backgroundTint="#302D71"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="400dp"
         android:elevation="4dp"
         android:padding="12dp"
+        android:backgroundTint="@color/verdeClaro"
         android:text="Login"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toTopOf="@+id/forgotPasswordTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordEditText" />
-
-
+        android:textColor="@android:color/white" />
 
     <TextView
         android:id="@+id/forgotPasswordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="start|bottom"
         android:layout_marginStart="60dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="100dp"
         android:text="Olvidaste tu contraseña?"
         android:textColor="@android:color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginButton" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/createAccountTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="100dp"
         android:text="Crear cuenta"
         android:textColor="@android:color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginButton" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:textSize="14sp" />
+
+</FrameLayout>
+
 
