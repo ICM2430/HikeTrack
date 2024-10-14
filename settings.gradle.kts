@@ -19,6 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "HikeTrack"
+rootProject.name = "vistastrabajo4"
 include(":app")
- 
