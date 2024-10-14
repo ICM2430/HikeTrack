@@ -13,12 +13,6 @@ class FeedActivity : AppCompatActivity() {
         binding = ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Set up onClickListeners for the icons
-        binding.profileIcon.setOnClickListener {
-            val intent = Intent(this, PerfilActivity::class.java)
-            startActivity(intent)
-        }
-
         binding.searchIcon.setOnClickListener {
             val intent = Intent(this, BuscarPerfilActivity::class.java)
             startActivity(intent)
