@@ -164,7 +164,7 @@
             android:text="Recorridos cerca a ti"
             android:textColor="@color/white"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
+            app:layout_constraintBottom_toTopOf="@+id/recorrido1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -191,13 +191,13 @@
             app:srcCompat="@drawable/settings_white" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout3"
+            android:id="@+id/recorrido2"
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_corners"
             android:backgroundTint="#594E2C"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
+            app:layout_constraintBottom_toTopOf="@+id/recorrido3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent">
@@ -266,7 +266,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout4"
+            android:id="@+id/recorrido4"
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_marginBottom="16dp"
@@ -340,13 +340,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout5"
+            android:id="@+id/recorrido3"
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_corners"
             android:backgroundTint="#594E2C"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
+            app:layout_constraintBottom_toTopOf="@+id/recorrido4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent">
@@ -414,13 +414,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout6"
+            android:id="@+id/recorrido1"
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_corners"
             android:backgroundTint="#594E2C"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout3"
+            app:layout_constraintBottom_toTopOf="@+id/recorrido2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent">
@@ -490,7 +490,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/nuevorecorrido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -506,7 +506,7 @@
             android:layout_marginBottom="12dp"
             android:background="#00000000"
             android:text="Ver más >"
-            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintBottom_toTopOf="@+id/nuevorecorrido"
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

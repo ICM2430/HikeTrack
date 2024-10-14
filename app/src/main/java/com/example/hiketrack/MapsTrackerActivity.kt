@@ -1,7 +1,12 @@
-package com.example.vistastrabajo4
+package com.example.hiketrack
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.hiketrack.R
 import com.example.hiketrack.databinding.ActivityMapsTrackerBinding
 
@@ -27,6 +32,11 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+
+        // permission for location
+        locationPermissionRequest(Manifest.permission.ACCESS_FINE_LOCATION)
+        locationPermissionRequest(Manifest.permission.ACCESS_COARSE_LOCATION)
     }
 
     /**
@@ -45,5 +55,16 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         val sydney = LatLng(-34.0, 151.0)
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    }
+
+    //Permision for location
+
+    private fun locationPermissionRequest(permission: String){
+        if(ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED){
+            if(shouldShowRequestPermissionRationale(permission)){
+                Toast.makeText(this, "The permission is needed because...", Toast.LENGTH_LONG).show()
+            }
+            ActivityCompat.requestPermissions(this, arrayOf(permission), 0)
+        }
     }
 }

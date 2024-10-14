@@ -1,4 +1,4 @@
-package com.example.vistastrabajo4
+package com.example.hiketrack
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

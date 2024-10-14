@@ -1,4 +1,4 @@
-package com.example.vistastrabajo4
+package com.example.hiketrack
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

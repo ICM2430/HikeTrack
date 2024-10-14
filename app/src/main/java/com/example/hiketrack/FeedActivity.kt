@@ -25,7 +25,7 @@ class FeedActivity : AppCompatActivity() {
         }
 
         binding.seleccionarRecorrido.setOnClickListener {
-            val intent =  Intent(this,SeleccionarRecorrido::class.java)
+            val intent =  Intent(this,RecorridosActivity::class.java)
             startActivity(intent)
         }
 
