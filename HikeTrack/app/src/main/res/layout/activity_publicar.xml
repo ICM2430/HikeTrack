@@ -5,85 +5,151 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/generalbg"
     tools:context=".PublicarActivity">
+
+    <RelativeLayout
+        android:id="@+id/top_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/settings_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/setting"
+            android:layout_marginEnd="16dp" />
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nueva Publicación"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/top_bar_layout"
+        app:layout_constraintTop_toBottomOf="@+id/top_bar_layout" >
 
-        <ImageButton
-            android:id="@+id/imageButton4"
-            android:layout_width="108dp"
-            android:layout_height="113dp"
+        <TextView
+            android:id="@+id/titulo_nombre_reto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="70dp"
-            android:background="@drawable/round_btn"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/boy" />
+            android:text="Título"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"/>
 
         <EditText
-            android:id="@+id/textView"
+            android:id="@+id/nombre_reto"
             android:layout_width="320dp"
-            android:layout_height="140dp"
-            android:text="Pon algo para comenzar"
+            android:layout_height="30dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="30dp"/>
+            android:text=" Escriba el nombre del reto"
+            android:textSize="14sp"
+            android:background="@drawable/rounded_corner_background"
+            android:textColorHint="@color/verdeOscuro"/>
+
+
+
+
+        <TextView
+            android:id="@+id/Contenido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:text="Descripción del reto"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"/>
+
+        <EditText
+            android:id="@+id/desc_reto"
+            android:layout_width="320dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:text=" Ingrese una descripción"
+            android:textSize="14sp"
+            android:background="@drawable/rounded_corner_background"
+            android:textColorHint="@color/verdeOscuro"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="320dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/locationButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="40dp"
-                android:scaleType="fitCenter"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.116"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/location" />
-
-            <ImageButton
-                android:id="@+id/galleryButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:scaleType="fitCenter"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.285"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/image" />
 
             <ImageButton
                 android:id="@+id/gifButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:scaleType="fitCenter"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.451"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/gif" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/gif_icon" />
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:layout_weight="1"
+
+                app:srcCompat="@drawable/white_image_icon" />
+            <ImageButton
+                android:id="@+id/locationButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/transparent"
+                android:layout_weight="1"
+
+                app:srcCompat="@drawable/white_location_icon" />
 
             <Button
-                android:id="@+id/publishButton"
-                android:layout_width="130dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:text="Publicar" />
+                android:id="@+id/cancel_challenge_btn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/verdeClaro"
+                android:text="Cancelar"
+                android:textSize="12sp" />
 
+            <Button
+                android:id="@+id/save_challenge_btn"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:backgroundTint="@color/verdeClaro"
+                android:text="Publicar"
+                android:textSize="12sp" />
 
         </LinearLayout>
-    </LinearLayout>
 
+
+    </LinearLayout>
 
 
 

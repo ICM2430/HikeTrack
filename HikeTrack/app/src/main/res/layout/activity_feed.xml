@@ -228,7 +228,7 @@
 
             <!-- Detalles del reto: distancia, desnivel, duración -->
             <TextView
-                android:id="@+id/textViewDetalles"
+                android:id="@+id/numeroTiempoExplorado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter"
