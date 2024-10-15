@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/generalbg"
-    tools:context=".MainActivity">
+    tools:context=".BuscarActivity">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,39 +22,76 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/textViewRecorrido"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:layout_marginBottom="24dp"
-            android:text="Recorridos cerca a ti"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/recorrido1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recorridos"
+            android:text="Busqueda"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toStartOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView" />
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/textViewRecorrido"
+            android:layout_width="29dp"
+            android:layout_height="27dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/settings_white" />
+
+
+        <LinearLayout
+            android:id="@+id/search_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginBottom="86dp"
+            android:background="@drawable/search_background"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/textViewRecorrido"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/search_icon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/lupa" />
+
+            <EditText
+                android:id="@+id/search_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Busca temas de interés"
+                android:inputType="text"
+                android:padding="4dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewRecorrido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:layout_marginBottom="26dp"
+            android:text="Recorridos"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/recorrido2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/recorrido2"
@@ -132,87 +169,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/recorrido4"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/rounded_corners"
-            android:backgroundTint="#594E2C"
-            app:layout_constraintBottom_toTopOf="@+id/button10"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_background" />
-
-            <TextView
-                android:id="@+id/textView29"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:background="#B58248"
-                android:text="Medio"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView7"
-                app:layout_constraintTop_toBottomOf="@+id/textView32" />
-
-            <TextView
-                android:id="@+id/textView30"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="0"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/textView29"
-                app:layout_constraintStart_toEndOf="@+id/textView29" />
-
-            <TextView
-                android:id="@+id/textView31"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/textView30"
-                app:layout_constraintStart_toEndOf="@+id/textView30" />
-
-            <TextView
-                android:id="@+id/textView32"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Dirección"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/imageView7"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView33"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/textView31"
-                app:layout_constraintStart_toEndOf="@+id/textView31" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/recorrido3"
             android:layout_width="0dp"
             android:layout_height="80dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/rounded_corners"
             android:backgroundTint="#594E2C"
-            app:layout_constraintBottom_toTopOf="@+id/recorrido4"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPersonas"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent">
@@ -279,101 +242,215 @@
                 app:layout_constraintStart_toEndOf="@+id/textView27" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/recorrido1"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_marginBottom="16dp"
-            android:background="@drawable/rounded_corners"
-            android:backgroundTint="#594E2C"
-            app:layout_constraintBottom_toTopOf="@+id/recorrido2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
+        <TextView
+            android:id="@+id/textViewPersonas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:text="Personas"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recorrido3" />
+
+        <LinearLayout
+            android:id="@+id/layoutPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPersonas">
 
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/avatar_1" />
+
+            <ImageView
+                android:id="@+id/imageView8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                android:layout_weight="1"
+                app:srcCompat="@drawable/avatar_2" />
 
-            <TextView
-                android:id="@+id/textView14"
+            <ImageView
+                android:id="@+id/imageView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Dirección"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/textView15"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_weight="1"
+                app:srcCompat="@drawable/avatar_3" />
 
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:background="#6A6A3C"
-                android:text="Facil"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView4"
-                app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-            <TextView
-                android:id="@+id/textView16"
+            <ImageView
+                android:id="@+id/imageView14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="0"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/textView15"
-                app:layout_constraintStart_toEndOf="@+id/textView15" />
+                android:layout_weight="1"
+                app:srcCompat="@drawable/avatar_4" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/textView17"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/textView18"
-                app:layout_constraintStart_toEndOf="@+id/textView18" />
-
-            <TextView
-                android:id="@+id/textView18"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/textView16"
-                app:layout_constraintStart_toEndOf="@+id/textView16" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <Button
-            android:id="@+id/nuevorecorrido"
+        <TextView
+            android:id="@+id/textViewRetos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#79884E"
-            android:text="+ añadir recorrido"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button10" />
+            android:layout_marginTop="26dp"
+            android:text="Retos"
+            android:textColor="@color/white"
+            android:textSize="18dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutPerfil" />
 
-        <Button
-            android:id="@+id/button10"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:background="#00000000"
-            android:text="Ver más >"
-            app:layout_constraintBottom_toTopOf="@+id/nuevorecorrido"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRetos">
+
+            <LinearLayout
+                android:id="@+id/reto_disponible_1"
+                android:layout_width="370dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/challenge_holder"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/reto_img"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/pumpkin_ic" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15sp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <!-- Nombre del usuario y logro -->
+                    <TextView
+                        android:id="@+id/titulo_reto_disp1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter"
+                        android:text="Reto de Halloween"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- Fecha del reto -->
+                    <TextView
+                        android:id="@+id/desc_reto_disp1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter"
+                        android:text="Corre 5km"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+
+                    <!-- Detalles del reto: distancia, desnivel, duración -->
+                    <TextView
+                        android:id="@+id/fecha_limite1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/inter"
+                        android:text="31 de octubre de 2024"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/publication_holder"
+                        android:text="Unirse"
+                        android:textColor="@android:color/white" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/reto_disponible_2"
+                android:layout_width="370dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="22dp"
+                android:layout_weight="1"
+                android:background="@drawable/challenge_holder"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/reto_img2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/calendar_ic" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <!-- Nombre del usuario y logro -->
+                    <TextView
+                        android:id="@+id/titulo_reto_disp2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter"
+                        android:text="Reto del mes"
+                        android:textColor="@android:color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/desc_reto_disp2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter"
+                        android:text="Completa 5 recorridos"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+
+                    <!-- Detalles del reto: distancia, desnivel, duración -->
+                    <TextView
+                        android:id="@+id/fecha_limite2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/inter"
+                        android:text="31 de octubre de 2024"
+                        android:textColor="@android:color/white"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:layout_width="120dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/publication_holder"
+                        android:text="Unirse"
+                        android:textColor="@android:color/white" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

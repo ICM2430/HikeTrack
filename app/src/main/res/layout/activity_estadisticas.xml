@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="@android:color/transparent"
-                app:srcCompat="@drawable/menu_perfil_estadisiticas_no_sel" />
+                app:srcCompat="@drawable/menu_perfil_publicaciones_no_sel" />
         </LinearLayout>
 
     </RelativeLayout>
