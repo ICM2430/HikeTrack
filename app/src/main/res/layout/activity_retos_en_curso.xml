@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/generalbg"
+    tools:context=".RetosEnCursoActivity">
+
+    <RelativeLayout
+        android:id="@+id/top_bar_challenges_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/settings_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/setting"
+            android:layout_marginEnd="16dp" />
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Retos"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/button_selector"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_margin="20dp"
+        android:layout_below="@+id/top_bar_challenges_layout"
+        android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/btn_en_curso"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="En Curso"
+            android:background="@drawable/transparent_btn"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btn_disponibles"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/transparent_btn"
+            android:text="Disponibles"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/button_selector"
+        android:layout_margin="20dp">
+
+        <LinearLayout
+            android:id="@+id/reto_curso1"
+            android:layout_width="370dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/challenge_holder"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/reto_img"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/pumpkin_ic" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="15sp">
+
+
+                <TextView
+                    android:id="@+id/titulo_reto1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="Reto de Halloween"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/white" />
+
+
+                <TextView
+                    android:id="@+id/progreso_disp1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="Progreso: 0%"
+                    android:textSize="16sp"
+                    android:textColor="@android:color/white" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/reto_curso_2"
+            android:layout_width="370dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/challenge_holder"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/reto_img2"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/running_ic" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginTop="25dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/titulo_reto2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="Reto de la semana"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/progreso_reto2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter"
+                    android:text="Progreso: 20%"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/flotante"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="320dp"
+            android:layout_marginTop="170dp"
+            android:backgroundTint="@color/verdeClaro"
+            android:clickable="true"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/new_challenge" />
+
+    </LinearLayout>
+
+
+
+
+    <View
+        android:id="@+id/franjaInferior"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:background="@color/celeste"
+        android:layout_alignParentBottom="true"/>
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="6dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="Home"
+        android:background="@drawable/ic_home"
+        />
+
+    <Button
+        android:id="@+id/estadisticas"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="6dp"
+        android:layout_toEndOf="@id/home"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/ic_stats"
+        android:contentDescription="Estadisticas" />
+
+    <ImageButton
+        android:id="@+id/seleccionarRecorrido"
+        android:layout_width="98dp"
+        android:layout_height="84dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="45dp"
+        android:layout_toEndOf="@id/estadisticas"
+        android:background="@drawable/corredor"
+        android:contentDescription="Seleccionar recorrido" />
+
+    <Button
+        android:id="@+id/botonRetos"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="6dp"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="Retos"
+        android:background="@drawable/ic_trophies"
+        android:layout_toEndOf="@id/seleccionarRecorrido"
+        />
+
+    <Button
+        android:id="@+id/contactos"
+        android:layout_width="68dp"
+        android:layout_height="63dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-4dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="13dp"
+        android:layout_toEndOf="@id/botonRetos"
+        android:background="@drawable/nav_profile"
+        android:contentDescription="Contactos" />
+</RelativeLayout>
