@@ -1,16 +1,19 @@
 package com.example.hiketrack
 
-import androidx.appcompat.app.AppCompatActivity
+import android.R.id.message
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import com.example.hiketrack.R
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.hiketrack.databinding.ActivityEmergencyBinding
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+
 
 class EmergencyActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -28,7 +31,64 @@ class EmergencyActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
+        binding.llamar123button.setOnClickListener {
+            val emergencyNumber = "123"
 
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:$emergencyNumber")
+        }
+
+        binding.compartirButton.setOnClickListener {
+
+            // Creating new intent
+            val intent = Intent(Intent.ACTION_SEND)
+
+            intent.setType("text/plain")
+            intent.setPackage("com.whatsapp")
+
+
+            // Give your message here
+            intent.putExtra(
+                Intent.EXTRA_TEXT,
+                "Compartiendo recorrido wip"
+            )
+
+
+            // Checking whether Whatsapp
+            // is installed or not
+            if (intent
+                    .resolveActivity(
+                        packageManager
+                    )
+                == null
+            ) {
+                Toast.makeText(
+                    this,
+                    "Please install whatsapp first.",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+                return@setOnClickListener
+            }
+
+
+            // Starting Whatsapp
+            startActivity(intent)
+        }
+
+        binding.contactoEmergenciaButton.setOnClickListener {
+            val emergencyNumber = "123"
+
+            //cambiar por numero de emergencia
+
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:$emergencyNumber")
+        }
+
+        binding.cancelbutton.setOnClickListener {
+            val intent = Intent(this, MapsTrackerActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     /**
