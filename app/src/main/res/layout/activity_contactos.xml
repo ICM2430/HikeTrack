@@ -1,106 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/generalbg"
     tools:context=".Contactos">
 
-    <View
-        android:id="@+id/franjaSuperior"
-        android:layout_width="wrap_content"
-        android:layout_height="90dp"
-        android:background="@color/purpuraClaro"
-        />
-
-    <ImageButton
-        android:id="@+id/profile_icon"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="8dp"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/boy"
-        android:background = "@drawable/circulo_enviar"
-        android:layout_gravity="center_vertical"/>
-
-    <ImageButton
-        android:id="@+id/listaContactos"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:contentDescription="Lista de contactos"
-        android:layout_margin="15dp"
-        android:layout_below="@id/imageView"
-        android:layout_above="@id/franjaInferior"
-        android:background="@drawable/contactos"
-        />
+        android:layout_height="60dp"
+        android:paddingEnd="35dp"
+        android:orientation="horizontal">
 
-    <View
-        android:id="@+id/franjaInferior"
-        android:layout_width="wrap_content"
-        android:layout_height="90dp"
-        android:background="@color/celeste"
-        android:layout_alignParentBottom="true"/>
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="Atras"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/back"/>
 
-    <Button
-        android:id="@+id/home"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="6dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:contentDescription="Home"
-        android:background="@drawable/ic_home"
-        />
+        <TextView
+            android:id="@+id/conversations"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical"
+            android:text="Conversaciones" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/estadisticas"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="6dp"
-        android:layout_toEndOf="@id/home"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/ic_stats"
-        android:contentDescription="Estadisticas" />
+    <EditText
+        android:background="@drawable/roundcorner2"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginVertical="10dp"
+        android:hint="Buscar un amigo"
+        android:textColorHint="@color/white"
+        android:paddingStart="15dp"
+        android:layout_height="50dp"/>
 
-    <ImageButton
-        android:id="@+id/seleccionarRecorrido"
-        android:layout_width="85dp"
-        android:layout_height="72dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="45dp"
-        android:layout_toEndOf="@id/estadisticas"
-        android:background="@drawable/corredor"
-        android:contentDescription="Seleccionar recorrido" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="400dp" />
 
-    <Button
-        android:id="@+id/botonRetos"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="6dp"
-        android:layout_alignParentBottom="true"
-        android:contentDescription="Retos"
-        android:background="@drawable/ic_trophies"
-        android:layout_toEndOf="@id/seleccionarRecorrido"
-        />
 
-    <Button
-        android:id="@+id/contactos"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="6dp"
-        android:layout_toEndOf="@id/botonRetos"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/nav_profile"
-        android:contentDescription="Contactos" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentRight="true"
-        android:layout_margin="20dp"
-        app:srcCompat="@drawable/lupa" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:orientation="vertical"
+            android:background="@color/verdeOscuro"
+            android:layout_alignParentBottom="true">
+
+            <LinearLayout
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <ImageButton
+                    android:layout_marginHorizontal="28dp"
+                    android:id="@+id/inicioButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="Inicio"
+                    android:background="@drawable/home" />
+
+                <ImageButton
+                    android:layout_marginHorizontal="27dp"
+                    android:id="@+id/retosButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="Retos"
+                    android:background="@drawable/target" />
+
+                <ImageButton
+                    android:layout_marginHorizontal="27dp"
+                    android:id="@+id/recorridosButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="Recorridos"
+                    android:background="@drawable/map" />
+
+                <ImageButton
+                    android:layout_marginHorizontal="27dp"
+                    android:id="@+id/perfilButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="Perfil"
+                    android:background="@drawable/user" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/inicioText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Inicio"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:id="@+id/retosText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Retos"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:id="@+id/recorridosText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Recorridos"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"/>
+
+                <TextView
+                    android:id="@+id/perfilText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Perfil"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
+
+
