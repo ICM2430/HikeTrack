@@ -34,21 +34,21 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/llamar123button"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="#879957"
                 android:text="Llamar al 123"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/button8"
+                app:layout_constraintBottom_toTopOf="@+id/contactoEmergenciaButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView46" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/contactoEmergenciaButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
@@ -57,20 +57,20 @@
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/button9"
-                app:layout_constraintTop_toBottomOf="@+id/button7" />
+                app:layout_constraintStart_toEndOf="@+id/compartirButton"
+                app:layout_constraintTop_toBottomOf="@+id/llamar123button" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/compartirButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="16dp"
                 android:backgroundTint="#879957"
                 android:text="Compartir recorrido"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/button8"
+                app:layout_constraintEnd_toStartOf="@+id/contactoEmergenciaButton"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button7" />
+                app:layout_constraintTop_toBottomOf="@+id/llamar123button" />
 
             <TextView
                 android:id="@+id/textView46"
@@ -81,7 +81,7 @@
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/button7"
+                app:layout_constraintBottom_toTopOf="@+id/llamar123button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -1,5 +1,6 @@
 package com.example.hiketrack
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.hiketrack.R
@@ -28,6 +29,25 @@ class CalificarActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        binding.finalizarButton.setOnClickListener {
+            val intent = Intent(this, RecorridosActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.compartirButton.setOnClickListener {
+
+            //to be changed
+            val intent = Intent(this, RecorridosActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.favoritoButton.setOnClickListener {
+
+            //to be changed
+            val intent = Intent(this, RecorridosActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     /**

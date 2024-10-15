@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:text="Tiempo"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintBottom_toTopOf="@+id/EmergencyButton"
             app:layout_constraintEnd_toStartOf="@+id/textView36"
             app:layout_constraintStart_toEndOf="@+id/textView37"
             app:layout_constraintTop_toBottomOf="@+id/textView39" />
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:text="Pasos"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintBottom_toTopOf="@+id/EmergencyButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView35"
             app:layout_constraintTop_toBottomOf="@+id/textView38" />
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:text="Distancia"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
+            app:layout_constraintBottom_toTopOf="@+id/EmergencyButton"
             app:layout_constraintEnd_toStartOf="@+id/textView35"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView34"
@@ -105,17 +105,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/EmergencyButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="#79884E"
             android:text="Emergencia"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button3"
+            app:layout_constraintEnd_toStartOf="@+id/FinalizarButton"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/FinalizarButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -123,7 +123,7 @@
             android:text="Finalizar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/button2" />
+            app:layout_constraintStart_toEndOf="@+id/EmergencyButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

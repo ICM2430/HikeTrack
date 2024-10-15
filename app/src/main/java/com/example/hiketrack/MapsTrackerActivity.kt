@@ -1,6 +1,7 @@
 package com.example.hiketrack
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -34,10 +35,22 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
 
 
+        binding.EmergencyButton.setOnClickListener {
+            val intent = Intent(this, EmergencyActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.FinalizarButton.setOnClickListener {
+            val intent = Intent(this, CalificarActivity::class.java)
+            startActivity(intent)
+        }
+
         // permission for location
         locationPermissionRequest(Manifest.permission.ACCESS_FINE_LOCATION)
         locationPermissionRequest(Manifest.permission.ACCESS_COARSE_LOCATION)
     }
+
+
 
     /**
      * Manipulates the map once available.
@@ -55,6 +68,8 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         val sydney = LatLng(-34.0, 151.0)
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+
     }
 
     //Permision for location
