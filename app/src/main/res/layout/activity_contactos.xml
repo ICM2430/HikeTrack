@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Contactos">
+
+    <View
+        android:id="@+id/franjaSuperior"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:background="@color/purpuraClaro"
+        />
+
+    <ImageButton
+        android:id="@+id/profile_icon"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/boy"
+        android:background = "@drawable/circulo_enviar"
+        android:layout_gravity="center_vertical"/>
+
+    <ImageButton
+        android:id="@+id/listaContactos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="Lista de contactos"
+        android:layout_margin="15dp"
+        android:layout_below="@id/imageView"
+        android:layout_above="@id/franjaInferior"
+        android:background="@drawable/contactos"
+        />
+
+    <View
+        android:id="@+id/franjaInferior"
+        android:layout_width="wrap_content"
+        android:layout_height="90dp"
+        android:background="@color/celeste"
+        android:layout_alignParentBottom="true"/>
+
+    <Button
+        android:id="@+id/home"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="6dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="Home"
+        android:background="@drawable/ic_home"
+        />
+
+    <Button
+        android:id="@+id/estadisticas"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="6dp"
+        android:layout_toEndOf="@id/home"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/ic_stats"
+        android:contentDescription="Estadisticas" />
+
+    <ImageButton
+        android:id="@+id/seleccionarRecorrido"
+        android:layout_width="85dp"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="45dp"
+        android:layout_toEndOf="@id/estadisticas"
+        android:background="@drawable/corredor"
+        android:contentDescription="Seleccionar recorrido" />
+
+    <Button
+        android:id="@+id/botonRetos"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="6dp"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="Retos"
+        android:background="@drawable/ic_trophies"
+        android:layout_toEndOf="@id/seleccionarRecorrido"
+        />
+
+    <Button
+        android:id="@+id/contactos"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="6dp"
+        android:layout_toEndOf="@id/botonRetos"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/nav_profile"
+        android:contentDescription="Contactos" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="20dp"
+        app:srcCompat="@drawable/lupa" />
+
+</RelativeLayout>
