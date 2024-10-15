@@ -18,4 +18,7 @@
     <string name="nav_challenges">Recorridos</string>
     <string name="nav_trophies">Retos</string>
     <string name="nav_profile">Contactos</string>
+    <string name="title_activity_crear_recorrido">CrearRecorrido</string>
+    <string name="title_activity_registrar_recorrido">RegistrarRecorrido</string>
+    <string name="title_activity_guardar_recorrido">GuardarRecorrido</string>
 </resources>
