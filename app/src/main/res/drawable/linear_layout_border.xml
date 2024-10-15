@@ -1,0 +1,11 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Border color and thickness -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/verdeOscuro" >  <!-- Border color (red in this case) -->
+
+    </stroke>
+
+    <!-- Optional: Set corner radius for rounded corners -->
+    <corners android:radius="8dp"/>
+</shape>
