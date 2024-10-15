@@ -9,17 +9,17 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.example.hiketrack.databinding.ActivityCrearRecorridoBinding
+import com.example.hiketrack.databinding.ActivityRegistrarRecorridoBinding
 
-class CrearRecorrido : AppCompatActivity(), OnMapReadyCallback {
+class RegistrarRecorrido : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-    private lateinit var binding: ActivityCrearRecorridoBinding
+    private lateinit var binding: ActivityRegistrarRecorridoBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityCrearRecorridoBinding.inflate(layoutInflater)
+        binding = ActivityRegistrarRecorridoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
