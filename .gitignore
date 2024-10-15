@@ -1,5 +1,5 @@
 *.iml
-.gradle
+.gradle/
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Gradle cache files
+.gradle/8.6/executionHistory/
+.gradle/buildOutputCleanup/
+.gradle/file-system.probe
