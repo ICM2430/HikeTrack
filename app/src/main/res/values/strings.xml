@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">vistastrabajo4</string>
-    <string name="title_activity_maps_tracker">MapsTrackerActivity</string>
-    <string name="title_activity_emergency">EmergencyActivity</string>
-    <string name="title_activity_calificar">CalificarActivity</string>
-</resources>
