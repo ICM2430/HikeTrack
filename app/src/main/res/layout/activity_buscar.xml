@@ -463,10 +463,10 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout11"
+            android:id="@+id/layoutHome"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            app:layout_constraintEnd_toStartOf="@+id/constraintLayout10"
+            app:layout_constraintEnd_toStartOf="@+id/layoutRetos"
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
@@ -478,10 +478,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+                app:layout_constraintTop_toBottomOf="@+id/botonHome" />
 
             <ImageButton
-                android:id="@+id/imageView9"
+                android:id="@+id/botonHome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
@@ -493,12 +493,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout9"
+            android:id="@+id/layoutRecorridos"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/constraintLayout8"
-            app:layout_constraintStart_toEndOf="@+id/constraintLayout10"
+            app:layout_constraintEnd_toStartOf="@+id/layoutPerfilMenu"
+            app:layout_constraintStart_toEndOf="@+id/layoutRetos"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
@@ -514,7 +514,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
             <ImageButton
-                android:id="@+id/imageView10"
+                android:id="@+id/botonRecorridos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
@@ -526,12 +526,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout10"
+            android:id="@+id/layoutRetos"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/constraintLayout9"
-            app:layout_constraintStart_toEndOf="@+id/constraintLayout11"
+            app:layout_constraintEnd_toStartOf="@+id/layoutRecorridos"
+            app:layout_constraintStart_toEndOf="@+id/layoutHome"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
@@ -544,10 +544,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+                app:layout_constraintTop_toBottomOf="@+id/botonRetos" />
 
             <ImageButton
-                android:id="@+id/imageView12"
+                android:id="@+id/botonRetos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/textView44"
@@ -559,12 +559,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout8"
+            android:id="@+id/layoutPerfilMenu"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/constraintLayout9"
+            app:layout_constraintStart_toEndOf="@+id/layoutRecorridos"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
@@ -577,10 +577,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView11" />
+                app:layout_constraintTop_toBottomOf="@+id/botonPerfil" />
 
             <ImageButton
-                android:id="@+id/imageView11"
+                android:id="@+id/botonPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"

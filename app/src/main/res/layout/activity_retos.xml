@@ -269,7 +269,7 @@
         android:contentDescription="Seleccionar recorrido" />
 
     <Button
-        android:id="@+id/botonRetos"
+        android:id="@+id/layoutRetos"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_margin="6dp"
@@ -290,7 +290,7 @@
         android:layout_marginEnd="6dp"
         android:layout_marginRight="6dp"
         android:layout_marginBottom="13dp"
-        android:layout_toEndOf="@id/botonRetos"
+        android:layout_toEndOf="@id/layoutRetos"
         android:background="@drawable/nav_profile"
         android:contentDescription="Contactos" />
 </RelativeLayout>

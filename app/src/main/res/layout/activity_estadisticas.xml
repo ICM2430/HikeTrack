@@ -65,7 +65,7 @@
 
 
             <ImageButton
-                android:id="@+id/imageButton3"
+                android:id="@+id/botonEstadisticas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -73,7 +73,7 @@
                 app:srcCompat="@drawable/menu_perfil_estadisiticas_sel" />
 
             <ImageButton
-                android:id="@+id/imageButton2"
+                android:id="@+id/botonPublicaciones"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -390,7 +390,7 @@
         app:layout_constraintVertical_bias="0.5"/>
 
     <Button
-        android:id="@+id/botonRetos"
+        android:id="@+id/layoutRetos"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_margin="6dp"
@@ -414,7 +414,7 @@
         android:background="@drawable/nav_profile"
         android:contentDescription="Contactos"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/botonRetos"
+        app:layout_constraintStart_toEndOf="@id/layoutRetos"
         app:layout_constraintTop_toTopOf="@id/franjaInferior"
         app:layout_constraintVertical_bias="0.5"/>
 

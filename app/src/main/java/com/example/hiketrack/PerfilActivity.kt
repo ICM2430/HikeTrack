@@ -23,11 +23,13 @@ class PerfilActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /*
-        binding.publishFloatingButton.setOnClickListener {
-            val intent = Intent(this, PublicarActivity::class.java)
+        binding.botonEstadisticas.setOnClickListener {
+            val intent = Intent(this, EstadisticasActivity::class.java)
             startActivity(intent)
-        }*/
+        }
+
+
+
 
     }
 }

@@ -13,6 +13,10 @@ class FeedActivity : AppCompatActivity() {
         binding = ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.searchContainer.setOnClickListener {
+            val intent =  Intent(this,BuscarActivity::class.java)
+            startActivity(intent)
+        }
 
 
 
@@ -26,10 +30,7 @@ class FeedActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.botonRetos.setOnClickListener {
-            val intent =  Intent(this,RetosActivity::class.java)
-            startActivity(intent)
-        }
+
 
         binding.contactos.setOnClickListener {
             val intent =  Intent(this,Contactos::class.java)

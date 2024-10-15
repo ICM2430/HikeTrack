@@ -15,24 +15,11 @@ class EstadisticasActivity : AppCompatActivity() {
         binding = ActivityEstadisticasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.home.setOnClickListener {
-            val intent =  Intent(this,FeedActivity::class.java)
+        binding.botonPublicaciones.setOnClickListener {
+            val intent =  Intent(this,PerfilActivity::class.java)
             startActivity(intent)
         }
 
-        binding.seleccionarRecorrido.setOnClickListener {
-            val intent =  Intent(this,SeleccionarRecorrido::class.java)
-            startActivity(intent)
-        }
 
-        binding.botonRetos.setOnClickListener {
-            val intent =  Intent(this,RetosActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.contactos.setOnClickListener {
-            val intent =  Intent(this,Contactos::class.java)
-            startActivity(intent)
-        }
     }
 }

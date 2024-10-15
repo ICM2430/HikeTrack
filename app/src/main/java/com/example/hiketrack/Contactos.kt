@@ -32,10 +32,6 @@ class Contactos : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.botonRetos.setOnClickListener {
-            val intent =  Intent(this,RetosActivity::class.java)
-            startActivity(intent)
-        }
 
         binding.listaContactos.setOnClickListener {
             val intent =  Intent(this,ChatActivity::class.java)
