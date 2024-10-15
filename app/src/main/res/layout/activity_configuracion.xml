@@ -5,145 +5,126 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/generalbg"
     tools:context=".ConfiguracionActivity">
+
+    <RelativeLayout
+        android:id="@+id/top_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/settings_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/setting"
+            android:layout_marginEnd="16dp" />
+
+        <TextView
+            android:id="@+id/title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Configuraciones"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true" />
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="10dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/top_bar_layout"
+        app:layout_constraintTop_toBottomOf="@+id/top_bar_layout" >
 
-        <TextView
-            android:id="@+id/settings"
-            android:layout_width="430dp"
-            android:layout_height="100dp"
-            android:text="Configuración"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="0dp"
-            android:textAlignment="center"
-            android:layout_gravity="center"
+
+        <LinearLayout
+            android:id="@+id/configuracionCuenta"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:gravity="center"
-            android:textSize="30dp"
-            android:textColor="@color/black"
-            android:background="@android:color/holo_purple"/>
-
-        <LinearLayout
-            android:id="@+id/option1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            app:layout_constraintTop_toBottomOf="@id/settings"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
+            android:background="@drawable/linear_layout_border"
+            android:orientation="horizontal">
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/user"/>
+                android:id="@+id/imagenCuenta"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/white_profile_icon" />
+
             <TextView
+                android:id="@+id/textoCuenta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cuenta"
-                android:layout_marginStart="12dp" />
-        </LinearLayout>
+                android:layout_weight="9"
+                android:textColor="@color/white"
+                android:text=" Cuenta" />
 
-        <View
-            android:id="@+id/divider1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dividerColor"
-            app:layout_constraintTop_toBottomOf="@id/option1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+        </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/option2"
+            android:id="@+id/configuracionSeguridad"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            app:layout_constraintTop_toBottomOf="@id/divider1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:background="@drawable/linear_layout_border"
+            android:orientation="horizontal">
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/padlock"/>
+                android:id="@+id/imagenSeguridad"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/white_lock_icon" />
+
             <TextView
+                android:id="@+id/textoSeguridad"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contraseñas"
-                android:layout_marginStart="12dp" />
-        </LinearLayout>
+                android:layout_weight="9"
+                android:textColor="@color/white"
+                android:text=" Seguridad" />
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dividerColor"
-            app:layout_constraintTop_toBottomOf="@id/option1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+        </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/option3"
+            android:id="@+id/configuracionContactenos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            app:layout_constraintTop_toBottomOf="@id/divider1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/linear_layout_border"
 
+            android:orientation="horizontal">
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/contact_information"/>
+                android:id="@+id/imagenContactenos"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/white_headphones_icon" />
+
             <TextView
+                android:id="@+id/textoContactenos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contacto de emergencia"
-                android:layout_marginStart="12dp" />
+                android:layout_weight="9"
+                android:textColor="@color/white"
+                android:text=" Soporte" />
+
         </LinearLayout>
-
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/dividerColor"
-            app:layout_constraintTop_toBottomOf="@id/option1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <LinearLayout
-            android:id="@+id/option4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="12dp"
-            app:layout_constraintTop_toBottomOf="@id/divider1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/internet"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Idioma"
-                android:layout_marginStart="12dp" />
-        </LinearLayout>
-
-
-
-
-
     </LinearLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

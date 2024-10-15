@@ -23,17 +23,17 @@ class RecorridosActivity : AppCompatActivity() {
         }
 
         binding.recorrido2.setOnClickListener {
-            val intent = Intent(this, DescripcionRecorridoActivity::class.java)
+            val intent = Intent(this, InformacionRecorridosActivity::class.java)
             startActivity(intent)
         }
 
         binding.recorrido3.setOnClickListener {
-            val intent = Intent(this, DescripcionRecorridoActivity::class.java)
+            val intent = Intent(this, InformacionRecorridosActivity::class.java)
             startActivity(intent)
         }
 
         binding.recorrido4.setOnClickListener {
-            val intent = Intent(this, DescripcionRecorridoActivity::class.java)
+            val intent = Intent(this, InformacionRecorridosActivity::class.java)
             startActivity(intent)
         }
 

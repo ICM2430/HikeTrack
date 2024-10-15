@@ -13,10 +13,7 @@ class FeedActivity : AppCompatActivity() {
         binding = ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.searchIcon.setOnClickListener {
-            val intent = Intent(this, BuscarPerfilActivity::class.java)
-            startActivity(intent)
-        }
+
 
 
         binding.estadisticas.setOnClickListener {

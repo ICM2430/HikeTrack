@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1D281F"
+    android:background="@drawable/generalbg"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,6 +38,7 @@
                 android:id="@+id/imageView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@null"
                 app:layout_constraintBottom_toTopOf="@+id/textView42"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,6 +71,7 @@
                 android:id="@+id/imageView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@null"
                 app:layout_constraintBottom_toTopOf="@+id/textView43"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -102,6 +104,7 @@
                 android:id="@+id/imageView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@null"
                 app:layout_constraintBottom_toTopOf="@+id/textView44"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -134,6 +137,7 @@
                 android:id="@+id/imageView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@null"
                 app:layout_constraintBottom_toTopOf="@+id/textView45"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -156,7 +160,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewRecorrido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
@@ -185,7 +189,7 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintBottom_toTopOf="@+id/textViewRecorrido"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/settings_white" />

@@ -35,33 +35,33 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/compartirButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="#879957"
                 android:text="Compartir Recorrido"
-                app:layout_constraintBottom_toTopOf="@+id/button6"
+                app:layout_constraintBottom_toTopOf="@+id/finalizarButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button5" />
+                app:layout_constraintTop_toBottomOf="@+id/favoritoButton" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/favoritoButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="16dp"
                 android:backgroundTint="#879957"
                 android:text="Marcar recorrido como favorito"
-                app:layout_constraintBottom_toTopOf="@+id/button4"
+                app:layout_constraintBottom_toTopOf="@+id/compartirButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout15" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/finalizarButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:backgroundTint="#879957"
@@ -70,7 +70,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button4" />
+                app:layout_constraintTop_toBottomOf="@+id/compartirButton" />
 
             <TextView
                 android:id="@+id/textView40"
@@ -105,7 +105,7 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/button5"
+                app:layout_constraintBottom_toTopOf="@+id/favoritoButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
