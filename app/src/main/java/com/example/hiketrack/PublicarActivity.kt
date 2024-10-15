@@ -16,10 +16,10 @@ class PublicarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPublicarBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+/*
         binding.publishButton.setOnClickListener {
             val intent = Intent(this, PerfilActivity::class.java)
             startActivity(intent)
-        }
+        }*/
     }
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="darkBlue">#302D71</color>
+    <color name="violeta">#BC6CC0</color>
+    <color name="darkVioleta">#764D98</color>
+    <color name="azulClaro">#BAC4EF</color>
+    <color name="dividerColor">#FF000000</color>
+    <color name="purpuraClaro">#bc6cc0</color>
+    <color name="purpuraOscuro">#764d98</color>
+    <color name="celeste">#bac4ef</color>
+    <color name="verdeClaro">#879957</color>
+    <color name="verdeOscuro">#4b5320</color>
+    <color name="verdePantanoso">#594e2c</color>
+    <color name="gris">#bdc1ca</color>
+    <color name="naranja">#f99e77</color>
+    <color name="cian">#41cfdf</color>
+    <color name="naranjaClaro">#f5ba7f</color>
+
+
+
+
+
+</resources>
