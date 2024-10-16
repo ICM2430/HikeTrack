@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/textView34"
+            android:id="@+id/distancia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -39,7 +39,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textView37"
-            app:layout_constraintEnd_toStartOf="@+id/textView39"
+            app:layout_constraintEnd_toStartOf="@+id/tiempo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.25" />
@@ -53,7 +53,7 @@
             app:layout_constraintBottom_toTopOf="@+id/EmergencyButton"
             app:layout_constraintEnd_toStartOf="@+id/textView36"
             app:layout_constraintStart_toEndOf="@+id/textView37"
-            app:layout_constraintTop_toBottomOf="@+id/textView39" />
+            app:layout_constraintTop_toBottomOf="@+id/tiempo" />
 
         <TextView
             android:id="@+id/textView36"
@@ -64,7 +64,7 @@
             app:layout_constraintBottom_toTopOf="@+id/EmergencyButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView35"
-            app:layout_constraintTop_toBottomOf="@+id/textView38" />
+            app:layout_constraintTop_toBottomOf="@+id/pasos" />
 
         <TextView
             android:id="@+id/textView37"
@@ -75,11 +75,11 @@
             app:layout_constraintBottom_toTopOf="@+id/EmergencyButton"
             app:layout_constraintEnd_toStartOf="@+id/textView35"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView34"
+            app:layout_constraintTop_toBottomOf="@+id/distancia"
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
-            android:id="@+id/textView38"
+            android:id="@+id/pasos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -88,11 +88,11 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textView36"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView39"
+            app:layout_constraintStart_toEndOf="@+id/tiempo"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView39"
+            android:id="@+id/tiempo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="0"
@@ -100,8 +100,8 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textView35"
-            app:layout_constraintEnd_toStartOf="@+id/textView38"
-            app:layout_constraintStart_toEndOf="@+id/textView34"
+            app:layout_constraintEnd_toStartOf="@+id/pasos"
+            app:layout_constraintStart_toEndOf="@+id/distancia"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button

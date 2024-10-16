@@ -19,7 +19,7 @@ class FeedActivity : AppCompatActivity() {
         }
 
         binding.chatButton.setOnClickListener {
-            val intent = Intent(this, ChatActivity::class.java)
+            val intent = Intent(this, ContactosActivity::class.java)
             startActivity(intent)
         }
 

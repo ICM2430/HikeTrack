@@ -72,9 +72,6 @@
             android:name=".RetosEnCursoActivity"
             android:exported="false" />
         <activity
-            android:name=".SeleccionarRecorrido"
-            android:exported="false" />
-        <activity
             android:name=".CrearRecorrido"
             android:exported="false" />
         <activity
@@ -90,9 +87,6 @@
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".CalificarRecorridoActivity"
-            android:exported="false" />
-        <activity
             android:name=".FeedActivity"
             android:exported="false" />
         <activity
@@ -103,15 +97,6 @@
             android:exported="false" />
         <activity
             android:name=".ChatActivity"
-            android:exported="false" />
-        <activity
-            android:name=".EmergenciaActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TrackerRecorridoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".DescripcionRecorridoActivity"
             android:exported="false" />
         <activity
             android:name=".PerfilActivity"
