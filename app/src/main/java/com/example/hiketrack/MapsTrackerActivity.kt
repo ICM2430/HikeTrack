@@ -17,6 +17,7 @@ import android.location.Location
 import android.location.LocationRequest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.os.Looper
 import android.os.StrictMode
 import android.util.Log
@@ -94,6 +95,22 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var locationRequest: com.google.android.gms.location.LocationRequest
     private lateinit var locationCallback: LocationCallback
 
+
+    // manejo del tiempo
+
+    private var startTime = 0L
+    private val handler = Handler(Looper.getMainLooper())
+    private lateinit var runnable: Runnable
+    private var elapsedTime = 0L
+
+    //pasos
+    private var stepCounterSensor: Sensor? = null
+    private var stepCount = 0
+
+    //distancia
+    private var totalDistance: Int = 0
+
+
     // OnCreate
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -108,6 +125,10 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         sensorEventListener = createSensorEventListener()
 
         geocoder = Geocoder(baseContext)
+
+        //sensor pasos
+
+        stepCounterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
 
 
 
@@ -153,37 +174,76 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                     }
                 })
 
-/*
-        // rutas
 
-        binding.rutas.setOnClickListener {
-            drawRouteFromFile()
+        // contador de tiempo
+
+        startTime = System.currentTimeMillis()
+        runnable = object : Runnable {
+            override fun run() {
+                elapsedTime = System.currentTimeMillis() - startTime
+
+                // Convertir el tiempo transcurrido a segundos, minutos y horas
+                val seconds = (elapsedTime / 1000) % 60
+                val minutes = (elapsedTime / (1000 * 60)) % 60
+                val totalMinutes = elapsedTime / (1000 * 60)
+                val hours = elapsedTime / (1000 * 60 * 60)
+
+                // Formatear el tiempo dependiendo del valor de minutos u horas
+                val formattedTime = when {
+                    totalMinutes < 60 -> {
+                        // Mostrar minutos si son menos de 60 minutos
+                        "$totalMinutes min"
+                    }
+                    else -> {
+                        // Mostrar horas con decimales si es mayor o igual a 60 minutos
+                        val decimalHours = hours + minutes / 60.0
+                        String.format("%.1f h", decimalHours)
+                    }
+                }
+
+                // Actualizar el TextView con el tiempo formateado usando binding
+                binding.tiempo.text = formattedTime
+
+
+                // Llamar a run() de nuevo en un intervalo de 1 segundo
+                handler.postDelayed(this, 1000)
+            }
         }
+        handler.post(runnable)
 
 
-        // Search address
 
-        binding.address.setOnEditorActionListener { v, actionId, event ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH){
-                val address = binding.address.text.toString()
-                val location = findLocation(address)
-                if (location != null){
-                    drawMarker(location,address, R.drawable.baseline_location_black)
-                    mMap.moveCamera(CameraUpdateFactory.zoomTo(18f))
+        /*
+                // rutas
 
-                    getCurrentLocation { NewcurrentLocation ->
-                        if (NewcurrentLocation != null) {
-                            drawRoute(NewcurrentLocation, location)
-                        } else {
-                            Toast.makeText(this, "No se pudo obtener localizacion", Toast.LENGTH_SHORT).show()
+                binding.rutas.setOnClickListener {
+                    drawRouteFromFile()
+                }
+
+
+                // Search address
+
+                binding.address.setOnEditorActionListener { v, actionId, event ->
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH){
+                        val address = binding.address.text.toString()
+                        val location = findLocation(address)
+                        if (location != null){
+                            drawMarker(location,address, R.drawable.baseline_location_black)
+                            mMap.moveCamera(CameraUpdateFactory.zoomTo(18f))
+
+                            getCurrentLocation { NewcurrentLocation ->
+                                if (NewcurrentLocation != null) {
+                                    drawRoute(NewcurrentLocation, location)
+                                } else {
+                                    Toast.makeText(this, "No se pudo obtener localizacion", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+
+
                         }
                     }
-
-
-                }
-            }
-            true
-        }*/
+                    true
+                }*/
     }
 
     private fun drawRouteFromFile() {
@@ -269,6 +329,11 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                             }
                         }
                     }
+                //sensor pasos
+                if (event?.sensor == stepCounterSensor && event != null) {
+                    stepCount = event.values[0].toInt()
+                    binding.pasos.text = stepCount.toString()
+                }
 
             }
 
@@ -455,12 +520,14 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     // Guardar localizacion en json
-    fun writeJSONObject(distance:Int) {
+    fun writeJSONObject() {
         val myLocation = MyLocation.MyLocation(
             currentLocation.latitude,
             currentLocation.longitude,
             Date(System.currentTimeMillis()),
-            distance
+            totalDistance,
+            stepCount,
+            elapsedTime
         )
         locations.add(myLocation.toJSON())
         val filename = "locations.json"
@@ -533,10 +600,9 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
             if (distance[0] > 10) {
 
                 currentLocation = newLocation
-                var distance = binding.distancia.text.toString().toInt()
-                distance += 10
-                binding.distancia.text = distance.toString()
-                writeJSONObject(distance)
+                totalDistance = totalDistance + 10
+                binding.distancia.text = "${totalDistance} m"
+                writeJSONObject()
 
 
             }
@@ -544,7 +610,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
             // Si no hay una ubicación anterior, se guarda la nueva ubicación
             currentLocation = newLocation
             binding.distancia.text = 0.toString()
-            writeJSONObject(0)
+            writeJSONObject()
         }
     }
 

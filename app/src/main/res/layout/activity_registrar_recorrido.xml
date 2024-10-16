@@ -30,11 +30,11 @@
 
         <ImageButton
             android:id="@+id/config"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="configuración"
+            android:layout_width="31dp"
+            android:layout_height="27dp"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/setting"/>
+            android:background="@drawable/setting"
+            android:contentDescription="configuración" />
     </LinearLayout>
 
     <fragment
