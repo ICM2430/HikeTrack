@@ -1,10 +1,8 @@
 package com.example.hiketrack
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.hiketrack.databinding.ActivityChatBinding
 
 class ChatActivity : AppCompatActivity() {
@@ -13,5 +11,10 @@ class ChatActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.back.setOnClickListener {
+            val intent =  Intent(this,ContactosActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

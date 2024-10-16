@@ -2,10 +2,7 @@ package com.example.hiketrack
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.hiketrack.databinding.ActivityRetosEnCursoBinding
 
 class RetosEnCursoActivity : AppCompatActivity() {
@@ -52,7 +49,7 @@ class RetosEnCursoActivity : AppCompatActivity() {
         }
 
         binding.contactos.setOnClickListener {
-            val intent =  Intent(this,Contactos::class.java)
+            val intent =  Intent(this,ContactosActivity::class.java)
             startActivity(intent)
         }
     }

@@ -43,7 +43,7 @@ class SeleccionarRecorrido : AppCompatActivity() {
         }
 
         binding.contactos.setOnClickListener {
-            val intent =  Intent(this,Contactos::class.java)
+            val intent =  Intent(this,ContactosActivity::class.java)
             startActivity(intent)
         }
     }

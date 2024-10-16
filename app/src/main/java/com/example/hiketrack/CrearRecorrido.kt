@@ -1,5 +1,6 @@
 package com.example.hiketrack
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -21,6 +22,16 @@ class CrearRecorrido : AppCompatActivity(), OnMapReadyCallback {
 
         binding = ActivityCrearRecorridoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.config.setOnClickListener {
+            val intent =  Intent(this,ConfiguracionActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.registrar.setOnClickListener {
+            val intent =  Intent(this,RegistrarRecorrido::class.java)
+            startActivity(intent)
+        }
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager

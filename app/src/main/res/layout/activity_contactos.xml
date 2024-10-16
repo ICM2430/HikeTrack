@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/generalbg"
-    tools:context=".Contactos">
+    tools:context=".ContactosActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,10 +15,10 @@
         android:paddingEnd="35dp"
         android:orientation="horizontal">
 
-        <ImageButton
+        <ImageView
             android:id="@+id/back"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:contentDescription="Atras"
             android:layout_gravity="center_vertical"
             android:background="@drawable/back"/>
@@ -337,17 +337,13 @@
 
     </LinearLayout>
 
-
-
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/verdeOscuro"
             android:layout_alignParentBottom="true">
@@ -356,43 +352,43 @@
                 android:paddingTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
+                android:orientation="horizontal">
 
-                <ImageButton
-                    android:layout_marginHorizontal="28dp"
+                <ImageView
+                    android:layout_marginLeft="33dp"
                     android:id="@+id/inicioButton"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:contentDescription="Inicio"
                     android:background="@drawable/home" />
 
-                <ImageButton
-                    android:layout_marginHorizontal="27dp"
+                <ImageView
+                    android:layout_marginLeft="69dp"
                     android:id="@+id/retosButton"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:contentDescription="Retos"
                     android:background="@drawable/target" />
 
-                <ImageButton
-                    android:layout_marginHorizontal="27dp"
+                <ImageView
+                    android:layout_marginLeft="65dp"
                     android:id="@+id/recorridosButton"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:contentDescription="Recorridos"
                     android:background="@drawable/map" />
 
-                <ImageButton
-                    android:layout_marginHorizontal="27dp"
+                <ImageView
+                    android:layout_marginLeft="70dp"
                     android:id="@+id/perfilButton"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:contentDescription="Perfil"
                     android:background="@drawable/user" />
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">

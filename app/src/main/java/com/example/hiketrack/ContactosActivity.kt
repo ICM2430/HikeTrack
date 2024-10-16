@@ -2,18 +2,25 @@ package com.example.hiketrack
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.hiketrack.databinding.ActivityBuscarBinding
+import com.example.hiketrack.databinding.ActivityContactosBinding
 
-class BuscarActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityBuscarBinding
+class ContactosActivity : AppCompatActivity() {
+    private lateinit var binding : ActivityContactosBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityBuscarBinding.inflate(layoutInflater)
+        binding = ActivityContactosBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.back.setOnClickListener {
+            val intent =  Intent(this,FeedActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.pfp1.setOnClickListener {
+            val intent =  Intent(this,ChatActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.inicioButton.setOnClickListener {
             val intent =  Intent(this,FeedActivity::class.java)

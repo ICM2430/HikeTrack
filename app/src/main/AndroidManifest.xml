@@ -78,7 +78,7 @@
             android:name=".CrearRecorrido"
             android:exported="false" />
         <activity
-            android:name=".Contactos"
+            android:name=".ContactosActivity"
             android:exported="false" />
         <activity
             android:name=".RetosActivity"
