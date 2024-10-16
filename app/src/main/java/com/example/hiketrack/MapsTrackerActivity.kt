@@ -285,16 +285,35 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         } ?: run {
             Log.e("Sensor", "Sensor de luz no disponible.")
         }
-
-        pressureSensor?.let {
-            sensorManager.registerListener(pressureSensorListener, it, SensorManager.SENSOR_DELAY_NORMAL)
-        } ?: run {
-            Log.e("Sensor", "Sensor de presión no disponible.")
-        }
         accelerometer?.let {
             sensorManager.registerListener(accelerometerEventListener, it, SensorManager.SENSOR_DELAY_NORMAL)
         }?: run {
             Log.e("Sensor", "Acelerometro no disponible.")
+        }
+        pressureSensor?.let {
+            sensorManager.registerListener(object : SensorEventListener {
+                override fun onSensorChanged(event: SensorEvent?) {
+                    event?.let {
+                        val currentPressure = event.values[0] // Presión actual en hPa
+
+                        if (pressureReference == -1f) {
+                            pressureReference = currentPressure
+                        } else {
+                            val P0 = pressureReference * 100
+                            val P = currentPressure * 100
+
+                            val height = (temperature / g) * ln(P0 / P)
+
+                            binding.altitud.text = String.format("%.2f m", height)
+                        }
+                    }
+                }
+
+                override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+                }
+            }, it, SensorManager.SENSOR_DELAY_NORMAL)
+        } ?: run {
+            Log.e("Sensor", "Sensor de presión no disponible.")
         }
     }
 
@@ -354,11 +373,33 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onResume() {
         super.onResume()
         sensorManager.registerListener(sensorEventListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL)
-        pressureSensor?.let {
-            sensorManager.registerListener(sensorEventListener, it, SensorManager.SENSOR_DELAY_NORMAL)
-        }
         accelerometer?.let {
             sensorManager.registerListener(accelerometerEventListener, it, SensorManager.SENSOR_DELAY_NORMAL)
+        }
+        pressureSensor?.let {
+            sensorManager.registerListener(object : SensorEventListener {
+                override fun onSensorChanged(event: SensorEvent?) {
+                    event?.let {
+                        val currentPressure = event.values[0] // Presión actual en hPa
+
+                        if (pressureReference == -1f) {
+                            pressureReference = currentPressure
+                        } else {
+                            val P0 = pressureReference * 100
+                            val P = currentPressure * 100
+
+                            val height = (temperature / g) * ln(P0 / P)
+
+                            binding.altitud.text = String.format("%.2f m", height)
+                        }
+                    }
+                }
+
+                override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+                }
+            }, it, SensorManager.SENSOR_DELAY_NORMAL)
+        } ?: run {
+            Log.e("Sensor", "Sensor de presión no disponible.")
         }
         startLocationUpdates()
 
@@ -366,7 +407,6 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onPause() {
         super.onPause()
         sensorManager.unregisterListener(sensorEventListener)
-        sensorManager.unregisterListener(pressureSensorListener)
         sensorManager.unregisterListener(accelerometerEventListener)
         stopLocationUpdates()
         writeJSONObject()
@@ -398,33 +438,10 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
             override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-                // Not yet implemented
             }
 
         }
         return listener
-    }
-
-    private val pressureSensorListener = object : SensorEventListener {
-        override fun onSensorChanged(event: SensorEvent?) {
-            event?.let {
-                val currentPressure = it.values[0] // Presión actual en hPa
-
-                if (pressureReference == -1f) {
-                    pressureReference = currentPressure
-                } else {
-                    val P0 = pressureReference * 100
-                    val P = currentPressure * 100
-
-                    val height = (temperature / g) * ln(P0 / P)
-
-                    binding.altitud.text = String.format("%.2f m", height)
-                }
-            }
-        }
-
-        override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
-        }
     }
 
     private val accelerometerEventListener = object : SensorEventListener {

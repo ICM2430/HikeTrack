@@ -128,6 +128,7 @@
             android:text="Recorridos cerca a ti"
             android:textColor="@color/white"
             android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/recorrido1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -170,10 +171,12 @@
                 android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:srcCompat="@drawable/imagen_ruta" />
 
             <TextView
                 android:id="@+id/textView19"
@@ -193,7 +196,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textColor="@color/white"
+                android:textColor="@color/gris"
                 app:layout_constraintBottom_toBottomOf="@+id/textView23"
                 app:layout_constraintStart_toEndOf="@+id/textView23" />
 
@@ -214,7 +217,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textColor="@color/white"
+                android:textColor="@color/gris"
                 app:layout_constraintBottom_toBottomOf="@+id/textView20"
                 app:layout_constraintStart_toEndOf="@+id/textView20" />
 
@@ -224,7 +227,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="0"
-                android:textColor="@color/white"
+                android:textColor="@color/gris"
                 app:layout_constraintBottom_toBottomOf="@+id/textView19"
                 app:layout_constraintStart_toEndOf="@+id/textView19" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -244,10 +247,12 @@
                 android:id="@+id/imageView7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:srcCompat="@drawable/imagen_ruta" />
 
             <TextView
                 android:id="@+id/textView29"
@@ -268,7 +273,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="0"
-                android:textColor="@color/white"
+                android:textColor="@color/gris"
                 app:layout_constraintBottom_toBottomOf="@+id/textView29"
                 app:layout_constraintStart_toEndOf="@+id/textView29" />
 
@@ -277,7 +282,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textColor="@color/white"
+                android:textColor="@color/gris"
                 app:layout_constraintBottom_toBottomOf="@+id/textView30"
                 app:layout_constraintStart_toEndOf="@+id/textView30" />
 
@@ -298,7 +303,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textColor="@color/white"
+                android:textColor="@color/gris"
                 app:layout_constraintBottom_toBottomOf="@+id/textView31"
                 app:layout_constraintStart_toEndOf="@+id/textView31" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -319,16 +324,17 @@
                 android:id="@+id/imageView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:srcCompat="@drawable/imagen_ruta" />
 
             <TextView
                 android:id="@+id/textView24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textColor="@color/white"
+                android:textColor="@color/gris"
                 app:layout_constraintBottom_toBottomOf="@+id/textView28"
                 app:layout_constraintStart_toEndOf="@+id/textView28" />
 
@@ -349,7 +355,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textColor="@color/white"
+                android:textColor="@color/gris"
                 app:layout_constraintBottom_toBottomOf="@+id/textView24"
                 app:layout_constraintStart_toEndOf="@+id/textView24" />
 
@@ -361,7 +367,7 @@
                 android:background="#A14436"
                 android:text="Dificil"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/gris"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageView6"
                 app:layout_constraintTop_toBottomOf="@+id/textView25" />
@@ -372,7 +378,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="0"
-                android:textColor="@color/white"
+                android:textColor="@color/gris"
                 app:layout_constraintBottom_toBottomOf="@+id/textView27"
                 app:layout_constraintStart_toEndOf="@+id/textView27" />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -394,10 +400,12 @@
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_background" />
+                app:srcCompat="@drawable/imagen_ruta" />
 
             <TextView
                 android:id="@+id/textView14"
@@ -429,8 +437,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="0"
-                android:textColor="@color/white"
+                android:text="6.56km-"
+                android:textColor="@color/gris"
                 app:layout_constraintBottom_toBottomOf="@+id/textView15"
                 app:layout_constraintStart_toEndOf="@+id/textView15" />
 
@@ -438,8 +446,8 @@
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/white"
+                android:text="16min"
+                android:textColor="@color/gris"
                 app:layout_constraintBottom_toBottomOf="@+id/textView18"
                 app:layout_constraintStart_toEndOf="@+id/textView18" />
 
@@ -447,8 +455,8 @@
                 android:id="@+id/textView18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/white"
+                android:text="60m-"
+                android:textColor="@color/gris"
                 app:layout_constraintBottom_toBottomOf="@+id/textView16"
                 app:layout_constraintStart_toEndOf="@+id/textView16" />
         </androidx.constraintlayout.widget.ConstraintLayout>
