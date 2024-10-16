@@ -23,6 +23,11 @@ class FeedActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.searchContainer.setOnClickListener {
+            val intent = Intent (this, BuscarActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.inicioButton.setOnClickListener {
             val intent =  Intent(this,FeedActivity::class.java)
             startActivity(intent)

@@ -29,12 +29,12 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintEnd_toStartOf="@+id/settings_btn"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
+            app:layout_constraintTop_toTopOf="@+id/settings_btn" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/settings_btn"
             android:layout_width="29dp"
             android:layout_height="27dp"
             android:layout_marginTop="15dp"
@@ -264,33 +264,41 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewPersonas">
 
 
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+            <ImageButton
+                android:id="@+id/profile1"
+                android:layout_width="100dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/avatar_1" />
+                app:srcCompat="@drawable/avatar_1"
+                android:backgroundTint="@android:color/transparent"
+                android:scaleType="fitCenter"/>
 
-            <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageButton
+                android:id="@+id/profile2_detailed"
+                android:layout_width="100dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/avatar_2" />
+                app:srcCompat="@drawable/avatar_2"
+                android:backgroundTint="@android:color/transparent"
+                android:scaleType="fitCenter"/>
 
-            <ImageView
-                android:id="@+id/imageView13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageButton
+                android:id="@+id/profile3"
+                android:layout_width="100dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/avatar_3" />
+                app:srcCompat="@drawable/avatar_3"
+                android:backgroundTint="@android:color/transparent"
+                android:scaleType="fitCenter"/>
 
-            <ImageView
-                android:id="@+id/imageView14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <ImageButton
+                android:id="@+id/profile4"
+                android:layout_width="100dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/avatar_4" />
+                app:srcCompat="@drawable/avatar_4"
+                android:backgroundTint="@android:color/transparent"
+                android:scaleType="fitCenter"/>
         </LinearLayout>
 
         <TextView

@@ -17,6 +17,11 @@ class EstadisticasActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.chatButton.setOnClickListener {
+            val intent = Intent(this, ContactosActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.perfilEstadisticasBtn.setOnClickListener {
             val intent = Intent (this, EstadisticasActivity::class.java)
             startActivity(intent)

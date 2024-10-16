@@ -15,6 +15,16 @@ class BuscarActivity : AppCompatActivity() {
         binding = ActivityBuscarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.settingsBtn.setOnClickListener {
+            val intent = Intent (this, ConfiguracionActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.profile2Detailed.setOnClickListener {
+            val intent = Intent (this, PerfilAjenoActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.inicioButton.setOnClickListener {
             val intent =  Intent(this,FeedActivity::class.java)
             startActivity(intent)

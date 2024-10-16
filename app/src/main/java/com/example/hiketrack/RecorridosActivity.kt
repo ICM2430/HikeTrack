@@ -17,6 +17,11 @@ class RecorridosActivity : AppCompatActivity() {
         binding = ActivityRecorridosBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.settingsBtn.setOnClickListener {
+            val intent = Intent (this, ConfiguracionActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.recorrido1.setOnClickListener {
             val intent = Intent(this, InformacionRecorridosActivity::class.java)
             startActivity(intent)
