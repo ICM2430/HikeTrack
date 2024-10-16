@@ -244,6 +244,19 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                     }
                     true
                 }*/
+
+        // mover a pantalla de emergencia
+
+        binding.emergencybutton.setOnClickListener {
+            val intent = Intent(this, EmergencyActivity::class.java)
+            startActivity(intent)
+        }
+
+        //mover a calificar
+        binding.finalizarbutton.setOnClickListener {
+            val intent = Intent(this, CalificarActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun drawRouteFromFile() {
@@ -599,10 +612,18 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
             if (distance[0] > 10) {
 
+                //dibuja la ruta recorrida en el mapa
+                drawRoute(currentLocation, newLocation)
+
+
                 currentLocation = newLocation
                 totalDistance = totalDistance + 10
                 binding.distancia.text = "${totalDistance} m"
                 writeJSONObject()
+
+
+
+
 
 
             }
