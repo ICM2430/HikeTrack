@@ -23,6 +23,21 @@ class PerfilActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.chatButton.setOnClickListener {
+            val intent = Intent(this, ContactosActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.perfilEstadisticasBtn.setOnClickListener {
+            val intent = Intent (this, EstadisticasActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.perfilPublicacionesBtn.setOnClickListener {
+            val intent = Intent (this, PerfilActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.inicioButton.setOnClickListener {
             val intent =  Intent(this,FeedActivity::class.java)
             startActivity(intent)
