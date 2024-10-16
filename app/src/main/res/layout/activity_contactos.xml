@@ -42,15 +42,302 @@
         android:layout_width="match_parent"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginVertical="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:hint="Buscar un amigo"
         android:textColorHint="@color/white"
         android:paddingStart="15dp"
         android:layout_height="50dp"/>
 
-    <ListView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp" />
+        android:layout_height="70dp"
+        android:background="#B7595F14"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:paddingStart="18dp"
+        android:gravity="center_vertical"
+        tools:context=".ContactsAdapter">
+
+        <ImageView
+            android:id="@+id/pfp1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/roundcorner"
+            app:srcCompat="@drawable/boy" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="16dp"
+            android:padding="4dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="Juan Pablo Arevalo" />
+
+            <TextView
+                android:id="@+id/lastMessage1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:text="No creo que tenga tiempo" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#B7595F14"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:paddingStart="18dp"
+        android:gravity="center_vertical"
+        tools:context=".ContactsAdapter">
+
+        <ImageView
+            android:id="@+id/pfp2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/roundcorner"
+            app:srcCompat="@drawable/perfil" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="16dp"
+            android:padding="4dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="Mariana González" />
+
+            <TextView
+                android:id="@+id/lastMessage2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:text="Anoche te escribí y no me respondiste" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#B7595F14"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:paddingStart="18dp"
+        android:gravity="center_vertical"
+        tools:context=".ContactsAdapter">
+
+        <ImageView
+            android:id="@+id/pfp3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/roundcorner"
+            app:srcCompat="@drawable/girl1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="16dp"
+            android:padding="4dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="Ana Mejia" />
+
+            <TextView
+                android:id="@+id/lastMessage3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:text="¿Te gustaría hacer un nuevo reto?" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#B7595F14"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:paddingStart="18dp"
+        android:gravity="center_vertical"
+        tools:context=".ContactsAdapter">
+
+        <ImageView
+            android:id="@+id/pfp4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/roundcorner"
+            app:srcCompat="@drawable/boy2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="16dp"
+            android:padding="4dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="Diego Contreras" />
+
+            <TextView
+                android:id="@+id/lastMessage4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:text="Nos vemos mañana" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#B7595F14"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:paddingStart="18dp"
+        android:gravity="center_vertical"
+        tools:context=".ContactsAdapter">
+
+        <ImageView
+            android:id="@+id/pfp5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/roundcorner"
+            app:srcCompat="@drawable/boy3" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="16dp"
+            android:padding="4dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="Sebastian Pinares" />
+
+            <TextView
+                android:id="@+id/lastMessage5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:text="A mi también me encantaría hacer ese recorrido" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#B7595F14"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:paddingStart="18dp"
+        android:gravity="center_vertical"
+        tools:context=".ContactsAdapter">
+
+        <ImageView
+            android:id="@+id/pfp6"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/roundcorner"
+            app:srcCompat="@drawable/girl2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="16dp"
+            android:padding="4dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/name6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:text="Daniela Sandoval" />
+
+            <TextView
+                android:id="@+id/lastMessage6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:text="Mañana tomaré este recorrido" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 
 
 
