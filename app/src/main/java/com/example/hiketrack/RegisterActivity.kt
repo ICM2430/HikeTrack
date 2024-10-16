@@ -34,6 +34,11 @@ class RegisterActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.AlreadyHaveAccTextView.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
 
     }
 }

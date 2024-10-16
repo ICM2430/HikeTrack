@@ -71,7 +71,7 @@
         android:textColor="@android:color/white" />
 
     <TextView
-        android:id="@+id/forgotPasswordTextView"
+        android:id="@+id/AlreadyHaveAccTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start|bottom"

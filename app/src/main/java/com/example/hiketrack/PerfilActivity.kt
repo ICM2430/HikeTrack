@@ -7,16 +7,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.hiketrack.databinding.ActivityPerfilBinding
+import com.google.firebase.auth.FirebaseAuth
 
 
 class PerfilActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPerfilBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPerfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        auth = FirebaseAuth.getInstance()
 
         binding.settingsButton.setOnClickListener{
             val intent = Intent(this, ConfiguracionActivity::class.java)
@@ -58,11 +62,10 @@ class PerfilActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /*
-        binding.publishFloatingButton.setOnClickListener {
-            val intent = Intent(this, PublicarActivity::class.java)
+        binding.logOutBtn.setOnClickListener {
+            auth.signOut()
+            val intent = Intent (this, MainActivity::class.java)
             startActivity(intent)
-        }*/
-
+        }
     }
 }
