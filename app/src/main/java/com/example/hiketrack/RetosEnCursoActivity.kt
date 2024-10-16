@@ -33,23 +33,23 @@ class RetosEnCursoActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.home.setOnClickListener {
+        binding.inicioButton.setOnClickListener {
             val intent =  Intent(this,FeedActivity::class.java)
             startActivity(intent)
         }
 
-        binding.estadisticas.setOnClickListener {
+        binding.retosButton.setOnClickListener {
+            val intent =  Intent(this,RetosEnCursoActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.recorridosButton.setOnClickListener {
+            val intent =  Intent(this,RecorridosActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.perfilButton.setOnClickListener {
             val intent =  Intent(this,EstadisticasActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.seleccionarRecorrido.setOnClickListener {
-            val intent =  Intent(this,SeleccionarRecorrido::class.java)
-            startActivity(intent)
-        }
-
-        binding.contactos.setOnClickListener {
-            val intent =  Intent(this,ContactosActivity::class.java)
             startActivity(intent)
         }
     }
