@@ -55,8 +55,8 @@ import java.io.BufferedWriter
 import java.io.File
 import java.io.FileWriter
 import java.util.Date
-
-
+import kotlin.math.ln
+import kotlin.math.sqrt
 
 
 class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -67,9 +67,14 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     // sensor
 
     private lateinit var sensorManager: SensorManager
+
     private var lightSensor : Sensor? = null
+    private var pressureSensor: Sensor? = null
+    private var accelerometer: Sensor? = null
+
     private lateinit var sensorEventListener: SensorEventListener
     private lateinit var geocoder: Geocoder
+
 
     // bonuspack
 
@@ -89,6 +94,15 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     //fuseLocationClient
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+
+    //Variables de presion y altura
+    private var pressureReference: Float = -1f
+    private val temperature = 288.15 // Temperatura media aproximada en Kelvin (15°C)
+    private val g = 9.80665
+
+    //Rastreo actividad fisica
+    private var activityState: String = "Unknown"
+
 
     //subscripcion a localizacion
 
@@ -119,16 +133,24 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsTrackerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // sensor
+        // Sensor de luz
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)!!
         sensorEventListener = createSensorEventListener()
 
+        // Barometro
+        pressureSensor = sensorManager.getDefaultSensor(Sensor.TYPE_PRESSURE)
+
+        //Acelerometro
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+
+        //Sensor pasos
+        stepCounterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
+
+        //Geocoder
         geocoder = Geocoder(baseContext)
 
-        //sensor pasos
 
-        stepCounterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
 
 
 
@@ -257,6 +279,23 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
             val intent = Intent(this, CalificarActivity::class.java)
             startActivity(intent)
         }
+
+        lightSensor?.let {
+            sensorManager.registerListener(sensorEventListener, it, SensorManager.SENSOR_DELAY_NORMAL)
+        } ?: run {
+            Log.e("Sensor", "Sensor de luz no disponible.")
+        }
+
+        pressureSensor?.let {
+            sensorManager.registerListener(pressureSensorListener, it, SensorManager.SENSOR_DELAY_NORMAL)
+        } ?: run {
+            Log.e("Sensor", "Sensor de presión no disponible.")
+        }
+        accelerometer?.let {
+            sensorManager.registerListener(accelerometerEventListener, it, SensorManager.SENSOR_DELAY_NORMAL)
+        }?: run {
+            Log.e("Sensor", "Acelerometro no disponible.")
+        }
     }
 
     private fun drawRouteFromFile() {
@@ -314,15 +353,21 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onResume() {
         super.onResume()
-        sensorManager.registerListener(sensorEventListener, lightSensor,
-            SensorManager.
-            SENSOR_DELAY_NORMAL)
+        sensorManager.registerListener(sensorEventListener, lightSensor, SensorManager.SENSOR_DELAY_NORMAL)
+        pressureSensor?.let {
+            sensorManager.registerListener(sensorEventListener, it, SensorManager.SENSOR_DELAY_NORMAL)
+        }
+        accelerometer?.let {
+            sensorManager.registerListener(accelerometerEventListener, it, SensorManager.SENSOR_DELAY_NORMAL)
+        }
         startLocationUpdates()
 
     }
     override fun onPause() {
         super.onPause()
         sensorManager.unregisterListener(sensorEventListener)
+        sensorManager.unregisterListener(pressureSensorListener)
+        sensorManager.unregisterListener(accelerometerEventListener)
         stopLocationUpdates()
         writeJSONObject()
     }
@@ -358,6 +403,68 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
         }
         return listener
+    }
+
+    private val pressureSensorListener = object : SensorEventListener {
+        override fun onSensorChanged(event: SensorEvent?) {
+            event?.let {
+                val currentPressure = it.values[0] // Presión actual en hPa
+
+                if (pressureReference == -1f) {
+                    pressureReference = currentPressure
+                } else {
+                    val P0 = pressureReference * 100
+                    val P = currentPressure * 100
+
+                    val height = (temperature / g) * ln(P0 / P)
+
+                    binding.altitud.text = String.format("%.2f m", height)
+                }
+            }
+        }
+
+        override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+        }
+    }
+
+    private val accelerometerEventListener = object : SensorEventListener {
+        override fun onSensorChanged(event: SensorEvent?) {
+            event?.let {
+                val x = it.values[0]
+                val y = it.values[1]
+                val z = it.values[2]
+
+                // Calcular la magnitud de la aceleración
+                val accelerationMagnitude = sqrt(x * x + y * y + z * z)
+
+                // Detectar actividad con base en la aceleración
+                detectActivity(accelerationMagnitude)
+            }
+        }
+
+        override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+        }
+    }
+    private fun detectActivity(accelerationMagnitude: Float) {
+        when {
+            accelerationMagnitude < 1.5 -> {
+                // Si la aceleración es baja, el usuario probablemente está parado
+                activityState = "Parado"
+            }
+            accelerationMagnitude in 1.5..3.0 -> {
+                // Aceleración moderada indica que el usuario está caminando
+                activityState = "Caminando"
+            }
+            accelerationMagnitude > 3.0 -> {
+                // Alta aceleración indica que el usuario está corriendo o en un vehículo
+                activityState = "Corriendo"
+            }
+        }
+
+        // Actualizar el TextView en la interfaz con el estado de la actividad
+        runOnUiThread {
+            binding.textViewActivityState.text = activityState
+        }
     }
 
     /**

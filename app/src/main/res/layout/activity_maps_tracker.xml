@@ -22,7 +22,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout12"
         android:layout_width="0dp"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:background="#594E2C"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -42,6 +42,7 @@
             app:layout_constraintEnd_toStartOf="@+id/tiempo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+
             app:layout_constraintVertical_bias="0.25" />
 
         <TextView
@@ -55,16 +56,6 @@
             app:layout_constraintStart_toEndOf="@+id/textView37"
             app:layout_constraintTop_toBottomOf="@+id/tiempo" />
 
-        <TextView
-            android:id="@+id/textView36"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pasos"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/emergencybutton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView35"
-            app:layout_constraintTop_toBottomOf="@+id/pasos" />
 
         <TextView
             android:id="@+id/textView37"
@@ -87,9 +78,45 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textView36"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tiempo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/altitud"/>
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pasos"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/emergencybutton"
+            app:layout_constraintEnd_toStartOf="@id/textViewaltitud"
+            app:layout_constraintStart_toEndOf="@+id/textView35"
+            app:layout_constraintTop_toBottomOf="@+id/altitud" />
+
+        <TextView
+            android:id="@+id/altitud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textView36"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/pasos"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewaltitud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Altitud"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/emergencybutton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView36"
+            app:layout_constraintTop_toBottomOf="@+id/pasos" />
+
 
         <TextView
             android:id="@+id/tiempo"
@@ -124,6 +151,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/emergencybutton" />
+
+        <TextView
+            android:id="@+id/textViewActivityState"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estado no detectado"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -55,7 +55,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC20EBTJQBaV8pk7UtDy_r6AOPwsUT-nr4" />
+            android:value="${MAPS_API_KEY}" />
 
         <activity
             android:name=".CalificarActivity"
