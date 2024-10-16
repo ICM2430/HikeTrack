@@ -455,11 +455,12 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     // Guardar localizacion en json
-    fun writeJSONObject() {
+    fun writeJSONObject(distance:Int) {
         val myLocation = MyLocation.MyLocation(
             currentLocation.latitude,
             currentLocation.longitude,
-            Date(System.currentTimeMillis())
+            Date(System.currentTimeMillis()),
+            distance
         )
         locations.add(myLocation.toJSON())
         val filename = "locations.json"
@@ -532,14 +533,18 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
             if (distance[0] > 10) {
 
                 currentLocation = newLocation
-                writeJSONObject()
+                var distance = binding.distancia.text.toString().toInt()
+                distance += 10
+                binding.distancia.text = distance.toString()
+                writeJSONObject(distance)
 
 
             }
         } else {
-
+            // Si no hay una ubicación anterior, se guarda la nueva ubicación
             currentLocation = newLocation
-            writeJSONObject()
+            binding.distancia.text = 0.toString()
+            writeJSONObject(0)
         }
     }
 
