@@ -37,10 +37,6 @@ class SeleccionarRecorrido : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.botonRetos.setOnClickListener {
-            val intent =  Intent(this,RetosActivity::class.java)
-            startActivity(intent)
-        }
 
         binding.contactos.setOnClickListener {
             val intent =  Intent(this,ContactosActivity::class.java)
