@@ -318,11 +318,13 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
             SensorManager.
             SENSOR_DELAY_NORMAL)
         startLocationUpdates()
+
     }
     override fun onPause() {
         super.onPause()
         sensorManager.unregisterListener(sensorEventListener)
         stopLocationUpdates()
+        writeJSONObject()
     }
 
     // Create sensor event listener
@@ -394,6 +396,11 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
             drawRoute(LatLng(currentLocation.latitude, currentLocation.longitude), it)
 
         }
+
+
+
+
+
     }
 
 
@@ -542,13 +549,25 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
             stepCount,
             elapsedTime
         )
-        locations.add(myLocation.toJSON())
+
         val filename = "locations.json"
         val file = File(
             baseContext.getExternalFilesDir(null), filename)
+
+        // Si el archivo existe, cargar las ubicaciones previas
+        if (file.exists()) {
+            val jsonContent = file.readText()
+            val existingLocations = JSONArray(jsonContent)
+            for (i in 0 until existingLocations.length()) {
+                locations.add(existingLocations.getJSONObject(i))
+            }
+        }
+
+        locations.add(myLocation.toJSON())
         val output = BufferedWriter(FileWriter(file))
         output.write(locations.toString())
         output.close()
+
         Log.i("LOCATION", "File modified at path: " + file)
         Log.d("FILE_CONTENT", file.readText())
 
@@ -637,6 +656,60 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun stopLocationUpdates() {
         fusedLocationClient.removeLocationUpdates(locationCallback)
+    }
+
+
+
+    // funcion para cargar el estado guardado
+
+    private fun loadSavedState() {
+
+        val fileName = "locations.json"
+        val file = File(getExternalFilesDir(null), fileName)
+
+        if (file.exists()) {
+            try {
+                val jsonContent = file.readText()
+                val locationsArray = JSONArray(jsonContent)
+
+                restoreLocations(locationsArray)
+                restoreAdditionalData(locationsArray)
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Log.e("LOAD_SAVED_STATE", e.toString())
+            }
+        }
+
+    }
+
+    private fun restoreLocations(locationsArray: JSONArray) {
+        for (i in 0 until locationsArray.length()) {
+            val location = locationsArray.getJSONObject(i)
+            val savedLocation = LatLng(location.getDouble("latitude"), location.getDouble("longitude"))
+
+            drawMarker(savedLocation, null, R.drawable.location)
+
+            // Dibuja la ruta solo si no es el primer punto
+            if (i > 0) {
+                val previousLocation = locationsArray.getJSONObject(i - 1)
+                drawRoute(
+                    LatLng(previousLocation.getDouble("latitude"), previousLocation.getDouble("longitude")),
+                    savedLocation
+                )
+            }
+        }
+    }
+
+    private fun restoreAdditionalData(locationsArray: JSONArray) {
+        val lastLocationObject = locationsArray.getJSONObject(locationsArray.length() - 1)
+        totalDistance = lastLocationObject.getInt("distance")
+        stepCount = lastLocationObject.getInt("steps")
+        elapsedTime = lastLocationObject.getLong("time")
+
+        binding.distancia.text = "$totalDistance m"
+        binding.pasos.text = stepCount.toString()
+        startTime = System.currentTimeMillis() - elapsedTime // Para seguir con el cronómetro desde donde se pausó
     }
 
 }
