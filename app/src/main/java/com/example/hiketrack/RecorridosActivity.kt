@@ -18,7 +18,7 @@ class RecorridosActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.recorrido1.setOnClickListener {
-            val intent = Intent(this, DescripcionRecorridoActivity::class.java)
+            val intent = Intent(this, InformacionRecorridosActivity::class.java)
             startActivity(intent)
         }
 
