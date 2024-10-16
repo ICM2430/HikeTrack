@@ -106,31 +106,23 @@
 
 
             <ImageButton
-                android:id="@+id/gifButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/gif_icon" />
-            <ImageButton
                 android:id="@+id/imageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
                 android:layout_weight="1"
-
                 app:srcCompat="@drawable/white_image_icon" />
+
             <ImageButton
                 android:id="@+id/locationButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@android:color/transparent"
                 android:layout_weight="1"
-
                 app:srcCompat="@drawable/white_location_icon" />
 
             <Button
-                android:id="@+id/cancel_challenge_btn"
+                android:id="@+id/cancel_publish_btn"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:backgroundTint="@color/verdeClaro"
@@ -138,7 +130,7 @@
                 android:textSize="12sp" />
 
             <Button
-                android:id="@+id/save_challenge_btn"
+                android:id="@+id/publish_btn"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
