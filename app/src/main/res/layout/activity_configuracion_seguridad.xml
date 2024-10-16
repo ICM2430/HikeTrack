@@ -34,6 +34,9 @@
         android:layout_height="match_parent"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,11 +45,46 @@
 
 
         <LinearLayout
+            android:id="@+id/cambiarContactoEmergencia"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/linear_layout_border"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imagenSeguridad"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/change_emercontact_icon" />
+
+            <TextView
+                android:id="@+id/textoSeguridad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="8"
+                android:text=" Cambiar contacto de emergencia"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/contactoSeleccionado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gris"
+            android:hint="Aqui se muestra el numero de contacto seleccionado" />
+
+        <LinearLayout
             android:id="@+id/configuracionCuenta"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center"
-            android:background="@drawable/linear_layout_border"
             android:orientation="horizontal">
             <ImageView
                 android:id="@+id/imagenCuenta"
@@ -60,35 +98,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="9"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:text=" Cambiar contraseña" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/configuracionSeguridad"
+        <EditText
+            android:id="@+id/textoCambiarContraseña"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:background="@drawable/linear_layout_border"
-            android:orientation="horizontal">
-            <ImageView
-                android:id="@+id/imagenSeguridad"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/change_emercontact_icon" />
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="15sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gris"
+            android:hint="Escriba su nueva contraseña"
+            />
 
-            <TextView
-                android:id="@+id/textoSeguridad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:textColor="@color/white"
-                android:text=" Cambiar contacto de emergencia" />
+        <Button
+            android:id="@+id/botonCambiarContrasena"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/verdeClaro"
+            android:text="Cambiar"
+            android:textSize="12sp" />
 
-        </LinearLayout>
 
     </LinearLayout>
 
