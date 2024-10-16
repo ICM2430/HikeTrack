@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "22956439794",
+    "project_id": "hiketrack-724f1",
+    "storage_bucket": "hiketrack-724f1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:22956439794:android:88efa4ac69e166efe2f86b",
+        "android_client_info": {
+          "package_name": "com.example.hiketrack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG3pXZsZFDxkOKZ8o_3i_kIQuUb3JAScg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

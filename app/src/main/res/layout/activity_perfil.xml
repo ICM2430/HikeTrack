@@ -36,6 +36,14 @@ tools:context=".PerfilActivity">
         android:src="@drawable/setting"
         android:layout_marginEnd="16dp" />
 
+    <ImageButton
+        android:id="@+id/log_out_btn"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/log_out"
+        android:layout_alignParentStart="true"
+        android:backgroundTint="@android:color/transparent"/>
+
     <TextView
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
