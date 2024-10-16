@@ -63,7 +63,6 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsTrackerBinding
 
-
     // sensor
 
     private lateinit var sensorManager: SensorManager
@@ -95,20 +94,13 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var locationRequest: com.google.android.gms.location.LocationRequest
     private lateinit var locationCallback: LocationCallback
 
-
-    //oncreate
+    // OnCreate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMapsTrackerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
-
 
         // sensor
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
@@ -118,15 +110,10 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         geocoder = Geocoder(baseContext)
 
 
-        binding.EmergencyButton.setOnClickListener {
-            val intent = Intent(this, EmergencyActivity::class.java)
-            startActivity(intent)
-        }
 
-        binding.FinalizarButton.setOnClickListener {
-            val intent = Intent(this, CalificarActivity::class.java)
-            startActivity(intent)
-        }
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync(this)
 
         // permission for location
         locationPermissionRequest(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -155,8 +142,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
         //locationSettings
         val locationSettings =
-            registerForActivityResult(
-                ActivityResultContracts.StartIntentSenderForResult(),
+            registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult(),
                 ActivityResultCallback {
                     if(it.
                         resultCode ==
@@ -167,76 +153,38 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                     }
                 })
 
+/*
+        // rutas
 
-        // rutas desde un archivo
-
-        //binding.rutas.setOnClickListener {
-            //drawRouteFromFile()
-        //}
+        binding.rutas.setOnClickListener {
+            drawRouteFromFile()
+        }
 
 
         // Search address
 
-        //binding.address.setOnEditorActionListener { v, actionId, event ->
-          //  if (actionId == EditorInfo.IME_ACTION_SEARCH){
-              //  val address = binding.address.text.toString()
-              //  val location = findLocation(address)
-               // if (location != null){
-                    //drawMarker(location,address, R.drawable.baseline_location_black)
-                   // mMap.moveCamera(CameraUpdateFactory.zoomTo(18f))
+        binding.address.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH){
+                val address = binding.address.text.toString()
+                val location = findLocation(address)
+                if (location != null){
+                    drawMarker(location,address, R.drawable.baseline_location_black)
+                    mMap.moveCamera(CameraUpdateFactory.zoomTo(18f))
 
-                  //  getCurrentLocation { NewcurrentLocation ->
-                  //      if (NewcurrentLocation != null) {
-                        //    drawRoute(NewcurrentLocation, location)
-                      //  } else {
-                       //     Toast.makeText(this, "No se pudo obtener localizacion", Toast.LENGTH_SHORT).show()
-                      //  }
-                  //  }
-
-
-               // }
-           // }
-           // true
-       // }
-
-    }
+                    getCurrentLocation { NewcurrentLocation ->
+                        if (NewcurrentLocation != null) {
+                            drawRoute(NewcurrentLocation, location)
+                        } else {
+                            Toast.makeText(this, "No se pudo obtener localizacion", Toast.LENGTH_SHORT).show()
+                        }
+                    }
 
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-
-
-        getCurrentLocation { newcurrentLocation ->
-            if (newcurrentLocation != null) {
-                currentLocation = LatLng(newcurrentLocation.latitude, newcurrentLocation.longitude)
-                mMap.addMarker(MarkerOptions().position(currentLocation).title("Your Current Location"))
-                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
-            } else {
-
+                }
             }
-        }
-
-        mMap.uiSettings.isZoomControlsEnabled = true
-        mMap.uiSettings.setAllGesturesEnabled(true)
-
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
-
-
+            true
+        }*/
     }
-
 
     private fun drawRouteFromFile() {
         val fileName = "locations.json"
@@ -330,6 +278,44 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
         }
         return listener
+    }
+
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * This is where we can add markers or lines, add listeners or move the camera. In this case,
+     * we just add a marker near Sydney, Australia.
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+
+        getCurrentLocation { newcurrentLocation ->
+            if (newcurrentLocation != null) {
+                currentLocation = LatLng(newcurrentLocation.latitude, newcurrentLocation.longitude)
+                mMap.addMarker(MarkerOptions().position(currentLocation).title("Your Current Location"))
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
+            } else {
+
+            }
+        }
+
+
+
+
+        mMap.uiSettings.isZoomControlsEnabled = true
+        mMap.uiSettings.setAllGesturesEnabled(true)
+
+        mMap.setOnMapLongClickListener {
+            val address = this.findAddress(it)
+            drawMarker(it, address, R.drawable.location)
+
+            distanceToCurrentPosition(currentLocation.latitude, currentLocation.longitude, it.latitude, it.longitude)
+            drawRoute(LatLng(currentLocation.latitude, currentLocation.longitude), it)
+
+        }
     }
 
 
@@ -543,10 +529,12 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                 newLocation.latitude, newLocation.longitude, distance
             )
 
-            if (distance[0] > 30) {
+            if (distance[0] > 10) {
 
                 currentLocation = newLocation
                 writeJSONObject()
+
+
             }
         } else {
 
@@ -558,7 +546,5 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun stopLocationUpdates() {
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
-
-
 
 }
