@@ -12,6 +12,8 @@ class Contactos : AppCompatActivity() {
         binding = ActivityContactosBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        /*
+
         binding.profileIcon.setOnClickListener {
             val intent =  Intent(this,PerfilActivity::class.java)
             startActivity(intent)
@@ -37,6 +39,6 @@ class Contactos : AppCompatActivity() {
             val intent =  Intent(this,ChatActivity::class.java)
             startActivity(intent)
         }
-
+*/
     }
 }
