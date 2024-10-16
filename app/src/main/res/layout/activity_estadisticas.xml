@@ -20,6 +20,15 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
+            android:id="@+id/logout_button"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="10dp"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/logout_icon"
+            android:layout_marginEnd="16dp" />
+
+        <ImageView
             android:id="@+id/chat_button"
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -344,60 +353,63 @@
 
     </LinearLayout>
 
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
             android:background="@color/verdeOscuro"
-            android:layout_alignParentBottom="true">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:paddingTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
 
                 <ImageView
-                    android:layout_marginLeft="33dp"
                     android:id="@+id/inicioButton"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:contentDescription="Inicio"
-                    android:background="@drawable/home" />
+                    android:layout_marginLeft="33dp"
+                    android:background="@drawable/home"
+                    android:contentDescription="Inicio" />
 
                 <ImageView
-                    android:layout_marginLeft="69dp"
                     android:id="@+id/retosButton"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:contentDescription="Retos"
-                    android:background="@drawable/target" />
+                    android:layout_marginLeft="69dp"
+                    android:background="@drawable/target"
+                    android:contentDescription="Retos" />
 
                 <ImageView
-                    android:layout_marginLeft="65dp"
                     android:id="@+id/recorridosButton"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:contentDescription="Recorridos"
-                    android:background="@drawable/map" />
+                    android:layout_marginLeft="65dp"
+                    android:background="@drawable/map"
+                    android:contentDescription="Recorridos" />
 
                 <ImageView
-                    android:layout_marginLeft="70dp"
                     android:id="@+id/perfilButton"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
-                    android:contentDescription="Perfil"
-                    android:background="@drawable/user" />
+                    android:layout_marginLeft="70dp"
+                    android:background="@drawable/user"
+                    android:contentDescription="Perfil" />
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -408,7 +420,7 @@
                     android:gravity="center"
                     android:text="Inicio"
                     android:textColor="@color/white"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/retosText"
@@ -418,7 +430,7 @@
                     android:gravity="center"
                     android:text="Retos"
                     android:textColor="@color/white"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/recorridosText"
@@ -428,7 +440,7 @@
                     android:gravity="center"
                     android:text="Recorridos"
                     android:textColor="@color/white"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/perfilText"
@@ -438,12 +450,10 @@
                     android:gravity="center"
                     android:text="Perfil"
                     android:textColor="@color/white"
-                    android:textSize="13sp"/>
+                    android:textSize="13sp" />
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
-
-
 
     <LinearLayout
         android:id="@+id/PasosTotales"
