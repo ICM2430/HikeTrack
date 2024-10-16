@@ -1,5 +1,6 @@
 package com.example.hiketrack
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,13 @@ class ConfiguracionActivity : AppCompatActivity() {
         binding = ActivityConfiguracionBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        binding.configuracionCuenta.setOnClickListener {
+            startActivity( Intent(this, ConfiguracionCuentaActivity::class.java))
+        }
+        binding.configuracionSeguridad.setOnClickListener {
+            startActivity( Intent(this, ConfiguracionSeguridadActivity::class.java))
+        }
 
     }
 }

@@ -12,9 +12,5 @@ class ChatActivity : AppCompatActivity() {
         binding = ActivityChatBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.back.setOnClickListener {
-            val intent =  Intent(this,ContactosActivity::class.java)
-            startActivity(intent)
-        }
     }
 }
