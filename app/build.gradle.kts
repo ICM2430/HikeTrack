@@ -63,7 +63,4 @@ dependencies {
     implementation(libs.osmdroid.android)
     implementation("com.github.MKergall:osmbonuspack:6.8.0")
 
-
-
-
 }
