@@ -39,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.loginButton.setOnClickListener {
 
-            val email = binding.usernameEditText.text.toString()
+            val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
             if(validateForm(email, password)){
                 //API FIREBASE
@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
                 val message = it.exception?.message
                 Toast.makeText(baseContext, message, Toast.LENGTH_SHORT)
                 Log.e(TAG, "Inicio de sesión fallido: $message")
-                binding.usernameEditText.text.clear()
+                binding.emailEditText.text.clear()
                 binding.passwordEditText.text.clear()
             }
         }
@@ -81,11 +81,11 @@ class LoginActivity : AppCompatActivity() {
     private fun validateForm(email : String, password: String) : Boolean {
         var valid = false
         if (email.isEmpty()) {
-            binding.usernameEditText.setError("Campo requerido")
+            binding.emailEditText.setError("Campo requerido")
         } else if (password.isEmpty()) {
             binding.passwordEditText.setError("Campo requerido")
         } else if (!validEmailAddress(email)) {
-            binding.usernameEditText.setError("Dirección de correo electrónico inválida")
+            binding.emailEditText.setError("Dirección de correo electrónico inválida")
         }else if (password.length < 5){
             binding.passwordEditText.setError("La contraseña debe tener al menos 5 caractéres")
         }else {
