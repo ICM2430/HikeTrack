@@ -14,6 +14,13 @@ class Usuario {
     var listaRetos: MutableList<Reto> = mutableListOf()
     var listaRecorridos: MutableList<Recorrido> = mutableListOf()
 
+    constructor()
+    constructor(nombre: String, usuario: String, correo: String) {
+        this.nombre = nombre
+        this.usuario = usuario
+        this.correo = correo
+    }
+
     fun buscarPerfil(nombreUsuario: String): Usuario? {
         // Implementar lógica para buscar un perfil
         return null
