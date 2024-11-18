@@ -6,6 +6,25 @@
     android:layout_height="match_parent"
     >
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/blockActionScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80594E2C"
+        android:elevation="2dp">
+
+        <Button
+            android:id="@+id/IniciarRecorrido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#79884E"
+            android:text="IniciarRecorrido"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <fragment
 

@@ -57,6 +57,8 @@ import java.io.FileWriter
 import java.util.Date
 import kotlin.math.ln
 import kotlin.math.sqrt
+import com.example.hiketrack.model.Recorrido
+
 
 
 class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -144,8 +146,6 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         //Acelerometro
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
 
-        //Sensor pasos
-        stepCounterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
 
         //Geocoder
         geocoder = Geocoder(baseContext)
@@ -183,7 +183,14 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         //locationCallback
         locationCallback = createLocationCallBack()
 
+        binding.IniciarRecorrido.setOnClickListener {
+            iniciarRecorrido()
+            binding.IniciarRecorrido.visibility = android.view.View.GONE
+            binding.blockActionScreen.visibility = android.view.View.GONE
+        }
+
         //locationSettings
+
         val locationSettings =
             registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult(),
                 ActivityResultCallback {
@@ -195,6 +202,62 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                         Toast.makeText(this, "Location is not enabled", Toast.LENGTH_SHORT).show()
                     }
                 })
+
+
+        /*
+                // rutas
+
+                binding.rutas.setOnClickListener {
+                    drawRouteFromFile()
+                }
+
+
+                // Search address
+
+                binding.address.setOnEditorActionListener { v, actionId, event ->
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH){
+                        val address = binding.address.text.toString()
+                        val location = findLocation(address)
+                        if (location != null){
+                            drawMarker(location,address, R.drawable.baseline_location_black)
+                            mMap.moveCamera(CameraUpdateFactory.zoomTo(18f))
+
+                            getCurrentLocation { NewcurrentLocation ->
+                                if (NewcurrentLocation != null) {
+                                    drawRoute(NewcurrentLocation, location)
+                                } else {
+                                    Toast.makeText(this, "No se pudo obtener localizacion", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+
+
+                        }
+                    }
+                    true
+                }*/
+
+
+    }
+
+
+
+    //Permision for location
+
+    private fun locationPermissionRequest(permission: String){
+        if(ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED){
+            if(shouldShowRequestPermissionRationale(permission)){
+                Toast.makeText(this, "The permission is needed because...", Toast.LENGTH_LONG).show()
+            }
+            ActivityCompat.requestPermissions(this, arrayOf(permission), 0)
+        }
+    }
+
+
+    // Funcion que al presionar el boton incie el rastreo de la ubicacion
+
+    fun iniciarRecorrido (){
+
+
 
 
         // contador de tiempo
@@ -232,40 +295,6 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
         handler.post(runnable)
-
-
-
-        /*
-                // rutas
-
-                binding.rutas.setOnClickListener {
-                    drawRouteFromFile()
-                }
-
-
-                // Search address
-
-                binding.address.setOnEditorActionListener { v, actionId, event ->
-                    if (actionId == EditorInfo.IME_ACTION_SEARCH){
-                        val address = binding.address.text.toString()
-                        val location = findLocation(address)
-                        if (location != null){
-                            drawMarker(location,address, R.drawable.baseline_location_black)
-                            mMap.moveCamera(CameraUpdateFactory.zoomTo(18f))
-
-                            getCurrentLocation { NewcurrentLocation ->
-                                if (NewcurrentLocation != null) {
-                                    drawRoute(NewcurrentLocation, location)
-                                } else {
-                                    Toast.makeText(this, "No se pudo obtener localizacion", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-
-
-                        }
-                    }
-                    true
-                }*/
 
         // mover a pantalla de emergencia
 
@@ -353,20 +382,12 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
             e.printStackTrace()
             Toast.makeText(this, "Error al leer el archivo de localizaciones.", Toast.LENGTH_LONG).show()
         }
+
+
     }
 
 
-
-    //Permision for location
-
-    private fun locationPermissionRequest(permission: String){
-        if(ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED){
-            if(shouldShowRequestPermissionRationale(permission)){
-                Toast.makeText(this, "The permission is needed because...", Toast.LENGTH_LONG).show()
-            }
-            ActivityCompat.requestPermissions(this, arrayOf(permission), 0)
-        }
-    }
+    //Funcion que inicia medicion de
 
     // OnResume and onPause for sensor
 
@@ -498,9 +519,10 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
         getCurrentLocation { newcurrentLocation ->
             if (newcurrentLocation != null) {
-                currentLocation = LatLng(newcurrentLocation.latitude, newcurrentLocation.longitude)
+                currentLocation = newcurrentLocation
                 mMap.addMarker(MarkerOptions().position(currentLocation).title("Your Current Location"))
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
+
             } else {
 
             }
@@ -746,7 +768,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     // Checar si la posicion actual es mayor a 30 metros de la anterior
 
     private fun checkAndRecordLocation(newLocation: LatLng) {
-        if (currentLocation != null) {
+        if (currentLocation.latitude != 0.0 && currentLocation.longitude != 0.0) {
             val distance = FloatArray(1)
             Location.distanceBetween(
                 currentLocation.latitude, currentLocation.longitude,
