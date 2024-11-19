@@ -6,6 +6,7 @@ class Usuario {
     var nombre: String = ""
     var usuario: String = ""
     var correo: String = ""
+    var contactoEmergencia: String = "101"
     var imagenPerfilUrl: String? = null
     var estadisticas: Estadistica = Estadistica()
     var usuariosConversados: MutableList<Usuario> = mutableListOf()
