@@ -109,6 +109,9 @@
             android:name=".PerfilActivity"
             android:exported="false" />
         <activity
+            android:name=".PerfilAjenoActivity"
+            android:exported="false"/>
+        <activity
             android:name=".PublicarActivity"
             android:exported="false" />
         <activity

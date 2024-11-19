@@ -40,7 +40,7 @@ class PerfilActivity : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance().reference.child("publicaciones")
 
-        adapter = PublicacionAdapter(publicaciones)
+        adapter = PublicacionAdapter(this, publicaciones)
         binding.userProfileReciclerView.layoutManager = LinearLayoutManager(this)
 
         val dividerItemDecoration = DividerItemDecoration(

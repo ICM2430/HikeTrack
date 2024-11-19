@@ -59,9 +59,10 @@
 
         <ImageView
             android:id="@+id/imagenPerfil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/avatar_2" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/nombrePerfil"
@@ -71,15 +72,7 @@
             android:textStyle="bold"
             android:textColor="@color/white"
             android:gravity="center"
-            android:text="Fabio Zuluaga" />
-        <TextView
-            android:id="@+id/descripcionPefil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:text="Tocara comenzar" />
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -93,42 +86,13 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/numeroSeguidos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:gravity="center"
-                    android:text="1000" />
-                <TextView
-                    android:id="@+id/textoSeguidos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gris"
-                    android:gravity="center"
-                    android:text="Seguidos" />
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/numeroSeguidores"
+                <Button
+                    android:id="@+id/iniciarConversacion"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:gravity="center"
-                    android:text="100" />
-                <TextView
-                    android:id="@+id/textoSeguidores"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/gris"
-                    android:gravity="center"
-                    android:text="Seguidores" />
+                    android:backgroundTint="@color/verdeClaro"
+                    android:text="Iniciar Conversación" />
             </LinearLayout>
 
         </LinearLayout>
