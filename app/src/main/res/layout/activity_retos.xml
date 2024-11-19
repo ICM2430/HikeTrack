@@ -207,7 +207,6 @@
                     android:text="Unirse"
                     android:textColor="@android:color/white"
                     android:background="@drawable/publication_holder"/>
-
             </LinearLayout>
 
         </LinearLayout>
@@ -226,106 +225,11 @@
         app:srcCompat="@drawable/new_challenge"
         android:scaleType="fitCenter"/>
 
-
-
-
-
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/bottom_menu_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/verdeOscuro"
-            android:layout_alignParentBottom="true">
-
-            <LinearLayout
-                android:paddingTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_marginLeft="33dp"
-                    android:id="@+id/inicioButton"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:contentDescription="Inicio"
-                    android:background="@drawable/home" />
-
-                <ImageView
-                    android:layout_marginLeft="69dp"
-                    android:id="@+id/retosButton"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:contentDescription="Retos"
-                    android:background="@drawable/target" />
-
-                <ImageView
-                    android:layout_marginLeft="65dp"
-                    android:id="@+id/recorridosButton"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:contentDescription="Recorridos"
-                    android:background="@drawable/map" />
-
-                <ImageView
-                    android:layout_marginLeft="70dp"
-                    android:id="@+id/perfilButton"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:contentDescription="Perfil"
-                    android:background="@drawable/user" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginBottom="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/inicioText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Inicio"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"/>
-
-                <TextView
-                    android:id="@+id/retosText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Retos"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"/>
-
-                <TextView
-                    android:id="@+id/recorridosText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Recorridos"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"/>
-
-                <TextView
-                    android:id="@+id/perfilText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Perfil"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"/>
-            </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
 </RelativeLayout>

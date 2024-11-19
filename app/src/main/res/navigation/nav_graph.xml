@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/navigation_home">
+
+    <activity
+        android:id="@+id/activity_feed"
+        android:name="com.example.hiketrack.FeedActivity"
+        android:label="Feed">
+    </activity>
+
+    <activity
+        android:id="@+id/activity_retos"
+        android:name="com.example.hiketrack.RetosActivity"
+        android:label="Retos">
+    </activity>
+
+    <activity
+        android:id="@+id/activity_recorridos"
+        android:name="com.example.hiketrack.RecorridosActivity"
+        android:label="Recorridos">
+    </activity>
+
+    <activity
+        android:id="@+id/activity_perfil"
+        android:name="com.example.hiketrack.PerfilActivity"
+        android:label="Recorridos">
+    </activity>
+    <fragment
+        android:id="@+id/bottomMenuFragment"
+        android:name="com.example.hiketrack.BottomMenuFragment"
+        android:label="fragment_bottom_menu"
+        tools:layout="@layout/fragment_bottom_menu" />
+
+</navigation>

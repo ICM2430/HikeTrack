@@ -29,6 +29,10 @@ class EstadisticasActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().reference
 
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(binding.bottomMenuContainer.id, BottomMenuFragment())
+        fragmentTransaction.commit()
+
         val currentUser = auth.currentUser
         if (currentUser != null) {
             val uid = currentUser.uid
@@ -55,26 +59,6 @@ class EstadisticasActivity : AppCompatActivity() {
 
         binding.perfilPublicacionesBtn.setOnClickListener {
             val intent = Intent (this, PerfilActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.inicioButton.setOnClickListener {
-            val intent =  Intent(this,FeedActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.retosButton.setOnClickListener {
-            val intent =  Intent(this,RetosEnCursoActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.recorridosButton.setOnClickListener {
-            val intent =  Intent(this,RecorridosActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.perfilButton.setOnClickListener {
-            val intent =  Intent(this,EstadisticasActivity::class.java)
             startActivity(intent)
         }
 
