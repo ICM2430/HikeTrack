@@ -2,9 +2,12 @@ package com.example.hiketrack
 
 import android.content.Intent
 import android.graphics.BitmapFactory
+import android.net.ParseException
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.util.TimeFormatException
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,6 +20,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -64,14 +68,25 @@ class CrearRetoActivity : AppCompatActivity() {
             }
 
             try {
-                val fechaInicio = LocalDateTime.parse(
+                val fechaInicio = LocalDate.parse(
                     fechaInicioTexto,
                     DateTimeFormatter.ofPattern("yyyy-MM-dd")
                 )
-                val fechaFin = LocalDateTime.parse(
+                val fechaFin = LocalDate.parse(
                     fechaFinTexto,
                     DateTimeFormatter.ofPattern("yyyy-MM-dd")
                 )
+                val hoy = LocalDate.now()
+
+                if (fechaInicio.isBefore(hoy)) {
+                    Toast.makeText(this, "La fecha de inicio debe ser posterior al día de hoy", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                if (fechaInicio.isAfter(fechaFin)) {
+                    Toast.makeText(this, "La fecha de inicio debe ser anterior a la fecha final", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
 
                 val generatedRetoId = database.child("retos").push().key
                 if (generatedRetoId == null) {
@@ -98,11 +113,14 @@ class CrearRetoActivity : AppCompatActivity() {
                     )
                 }
             } catch (e: Exception) {
+
+
                 Toast.makeText(
                     this,
-                    "Formato de fecha inválido. Usa el formato yyyy-MM-dd",
+                    "Error antes de publicar: $e",
                     Toast.LENGTH_LONG
                 ).show()
+                Log.e("RETOS", "Error al recuperar publicaciones: ${e.message}")
             }
         }
 

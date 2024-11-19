@@ -1,6 +1,7 @@
 package com.example.hiketrack.model
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
 
@@ -24,7 +25,10 @@ class Reto(
     }
 
     fun estaUsuarioUnido(usuarioIdentificador: String): Boolean {
-        return participantes.any { it.correo == usuarioIdentificador }
+        return participantes.any {
+            Log.e("RETOS", "UserCorreoEnConcidicional: ${it.correo}")
+            it.correo == usuarioIdentificador
+        }
     }
 
 

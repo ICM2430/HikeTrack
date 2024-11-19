@@ -1,5 +1,6 @@
 package com.example.hiketrack.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -30,6 +31,7 @@ class RetoAdapter(private val retos: List<Reto>, private val usuarioActual: Usua
         val reto = retos[position]
 
         with(holder.binding) {
+
             retoTitulo.text = reto.nombre
             retoDescripcion.text = reto.descripcion
             retoFecha.text = "Fecha límite: ${reto.fechaFin}"
@@ -42,7 +44,12 @@ class RetoAdapter(private val retos: List<Reto>, private val usuarioActual: Usua
                     .into(retoImage)
             }.addOnFailureListener {
                 retoImage.setImageResource(R.drawable.pumpkin_ic)
+                Log.e("RETOS", "No se encontro imagen")
             }
+
+            Log.e("RETOS", "User: ${usuarioActual.correo}")
+            Log.e("RETOS", "Condicional: ${reto.estaUsuarioUnido(usuarioActual.correo)}")
+
 
             if (reto.estaUsuarioUnido(usuarioActual.correo)) {
                 botonUnirse.isSelected = true
@@ -50,7 +57,8 @@ class RetoAdapter(private val retos: List<Reto>, private val usuarioActual: Usua
             } else {
                 botonUnirse.isSelected = false
                 botonUnirse.text = "Unirse"
-            }
+            }/*
+
 
             botonUnirse.setOnClickListener {
                 if (reto.estaUsuarioUnido(usuarioActual.correo)) {
@@ -67,7 +75,7 @@ class RetoAdapter(private val retos: List<Reto>, private val usuarioActual: Usua
                     botonUnirse.text = "Unido"
                     actualizarParticipantesEnFirebase(reto)
                 }
-            }
+            }*/
         }
     }
 

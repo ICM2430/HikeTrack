@@ -25,12 +25,16 @@ class RetosActivity : AppCompatActivity() {
     private val retos = mutableListOf<Reto>()
     private lateinit var adapter: RetoAdapter
     private lateinit var usuarioActual: Usuario
+    private lateinit var auth: FirebaseAuth
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRetosBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = FirebaseAuth.getInstance()
+
 
         database = FirebaseDatabase.getInstance().reference.child("retos")
 
@@ -38,22 +42,25 @@ class RetosActivity : AppCompatActivity() {
         fragmentTransaction.replace(binding.bottomMenuContainer.id, BottomMenuFragment())
         fragmentTransaction.commit()
 
+        binding.retosRecyclerView.layoutManager = GridLayoutManager(
+            this, 2, GridLayoutManager.VERTICAL, false
+        )
+        binding.retosRecyclerView.addItemDecoration(GridSpacingItemDecoration(16)) // Opcional
+
+
         cargarUsuarioActual { usuario ->
             usuarioActual = usuario
 
+            Log.e("RETOS", "Usuario cargado: ${usuario.nombre}")
+
             // Inicializa el adaptador con el usuario actual
             adapter = RetoAdapter(retos, usuarioActual)
-
-            binding.retosRecyclerView.layoutManager = GridLayoutManager(
-                this,
-                2,
-                GridLayoutManager.VERTICAL,
-                false
-            )
             binding.retosRecyclerView.adapter = adapter
-
             cargarRetos()
+
+
         }
+
 
         binding.settingsButton.setOnClickListener {
             val intent = Intent(this, RetosEnCursoActivity::class.java)
@@ -81,6 +88,8 @@ class RetosActivity : AppCompatActivity() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
         val userRef = FirebaseDatabase.getInstance().reference.child("users").child(userId)
 
+
+
         userRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val usuario = snapshot.getValue(Usuario::class.java)
@@ -100,12 +109,23 @@ class RetosActivity : AppCompatActivity() {
     private fun cargarRetos() {
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                retos.clear()
+                val retosActualizados = mutableListOf<Reto>()
                 for (retoSnapshot in snapshot.children) {
                     val reto = retoSnapshot.getValue(Reto::class.java)
-                    reto?.id = retoSnapshot.key // Asigna el ID generado por Firebase
-                    reto?.let { retos.add(it) }
+                    reto?.id = retoSnapshot.key // Incluye el ID asignado por Firebase
+
+                    // Verifica si el usuario actual está participando en el reto
+                    if (reto != null) {
+                        Log.e("RETOS", "Reto cargado: ${reto.nombre}")
+                        retosActualizados.add(reto)
+                    } else {
+                        Log.e("RETOS", "Reto nulo encontrado en snapshot")
+                    }
                 }
+                Log.e("RETOS", "Número de retos cargados: ${retos.size}")
+
+                retos.clear()
+                retos.addAll(retosActualizados)
                 adapter.notifyDataSetChanged()
             }
 

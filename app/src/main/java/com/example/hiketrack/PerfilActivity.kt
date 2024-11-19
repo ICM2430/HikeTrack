@@ -1,9 +1,11 @@
 package com.example.hiketrack
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hiketrack.adapters.PublicacionAdapter
@@ -31,23 +33,22 @@ class PerfilActivity : AppCompatActivity() {
         binding = ActivityPerfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        auth = FirebaseAuth.getInstance()
-
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(binding.bottomMenuContainer.id, BottomMenuFragment())
         fragmentTransaction.commit()
 
         database = FirebaseDatabase.getInstance().reference.child("publicaciones")
+        auth = FirebaseAuth.getInstance()
+
 
         adapter = PublicacionAdapter(publicaciones)
         binding.userProfileReciclerView.layoutManager = LinearLayoutManager(this)
 
-        val dividerItemDecoration = DividerItemDecoration(
-            binding.userProfileReciclerView.context,
-            LinearLayoutManager.VERTICAL
-        )
-
+        val dividerDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.custom_divider)
+        val dividerItemDecoration = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
+        if (dividerDrawable != null) {
+            dividerItemDecoration.setDrawable(dividerDrawable)
+        }
         binding.userProfileReciclerView.addItemDecoration(dividerItemDecoration)
 
         binding.userProfileReciclerView.adapter = adapter
