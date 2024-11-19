@@ -1,14 +1,18 @@
 package com.example.hiketrack.adapters
 
+import android.content.Context
+import android.content.Intent
 import android.os.Build
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.Fragment
 import com.example.hiketrack.model.Publicacion
 import android.view.LayoutInflater
 import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
+import com.example.hiketrack.PerfilAjenoActivity
 import com.example.hiketrack.R
 import com.example.hiketrack.databinding.ItemPublicacionBinding
 import com.example.hiketrack.model.Usuario
@@ -19,7 +23,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 
 
-class PublicacionAdapter(private val publicaciones: List<Publicacion>) :
+class PublicacionAdapter(private val context: Context, private val publicaciones: List<Publicacion>) :
     RecyclerView.Adapter<PublicacionAdapter.PublicacionViewHolder>() {
 
     inner class PublicacionViewHolder(val binding: ItemPublicacionBinding) :
@@ -52,7 +56,7 @@ class PublicacionAdapter(private val publicaciones: List<Publicacion>) :
                     override fun onDataChange(snapshot: DataSnapshot) {
                         val usuario = snapshot.getValue(Usuario::class.java)
                         if (usuario != null) {
-                            userName.text = usuario.nombre
+                            userName.text = usuario.usuario
 
                             // Cargar imagen de perfil desde Firebase Storage
                             val profileImageRef =
@@ -92,6 +96,17 @@ class PublicacionAdapter(private val publicaciones: List<Publicacion>) :
                 postImage.setImageResource(R.drawable.legviewhikerforest) // Imagen por defecto si falla
                 Log.e("PublicacionAdapter", "Error al cargar imagen: ${it.message}")
             }
+
+            profileImage.setOnClickListener {
+                if (publicacion.userId != null) {
+                    val intent = Intent(context, PerfilAjenoActivity::class.java)
+                    intent.putExtra("userId", publicacion.userId)
+                    context.startActivity(intent)
+                } else {
+                    Log.e("PublicacionAdapter", "El userId es nulo, no se puede abrir el perfil.")
+                }
+            }
+
 
         }
     }

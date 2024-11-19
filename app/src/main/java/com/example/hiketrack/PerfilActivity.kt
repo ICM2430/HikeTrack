@@ -41,7 +41,7 @@ class PerfilActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
 
-        adapter = PublicacionAdapter(publicaciones)
+        adapter = PublicacionAdapter(this, publicaciones)
         binding.userProfileReciclerView.layoutManager = LinearLayoutManager(this)
 
         val dividerDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.custom_divider)

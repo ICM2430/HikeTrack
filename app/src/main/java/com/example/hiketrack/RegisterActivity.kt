@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hiketrack.databinding.ActivityRegisterBinding
+import com.example.hiketrack.model.Recorrido
+import com.example.hiketrack.model.Reto
 import com.example.hiketrack.model.Usuario
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -152,6 +154,11 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun saveUserDataToDatabase(uid: String, user: Usuario) {
+        user.usuariosConversados = mutableListOf(Usuario("Placeholder", "placeholder", "placeholder@example.com"))
+        user.listaRetos = mutableListOf(Reto("Placeholder"))
+        user.listaRecorridos = mutableListOf(Recorrido())
+
+
         database.getReference("users").child(uid).setValue(user)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -161,6 +168,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
     }
+
 
 
     private fun uploadImageToStorage(user: FirebaseUser) {
