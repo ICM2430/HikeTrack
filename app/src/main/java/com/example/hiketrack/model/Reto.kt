@@ -1,11 +1,15 @@
 package com.example.hiketrack.model
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
 
 class Reto {
     var nombre: String = ""
     var descripcion: String = ""
+    @RequiresApi(Build.VERSION_CODES.O)
     var fechaInicio: LocalDateTime = LocalDateTime.now()
+    @RequiresApi(Build.VERSION_CODES.O)
     var fechaFin: LocalDateTime = LocalDateTime.now()
     var participantes: MutableList<Usuario> = mutableListOf()
 

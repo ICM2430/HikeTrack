@@ -17,6 +17,9 @@ class FeedActivity : AppCompatActivity() {
         fragmentTransaction.replace(binding.bottomMenuContainer.id, BottomMenuFragment())
         fragmentTransaction.commit()
 
+        cargarPublicaciones()
+
+
         binding.settingsButton.setOnClickListener {
             val intent = Intent(this, ConfiguracionActivity::class.java)
             startActivity(intent)
@@ -31,5 +34,22 @@ class FeedActivity : AppCompatActivity() {
             val intent = Intent (this, BuscarActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun cargarPublicaciones() {
+        database.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                publicaciones.clear()
+                for (postSnapshot in snapshot.children) {
+                    val publicacion = postSnapshot.getValue(Publicacion::class.java)
+                    publicacion?.let { publicaciones.add(it) }
+                }
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // Manejar errores
+            }
+        })
     }
 }

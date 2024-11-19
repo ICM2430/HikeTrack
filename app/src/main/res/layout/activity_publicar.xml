@@ -131,14 +131,6 @@
                 app:srcCompat="@drawable/camera"
                 android:scaleType="fitCenter"/>
 
-            <ImageButton
-                android:id="@+id/locationButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@android:color/transparent"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/white_location_icon" />
-
             <Button
                 android:id="@+id/cancel_publish_btn"
                 android:layout_width="100dp"

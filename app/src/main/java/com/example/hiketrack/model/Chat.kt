@@ -1,10 +1,13 @@
 package com.example.hiketrack.model
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
 
 class Chat {
     var nombre: String = ""
     var mensajes: MutableList<Mensaje> = mutableListOf()
+    @RequiresApi(Build.VERSION_CODES.O)
     var creacion: LocalDateTime = LocalDateTime.now()
 
     fun enviarMensaje(mensaje: Mensaje) {

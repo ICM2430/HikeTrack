@@ -1,9 +1,12 @@
 package com.example.hiketrack.model
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
 
 class Publicacion {
     var usuario: Usuario? = null
+    @RequiresApi(Build.VERSION_CODES.O)
     var fecha: LocalDateTime = LocalDateTime.now()
     var descripcion: String = ""
     var ubicacion: MyLocation? = null
