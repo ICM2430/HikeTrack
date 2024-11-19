@@ -21,4 +21,6 @@
     <string name="title_activity_crear_recorrido">CrearRecorrido</string>
     <string name="title_activity_registrar_recorrido">RegistrarRecorrido</string>
     <string name="title_activity_guardar_recorrido">GuardarRecorrido</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -9,7 +9,6 @@ class Usuario {
     var correo: String = ""
     var seguidores: Int = 0
     var seguidos: Int = 0
-    var descripcion: String = ""
     var estadisticas: Estadistica = Estadistica()
     var listaRetos: MutableList<Reto> = mutableListOf()
     var listaRecorridos: MutableList<Recorrido> = mutableListOf()

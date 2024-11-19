@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/boton_configuracion"
+        android:title="Configuracion"
+        android:icon="@drawable/settings_icon"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/boton_chat"
+        android:title="Chat"
+        android:icon="@drawable/baseline_message_24"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/boton_terminar_sesion"
+        android:title="Log Out"
+        android:icon="@drawable/baseline_logout_24"
+        app:showAsAction="ifRoom"/>
+
+</menu>

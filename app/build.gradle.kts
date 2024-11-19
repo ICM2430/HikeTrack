@@ -55,6 +55,8 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
     implementation(libs.firebase.storage)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -64,5 +66,8 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.osmdroid.android)
     implementation("com.github.MKergall:osmbonuspack:6.8.0")
+
+    //Material design
+    implementation("com.google.android.material:material:1.12.0")
 
 }
