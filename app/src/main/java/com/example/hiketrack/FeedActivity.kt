@@ -25,6 +25,11 @@ class FeedActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.flotante.setOnClickListener {
+            val intent = Intent(this, PublicarActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.chatButton.setOnClickListener {
             val intent = Intent(this, ContactosActivity::class.java)
             startActivity(intent)
