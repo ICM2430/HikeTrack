@@ -37,41 +37,103 @@
             android:layout_centerInParent="true" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/button_selector"
+    <RelativeLayout
+        android:id="@+id/menu_retos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_margin="20dp"
-        android:layout_below="@+id/top_bar_challenges_layout"
-        android:layout_marginTop="16dp">
+        android:layout_below="@id/top_bar_challenges_layout"
+>
 
-        <Button
-            android:id="@+id/btn_en_curso"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:text="En Curso"
-            android:background="@drawable/transparent_btn"
-            android:textColor="@android:color/white" />
+        <LinearLayout
+            android:id="@+id/search_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:padding="8dp">
 
-        <Button
-            android:id="@+id/btn_disponibles"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:background="@drawable/transparent_btn"
-            android:text="Disponibles"
-            android:textColor="@android:color/white"
-            android:layout_marginStart="8dp" />
-    </LinearLayout>
+            <!-- Botón para Estadísticas -->
+            <LinearLayout
+                android:id="@+id/btnEnCurso"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@android:color/transparent">
+
+                <ImageView
+                    android:id="@+id/perfil_estadisticas_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/en_curso_seleccionado"
+                    android:contentDescription="estadisticas_icon" />
+
+                <TextView
+                    android:id="@+id/perfil_estadisticas_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="En curso"
+                    android:fontFamily="@font/inter"
+                    android:textColor="@color/verdeClaro"
+                    android:textSize="14sp"
+                    android:gravity="center" />
+                <View
+                    android:id="@+id/selected_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/verdeClaro"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <!-- Botón para Publicaciones -->
+            <LinearLayout
+                android:id="@+id/btnDisponibles"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@android:color/transparent">
+
+                <ImageView
+                    android:id="@+id/perfil_publicaciones_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/disponibles_no_seleccionado"
+                    android:contentDescription="icono publicaciones" />
+
+                <TextView
+                    android:id="@+id/perfil_publicaciones_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/inter"
+                    android:text="Disponibles"
+                    android:textColor="@color/gris"
+                    android:textSize="14sp"
+                    android:gravity="center" />
+                <View
+                    android:id="@+id/no_selected_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@android:color/transparent"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/button_selector"
+        android:layout_below="@id/menu_retos"
         android:layout_margin="20dp">
 
         <LinearLayout

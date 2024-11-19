@@ -41,10 +41,30 @@ class RetoAdapter(private val retos: List<Reto>) :
             }.addOnFailureListener {
                 retoImage.setImageResource(R.drawable.pumpkin_ic)
             }
-
-            unirseButton.setOnClickListener {
-                // Lógica para unirse al reto
+            /*
+            if (reto.usuarioUnido) {
+                botonUnirse.isSelected = true
+                botonUnirse.text = "Unido"
+            } else {
+                botonUnirse.isSelected = false
+                botonUnirse.text = "Unirse"
             }
+
+            botonUnirse.setOnClickListener {
+                if (reto.usuarioUnido) {
+                    // Lógica para salir del reto
+                    reto.usuarioUnido = false
+                    botonUnirse.isSelected = false
+                    botonUnirse.text = "Unirse"
+                    // Lógica adicional, como guardar en Firebase
+                } else {
+                    // Lógica para unirse al reto
+                    reto.usuarioUnido = true
+                    botonUnirse.isSelected = true
+                    botonUnirse.text = "Unido"
+                    // Lógica adicional, como guardar en Firebase
+                }
+            }*/
         }
     }
 

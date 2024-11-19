@@ -70,27 +70,85 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:gravity="center"
             android:padding="8dp">
 
-
-            <ImageButton
-                android:id="@+id/perfil_estadisticas_btn"
-                android:layout_width="wrap_content"
+            <!-- Botón para Estadísticas -->
+            <LinearLayout
+                android:id="@+id/perfilEstadisticasBtn"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                app:srcCompat="@drawable/menu_perfil_estadisiticas_sel" />
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@android:color/transparent">
 
-            <ImageButton
-                android:id="@+id/perfil_publicaciones_btn"
-                android:layout_width="wrap_content"
+                <ImageView
+                    android:id="@+id/perfil_estadisticas_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/estadisticas_seleccionado_icon"
+                    android:contentDescription="estadisticas_icon" />
+
+                <TextView
+                    android:id="@+id/perfil_estadisticas_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Estadísticas"
+                    android:fontFamily="@font/inter"
+                    android:textColor="@color/verdeClaro"
+                    android:textSize="14sp"
+                    android:gravity="center" />
+                <View
+                    android:id="@+id/selected_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/verdeClaro"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <!-- Botón para Publicaciones -->
+            <LinearLayout
+                android:id="@+id/perfilPublicacionesBtn"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@android:color/transparent"
-                app:srcCompat="@drawable/menu_perfil_publicaciones_no_sel" />
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@android:color/transparent">
+
+                <ImageView
+                    android:id="@+id/perfil_publicaciones_icon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/menu_no_seleccionado_icon"
+                    android:contentDescription="icono publicaciones" />
+
+                <TextView
+                    android:id="@+id/perfil_publicaciones_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/inter"
+                    android:text="Publicaciones"
+                    android:textColor="@color/gris"
+                    android:textSize="14sp"
+                    android:gravity="center" />
+                <View
+                    android:id="@+id/no_selected_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@android:color/transparent"
+                    android:visibility="visible" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </RelativeLayout>
+
 
 
     <androidx.recyclerview.widget.RecyclerView

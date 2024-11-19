@@ -22,7 +22,11 @@ class Reto(
         val reto = Reto(nombre, descripcion)
         return reto
     }
-
+/*
+    fun estaUsuarioUnido(usuarioId: String): Boolean {
+        return participantes.any { it.id == usuarioId }
+    }
+*/
     fun eliminarReto() {
         println("Reto eliminado: $nombre")
     }
