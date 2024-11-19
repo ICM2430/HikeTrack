@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hiketrack.adapters.RetoAdapter
 import com.example.hiketrack.decorations.GridSpacingItemDecoration
+import com.example.hiketrack.fragments.BottomMenuFragment
 import com.example.hiketrack.model.Reto
 import com.example.hiketrack.model.Usuario
 import com.google.firebase.auth.FirebaseAuth
@@ -32,6 +33,10 @@ class RetosActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         database = FirebaseDatabase.getInstance().reference.child("retos")
+
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(binding.bottomMenuContainer.id, BottomMenuFragment())
+        fragmentTransaction.commit()
 
         cargarUsuarioActual { usuario ->
             usuarioActual = usuario

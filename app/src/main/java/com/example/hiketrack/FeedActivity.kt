@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hiketrack.adapters.PublicacionAdapter
 import com.example.hiketrack.databinding.ActivityFeedBinding
+import com.example.hiketrack.fragments.BottomMenuFragment
 import com.example.hiketrack.model.Publicacion
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -25,14 +27,25 @@ class FeedActivity : AppCompatActivity() {
         binding = ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(binding.bottomMenuContainer.id, BottomMenuFragment())
+        fragmentTransaction.commit()
+
         database = FirebaseDatabase.getInstance().reference.child("publicaciones")
 
         adapter = PublicacionAdapter(publicaciones)
         binding.feedRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        val dividerItemDecoration = DividerItemDecoration(
+            binding.feedRecyclerView.context,
+            LinearLayoutManager.VERTICAL
+        )
+
+        binding.feedRecyclerView.addItemDecoration(dividerItemDecoration)
+
         binding.feedRecyclerView.adapter = adapter
 
         cargarPublicaciones()
-
 
         binding.settingsButton.setOnClickListener {
             val intent = Intent(this, ConfiguracionActivity::class.java)

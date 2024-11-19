@@ -90,16 +90,13 @@
         android:id="@+id/feed_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="45dp"
         android:clipToPadding="false"
         android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_menu_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/relativeLayout"
-        tools:listitem="@layout/item_publicacion"
-        />
-    <!--app:layout_constraintBottom_toTopOf="@id/bottom_menu_container"-->
+        tools:listitem="@layout/item_publicacion" />
 
 
     <!-- Botón flotante para agregar publicaciones -->
