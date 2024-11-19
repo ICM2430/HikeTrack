@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi
 import java.time.LocalDateTime
 
 class Reto(
+    var id: String? = null,
     var nombre: String = "",
     var descripcion: String = "",
     var fechaInicio: String = "",

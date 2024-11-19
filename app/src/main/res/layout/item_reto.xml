@@ -1,0 +1,57 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/challenge_holder"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/retoImage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/pumpkin_ic" />
+
+    <TextView
+        android:id="@+id/retoTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Título del Reto"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/retoDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:text="Descripción del reto"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/retoFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:text="Fecha límite: 31 de octubre de 2024"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/unirseButton"
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:text="Unirse"
+        android:background="@drawable/publication_holder"
+        android:textColor="@android:color/white" />
+</LinearLayout>
