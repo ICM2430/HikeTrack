@@ -1,15 +1,18 @@
 package com.example.hiketrack
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hiketrack.adapters.PublicacionAdapter
 import com.example.hiketrack.databinding.ActivityFeedBinding
 import com.example.hiketrack.fragments.BottomMenuFragment
 import com.example.hiketrack.model.Publicacion
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -21,6 +24,8 @@ class FeedActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private val publicaciones = mutableListOf<Publicacion>()
     private lateinit var adapter: PublicacionAdapter
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,14 +37,17 @@ class FeedActivity : AppCompatActivity() {
         fragmentTransaction.commit()
 
         database = FirebaseDatabase.getInstance().reference.child("publicaciones")
+        auth = FirebaseAuth.getInstance()
+
 
         adapter = PublicacionAdapter(publicaciones)
         binding.feedRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        val dividerItemDecoration = DividerItemDecoration(
-            binding.feedRecyclerView.context,
-            LinearLayoutManager.VERTICAL
-        )
+        val dividerDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.custom_divider)
+        val dividerItemDecoration = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
+        if (dividerDrawable != null) {
+            dividerItemDecoration.setDrawable(dividerDrawable)
+        }
 
         binding.feedRecyclerView.addItemDecoration(dividerItemDecoration)
 
@@ -75,7 +83,7 @@ class FeedActivity : AppCompatActivity() {
                 for (childSnapshot in snapshot.children) {
                     val publicacion = childSnapshot.getValue(Publicacion::class.java)
                     publicacion?.id = childSnapshot.key // Incluye el ID asignado por Firebase
-                    if(publicacion != null){
+                    if(publicacion != null && auth.currentUser!!.uid != publicacion.userId){
                         publicacionesActualizadas.add(publicacion)
                     }
                 }

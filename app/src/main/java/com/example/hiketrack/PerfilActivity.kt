@@ -94,7 +94,7 @@ class PerfilActivity : AppCompatActivity() {
                 for (childSnapshot in snapshot.children) {
                     val publicacion = childSnapshot.getValue(Publicacion::class.java)
                     publicacion?.id = childSnapshot.key // Incluye el ID asignado por Firebase
-                    if(publicacion != null && auth.currentUser!!.uid != publicacion.userId){
+                    if(publicacion != null && auth.currentUser!!.uid == publicacion.userId){
                         publicacionesActualizadas.add(publicacion)
                     }
                 }
