@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
+import java.text.SimpleDateFormat
 import java.util.*
 
 class PublicarActivity : AppCompatActivity() {
@@ -77,10 +78,17 @@ class PublicarActivity : AppCompatActivity() {
             if (titulo.isEmpty() || descripcion.isEmpty()) {
                 Toast.makeText(this, "Por favor completa todos los campos", Toast.LENGTH_SHORT).show()
             } else {
+
+                val publicacionId = database.child("publicaciones").push().key
+                if (publicacionId == null) {
+                    Toast.makeText(this, "Error al generar el ID de la publicación", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
                 if (imageUri != null) {
                     subirImagenYPublicar(titulo, descripcion)
                 } else {
-                    guardarPublicacionEnBaseDeDatos(titulo, descripcion, null)
+                    guardarPublicacionEnBaseDeDatos(titulo, descripcion, null, publicacionId)
                 }
             }
         }
@@ -97,13 +105,20 @@ class PublicarActivity : AppCompatActivity() {
     }
 
     private fun subirImagenYPublicar(titulo: String, descripcion: String) {
-        val fileName = UUID.randomUUID().toString() + ".jpg"
+        // Generar el ID de la publicación
+        val publicacionId = database.child("publicaciones").push().key
+        if (publicacionId == null) {
+            Toast.makeText(this, "Error al generar el ID de la publicación", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val fileName = "$publicacionId.jpg"
         val imageRef = storageRef.child("publicaciones/$fileName")
 
         imageUri?.let {
             imageRef.putFile(it).addOnSuccessListener {
                 imageRef.downloadUrl.addOnSuccessListener { uri ->
-                    guardarPublicacionEnBaseDeDatos(titulo, descripcion, uri.toString())
+                    guardarPublicacionEnBaseDeDatos(titulo, descripcion, uri.toString(), publicacionId)
                 }
             }.addOnFailureListener { e ->
                 Toast.makeText(this, "Error al subir la imagen: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -111,28 +126,36 @@ class PublicarActivity : AppCompatActivity() {
         }
     }
 
-    private fun guardarPublicacionEnBaseDeDatos(titulo: String, descripcion: String, imageUrl: String?) {
+    private fun guardarPublicacionEnBaseDeDatos(
+        titulo: String,
+        descripcion: String,
+        imageUrl: String?,
+        publicacionId: String
+    ) {
         val userId = auth.currentUser?.uid ?: return
-        val publicacionId = database.child("publicaciones").push().key
 
         val publicacion = hashMapOf(
             "titulo" to titulo,
             "descripcion" to descripcion,
             "imageUrl" to imageUrl,
             "userId" to userId,
-            "fecha" to System.currentTimeMillis()
+            "fecha" to obtenerFechaActual()
         )
 
-        publicacionId?.let {
-            database.child("publicaciones").child(it).setValue(publicacion)
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Publicación guardada con éxito", Toast.LENGTH_SHORT).show()
-                    finish()
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this, "Error al guardar publicación: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-        }
+        database.child("publicaciones").child(publicacionId).setValue(publicacion)
+            .addOnSuccessListener {
+                Toast.makeText(this, "Publicación guardada con éxito", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Error al guardar publicación: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+
+    private fun obtenerFechaActual(): String {
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        return dateFormat.format(Date())
     }
 }
 

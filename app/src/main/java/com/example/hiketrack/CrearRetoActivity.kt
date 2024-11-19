@@ -66,11 +66,11 @@ class CrearRetoActivity : AppCompatActivity() {
             try {
                 val fechaInicio = LocalDateTime.parse(
                     fechaInicioTexto,
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd")
                 )
                 val fechaFin = LocalDateTime.parse(
                     fechaFinTexto,
-                    DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+                    DateTimeFormatter.ofPattern("yyyy-MM-dd")
                 )
 
                 val generatedRetoId = database.child("retos").push().key
@@ -100,7 +100,7 @@ class CrearRetoActivity : AppCompatActivity() {
             } catch (e: Exception) {
                 Toast.makeText(
                     this,
-                    "Formato de fecha inválido. Usa el formato yyyy-MM-dd'T'HH:mm:ss",
+                    "Formato de fecha inválido. Usa el formato yyyy-MM-dd",
                     Toast.LENGTH_LONG
                 ).show()
             }

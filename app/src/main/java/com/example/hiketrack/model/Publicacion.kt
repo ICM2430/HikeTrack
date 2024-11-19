@@ -8,7 +8,7 @@ class Publicacion {
     var id: String? = null
     var usuario: Usuario? = null
     @RequiresApi(Build.VERSION_CODES.O)
-    var fecha: LocalDateTime = LocalDateTime.now()
+    var fecha: String = ""
     var descripcion: String = ""
     var ubicacion: MyLocation? = null
 
