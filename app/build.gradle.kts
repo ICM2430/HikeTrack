@@ -65,4 +65,8 @@ dependencies {
     implementation(libs.osmdroid.android)
     implementation("com.github.MKergall:osmbonuspack:6.8.0")
 
+    //adicionales
+    implementation ("com.github.bumptech.glide:glide:4.15.1")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.15.1")
+
 }

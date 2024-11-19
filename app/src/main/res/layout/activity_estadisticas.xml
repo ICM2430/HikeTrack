@@ -124,7 +124,7 @@
             android:id="@+id/imagenPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/avatar_1" />
+            />
 
         <TextView
             android:id="@+id/nombrePerfil"
@@ -134,15 +134,7 @@
             android:textStyle="bold"
             android:textColor="@color/white"
             android:gravity="center"
-            android:text="Kiran Glaucus" />
-        <TextView
-            android:id="@+id/descripcionPefil"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:text="I love my life" />
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -162,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:gravity="center"
-                    android:text="203" />
+                     />
                 <TextView
                     android:id="@+id/textoSeguidos"
                     android:layout_width="match_parent"
@@ -184,7 +176,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:gravity="center"
-                    android:text="2030" />
+                    />
                 <TextView
                     android:id="@+id/textoSeguidores"
                     android:layout_width="match_parent"
