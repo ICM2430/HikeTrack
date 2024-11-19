@@ -7,9 +7,11 @@ import com.bumptech.glide.Glide
 import com.example.hiketrack.R
 import com.example.hiketrack.databinding.ItemRetoBinding
 import com.example.hiketrack.model.Reto
+import com.example.hiketrack.model.Usuario
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
-class RetoAdapter(private val retos: List<Reto>) :
+class RetoAdapter(private val retos: List<Reto>, private val usuarioActual: Usuario) :
     RecyclerView.Adapter<RetoAdapter.RetoViewHolder>() {
 
     inner class RetoViewHolder(val binding: ItemRetoBinding) :
@@ -41,8 +43,8 @@ class RetoAdapter(private val retos: List<Reto>) :
             }.addOnFailureListener {
                 retoImage.setImageResource(R.drawable.pumpkin_ic)
             }
-            /*
-            if (reto.usuarioUnido) {
+
+            if (reto.estaUsuarioUnido(usuarioActual.correo)) {
                 botonUnirse.isSelected = true
                 botonUnirse.text = "Unido"
             } else {
@@ -51,21 +53,27 @@ class RetoAdapter(private val retos: List<Reto>) :
             }
 
             botonUnirse.setOnClickListener {
-                if (reto.usuarioUnido) {
+                if (reto.estaUsuarioUnido(usuarioActual.correo)) {
                     // Lógica para salir del reto
-                    reto.usuarioUnido = false
+                    reto.participantes.removeIf { it.correo == usuarioActual.correo }
                     botonUnirse.isSelected = false
                     botonUnirse.text = "Unirse"
-                    // Lógica adicional, como guardar en Firebase
+                    actualizarParticipantesEnFirebase(reto)
                 } else {
                     // Lógica para unirse al reto
-                    reto.usuarioUnido = true
+                    val usuarioActual = Usuario().apply { correo = usuarioActual.correo }
+                    reto.participantes.add(usuarioActual)
                     botonUnirse.isSelected = true
                     botonUnirse.text = "Unido"
-                    // Lógica adicional, como guardar en Firebase
+                    actualizarParticipantesEnFirebase(reto)
                 }
-            }*/
+            }
         }
+    }
+
+    private fun actualizarParticipantesEnFirebase(reto: Reto) {
+        val database = FirebaseDatabase.getInstance().reference
+        database.child("retos").child(reto.id!!).child("participantes").setValue(reto.participantes)
     }
 
     override fun getItemCount() = retos.size

@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.hiketrack.databinding.ActivityEstadisticasBinding
 import com.bumptech.glide.Glide
+import com.example.hiketrack.fragments.BottomMenuFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

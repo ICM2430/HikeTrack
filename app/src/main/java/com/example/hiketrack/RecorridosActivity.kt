@@ -2,12 +2,9 @@ package com.example.hiketrack
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.hiketrack.R
 import com.example.hiketrack.databinding.ActivityRecorridosBinding
+import com.example.hiketrack.fragments.BottomMenuFragment
 
 class RecorridosActivity : AppCompatActivity() {
     lateinit var binding: ActivityRecorridosBinding

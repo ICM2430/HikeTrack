@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hiketrack.adapters.RetoAdapter
 import com.example.hiketrack.decorations.GridSpacingItemDecoration
 import com.example.hiketrack.model.Reto
+import com.example.hiketrack.model.Usuario
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -21,6 +23,8 @@ class RetosActivity : AppCompatActivity() {
     private lateinit var database: DatabaseReference
     private val retos = mutableListOf<Reto>()
     private lateinit var adapter: RetoAdapter
+    private lateinit var usuarioActual: Usuario
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,23 +33,22 @@ class RetosActivity : AppCompatActivity() {
 
         database = FirebaseDatabase.getInstance().reference.child("retos")
 
-        adapter = RetoAdapter(retos)
+        cargarUsuarioActual { usuario ->
+            usuarioActual = usuario
 
+            // Inicializa el adaptador con el usuario actual
+            adapter = RetoAdapter(retos, usuarioActual)
 
-        binding.retosRecyclerView.layoutManager = GridLayoutManager(
-            this, // Contexto
-            2,    // Número de columnas
-            GridLayoutManager.VERTICAL,
-            false
-        )
-        binding.retosRecyclerView.addItemDecoration(
-            GridSpacingItemDecoration(16) // Espaciado en píxeles
-        )
+            binding.retosRecyclerView.layoutManager = GridLayoutManager(
+                this,
+                2,
+                GridLayoutManager.VERTICAL,
+                false
+            )
+            binding.retosRecyclerView.adapter = adapter
 
-
-        binding.retosRecyclerView.adapter = adapter
-
-        cargarRetos()
+            cargarRetos()
+        }
 
         binding.settingsButton.setOnClickListener {
             val intent = Intent(this, RetosEnCursoActivity::class.java)
@@ -67,6 +70,26 @@ class RetosActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
+
+    private fun cargarUsuarioActual(callback: (Usuario) -> Unit) {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+        val userRef = FirebaseDatabase.getInstance().reference.child("users").child(userId)
+
+        userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val usuario = snapshot.getValue(Usuario::class.java)
+                if (usuario != null) {
+                    callback(usuario) // Pasar el usuario cargado al callback
+                } else {
+                    Log.e("Firebase", "Usuario no encontrado en la base de datos")
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("Firebase", "Error al cargar usuario: ${error.message}")
+            }
+        })
     }
 
     private fun cargarRetos() {

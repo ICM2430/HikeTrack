@@ -6,15 +6,10 @@ import java.time.LocalDateTime
 
 class Publicacion {
     var id: String? = null
-    var usuario: Usuario? = null
+    var userId: String? = null
     @RequiresApi(Build.VERSION_CODES.O)
     var fecha: String = ""
     var descripcion: String = ""
-    var ubicacion: MyLocation? = null
-
-    fun añadirPublicacion() {
-        println("Publicación añadida por ${usuario?.nombre}")
-    }
 
     fun editarPublicacion(nuevaDescripcion: String) {
         descripcion = nuevaDescripcion
