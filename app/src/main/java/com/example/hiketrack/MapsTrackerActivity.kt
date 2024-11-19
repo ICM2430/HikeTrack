@@ -68,7 +68,29 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
     // sensor
 
+    // Giroscopio
     private lateinit var sensorManager: SensorManager
+    private var rotationSensor: Sensor? = null
+    private val rotationListener = object : SensorEventListener {
+        override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
+
+        override fun onSensorChanged(event: SensorEvent?) {
+            event?.let {
+                if (it.sensor.type == Sensor.TYPE_ROTATION_VECTOR) {
+                    val rotationMatrix = FloatArray(9)
+                    SensorManager.getRotationMatrixFromVector(rotationMatrix, it.values)
+                    val orientation = FloatArray(3)
+                    SensorManager.getOrientation(rotationMatrix, orientation)
+                    var azimuth = Math.toDegrees(orientation[0].toDouble()).toFloat()
+                    if (azimuth < 0) {
+                        azimuth += 360
+                    }
+                    binding.rotacion.text = String.format("%.1f°", azimuth)
+                }
+            }
+        }
+    }
+
 
     private var lightSensor : Sensor? = null
     private var pressureSensor: Sensor? = null
@@ -137,6 +159,12 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
         // Sensor de luz
         sensorManager = getSystemService(SENSOR_SERVICE) as SensorManager
+
+        rotationSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)
+        rotationSensor?.let {
+            sensorManager.registerListener(rotationListener, it, SensorManager.SENSOR_DELAY_UI)
+        }
+
         lightSensor = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT)!!
         sensorEventListener = createSensorEventListener()
 
@@ -856,6 +884,11 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.distancia.text = "$totalDistance m"
         binding.pasos.text = stepCount.toString()
         startTime = System.currentTimeMillis() - elapsedTime // Para seguir con el cronómetro desde donde se pausó
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        sensorManager.unregisterListener(rotationListener)
     }
 
 }
