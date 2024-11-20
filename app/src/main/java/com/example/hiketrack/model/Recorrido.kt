@@ -4,6 +4,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class Recorrido {
+    var id: String = ""
     var nombre: String = ""
     var elevacion: String = ""
     var calificacion: Int = 0
