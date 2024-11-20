@@ -14,20 +14,17 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.location.Geocoder
 import android.location.Location
-import android.location.LocationRequest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.os.StrictMode
 import android.util.Log
-import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.example.hiketrack.R
 import com.example.hiketrack.databinding.ActivityMapsTrackerBinding
 import com.example.hiketrack.model.MyLocation
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -147,6 +144,9 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     private var totalDistance: Int = 0
 
     private var currentMarker: com.google.android.gms.maps.model.Marker? = null
+
+    //locaciones
+    private var locaciones = ArrayList<MyLocation>()
 
 
     // OnCreate
@@ -285,12 +285,14 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         // mover a pantalla de emergencia
 
         binding.emergencybutton.setOnClickListener {
+            writeJSONObject()
             val intent = Intent(this, EmergencyActivity::class.java)
             startActivity(intent)
         }
 
         //mover a calificar
         binding.finalizarbutton.setOnClickListener {
+            writeJSONObject()
             val intent = Intent(this, CalificarActivity::class.java)
             startActivity(intent)
         }
@@ -416,7 +418,6 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         sensorManager.unregisterListener(sensorEventListener)
         sensorManager.unregisterListener(accelerometerEventListener)
         stopLocationUpdates()
-        writeJSONObject()
     }
 
     // Create sensor event listener
@@ -648,31 +649,55 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
     // Guardar localizacion en json
     fun writeJSONObject() {
-        val myLocation = MyLocation.MyLocation(
-            currentLocation.latitude,
-            currentLocation.longitude,
-            Date(System.currentTimeMillis()),
-            totalDistance,
-            stepCount,
-            elapsedTime
+        val distanceString = binding.distancia.text.toString()
+        val distanceValue = distanceString.replace(" m", "").toFloat()
+
+        val timeString = binding.tiempo.text.toString()
+        val timeValue = timeString.replace(" min", "").toInt()
+
+        val recorrido = Recorrido(
+            elevacion = binding.altitud.text.toString(),
+            distancia = distanceValue,
+            tiempoEstimado = timeValue,
+            myLocations = locaciones
         )
+
+        val recorridoJson = recorrido.toJSON()
 
         val filename = "locations.json"
         val file = File(
             baseContext.getExternalFilesDir(null), filename)
 
-        // Si el archivo existe, cargar las ubicaciones previas
+        // Si el archivo existe, cargar la información existente en sus respectivas lugares
         if (file.exists() && file.length() > 0) {
             val jsonContent = file.readText()
-            val existingLocations = JSONArray(jsonContent)
-            for (i in 0 until existingLocations.length()) {
-                locations.add(existingLocations.getJSONObject(i))
+            val existingRecorrido = JSONObject(jsonContent)
+            binding.distancia.text = existingRecorrido.getString("distancia")
+            binding.altitud.text = existingRecorrido.getString("elevacion")
+            binding.tiempo.text = existingRecorrido.getString("tiempoEstimado")
+
+            val locationsArray = existingRecorrido.getJSONArray("myLocations")
+
+            for (i in 0 until locationsArray.length()) {
+                val location = locationsArray.getJSONObject(i)
+                val savedLocation = LatLng(location.getDouble("latitude"), location.getDouble("longitude"))
+                if (i == 0 || i == locationsArray.length() - 1) {
+                    drawMarker(savedLocation, null, R.drawable.location)
+                }
+                if (i > 0) {
+                    val previousLocation = locationsArray.getJSONObject(i - 1)
+                    drawRoute(
+                        LatLng(previousLocation.getDouble("latitude"), previousLocation.getDouble("longitude")),
+                        savedLocation
+                    )
+                }
             }
+
         }
 
-        locations.add(myLocation.toJSON())
+
         val output = BufferedWriter(FileWriter(file))
-        output.write(locations.toString())
+        output.write(recorridoJson.toString())
         output.close()
 
         Log.i("LOCATION", "File modified at path: ${file}" )
@@ -749,6 +774,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                 totalDistance += distance[0].toInt()
                 binding.distancia.text = "${totalDistance} m"
 
+
                 val stepLengthInMeters = 0.678
                 val steps = (distance[0] / stepLengthInMeters).toInt()
                 stepCount += steps
@@ -756,66 +782,93 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
                 writeJSONObject()
             }
+
+
+
+            recordLocation()
+
+
+
+        }else {
+            // Si no hay una ubicación anterior, se guarda la nueva ubicación
+            currentLocation = newLocation
+            binding.distancia.text = 0.toString()
+
         }
     }
 
-    private fun stopLocationUpdates() {
-        fusedLocationClient.removeLocationUpdates(locationCallback)
-    }
 
-    private fun loadSavedState() {
+private fun stopLocationUpdates() {
+    fusedLocationClient.removeLocationUpdates(locationCallback)
+}
 
-        val fileName = "locations.json"
-        val file = File(getExternalFilesDir(null), fileName)
+private fun loadSavedState() {
 
-        if (file.exists()) {
-            try {
-                val jsonContent = file.readText()
-                val locationsArray = JSONArray(jsonContent)
+    val fileName = "locations.json"
+    val file = File(getExternalFilesDir(null), fileName)
 
-                restoreLocations(locationsArray)
-                restoreAdditionalData(locationsArray)
+    if (file.exists()) {
+        try {
+            val jsonContent = file.readText()
+            val locationsArray = JSONArray(jsonContent)
 
-            } catch (e: Exception) {
-                e.printStackTrace()
-                Log.e("LOAD_SAVED_STATE", e.toString())
-            }
+            restoreLocations(locationsArray)
+            restoreAdditionalData(locationsArray)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e("LOAD_SAVED_STATE", e.toString())
         }
-
-    }
-
-    private fun restoreLocations(locationsArray: JSONArray) {
-        for (i in 0 until locationsArray.length()) {
-            val location = locationsArray.getJSONObject(i)
-            val savedLocation = LatLng(location.getDouble("latitude"), location.getDouble("longitude"))
-
-            drawMarker(savedLocation, null, R.drawable.location)
-
-            // Dibuja la ruta solo si no es el primer punto
-            if (i > 0) {
-                val previousLocation = locationsArray.getJSONObject(i - 1)
-                drawRoute(
-                    LatLng(previousLocation.getDouble("latitude"), previousLocation.getDouble("longitude")),
-                    savedLocation
-                )
-            }
-        }
-    }
-
-    private fun restoreAdditionalData(locationsArray: JSONArray) {
-        val lastLocationObject = locationsArray.getJSONObject(locationsArray.length() - 1)
-        totalDistance = lastLocationObject.getInt("distance")
-        stepCount = lastLocationObject.getInt("steps")
-        elapsedTime = lastLocationObject.getLong("time")
-
-        binding.distancia.text = "$totalDistance m"
-        binding.pasos.text = stepCount.toString()
-        startTime = System.currentTimeMillis() - elapsedTime // Para seguir con el cronómetro desde donde se pausó
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        sensorManager.unregisterListener(rotationListener)
     }
 
 }
+
+private fun restoreLocations(locationsArray: JSONArray) {
+    for (i in 0 until locationsArray.length()) {
+        val location = locationsArray.getJSONObject(i)
+        val savedLocation = LatLng(location.getDouble("latitude"), location.getDouble("longitude"))
+
+        drawMarker(savedLocation, null, R.drawable.location)
+
+        // Dibuja la ruta solo si no es el primer punto
+        if (i > 0) {
+            val previousLocation = locationsArray.getJSONObject(i - 1)
+            drawRoute(
+                LatLng(previousLocation.getDouble("latitude"), previousLocation.getDouble("longitude")),
+                savedLocation
+            )
+        }
+    }
+}
+
+private fun restoreAdditionalData(locationsArray: JSONArray) {
+    val lastLocationObject = locationsArray.getJSONObject(locationsArray.length() - 1)
+    totalDistance = lastLocationObject.getInt("distance")
+    stepCount = lastLocationObject.getInt("steps")
+    elapsedTime = lastLocationObject.getLong("time")
+
+    binding.distancia.text = "$totalDistance m"
+    binding.pasos.text = stepCount.toString()
+    startTime = System.currentTimeMillis() - elapsedTime // Para seguir con el cronómetro desde donde se pausó
+}
+
+override fun onDestroy() {
+    super.onDestroy()
+    sensorManager.unregisterListener(rotationListener)
+}
+
+
+// Cada vez que se actualiza la ubicacion se llama a la funcion que guarda la locacion actual en la lista de locaciones
+
+private fun recordLocation() {
+    val newLocation = MyLocation(
+        currentLocation.latitude,
+        currentLocation.longitude,
+        Date(System.currentTimeMillis())
+    )
+    locaciones.add(newLocation)
+    Log.i("LOCATION", "Locations recorded: $locaciones.size")
+}
+
+}
+
