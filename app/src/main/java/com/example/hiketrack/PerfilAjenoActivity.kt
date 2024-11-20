@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide
 import com.example.hiketrack.adapters.PublicacionAdapter
 import com.example.hiketrack.databinding.ActivityPerfilAjenoBinding
 import com.example.hiketrack.fragments.BottomMenuFragment
+import com.example.hiketrack.model.Chat
+import com.example.hiketrack.model.Mensaje
 import com.example.hiketrack.model.Publicacion
 import com.example.hiketrack.model.Usuario
 import com.google.firebase.auth.FirebaseAuth
@@ -39,15 +41,16 @@ class PerfilAjenoActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().reference
+
+        // Inicializar el adaptador antes de usarlo
+        adapter = PublicacionAdapter(this, publicaciones)
+        binding.feedRecyclerView.layoutManager = LinearLayoutManager(this)
+        binding.feedRecyclerView.adapter = adapter
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(binding.bottomMenuContainer.id, BottomMenuFragment())
         fragmentTransaction.commit()
-
-        database = FirebaseDatabase.getInstance().reference
-
-        adapter = PublicacionAdapter(this, publicaciones)
-        binding.feedRecyclerView.layoutManager = LinearLayoutManager(this)
 
         binding.circularButton.setOnClickListener {
             val userId = intent.getStringExtra("userId") ?: return@setOnClickListener
@@ -81,9 +84,7 @@ class PerfilAjenoActivity : AppCompatActivity() {
 
         binding.iniciarConversacion.setOnClickListener {
             val usuarioConversadoId = intent.getStringExtra("userId") ?: return@setOnClickListener
-
-            val currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: return@setOnClickListener
-            val database = FirebaseDatabase.getInstance().reference
+            val currentUserId = auth.currentUser?.uid ?: return@setOnClickListener
 
             // Verificar si ya existe un chat
             val chatsRef = database.child("chats")
@@ -101,28 +102,38 @@ class PerfilAjenoActivity : AppCompatActivity() {
                         }
 
                         if (chatId == null) {
-                            chatId = chatsRef.push().key
+                            // Crear un nuevo chat
+                            chatId = chatsRef.push().key ?: return
 
-                            // Crear el objeto Chat para guardar
-                            val newChat = hashMapOf(
-                                "usuarios" to mapOf(
+                            // Crear el objeto Chat con el mensaje de prueba incluido
+                            val mensajePrueba = Mensaje(
+                                contenido = "Este es un mensaje de prueba",
+                                fechaEnvio = System.currentTimeMillis().toString(),
+                                remitente = Usuario().apply { usuario = currentUserId },
+                                receptor = Usuario().apply { usuario = usuarioConversadoId }
+                            )
+
+                            val newChat = Chat(
+                                id = chatId,
+                                usuarios = mutableMapOf(
                                     currentUserId to true,
                                     usuarioConversadoId to true
                                 ),
-                                "ultimoMensaje" to null
+                                mensajes = mutableListOf(mensajePrueba), // Usa una lista
+                                creacion = System.currentTimeMillis().toString(),
+                                ultimoMensaje = mensajePrueba
                             )
 
-
-                            chatsRef.child(chatId!!).setValue(newChat)
+                            database.child("chats").child(chatId).setValue(newChat)
                                 .addOnSuccessListener {
-                                    Log.i("Firebase", "Chat creado con éxito")
+                                    Log.d("Chat", "Chat creado con éxito")
                                 }
-                                .addOnFailureListener { e ->
-                                    Log.e("Firebase", "Error al crear chat: ${e.message}")
+                                .addOnFailureListener { exception ->
+                                    Log.e("Chat", "Error al crear chat: ${exception.message}")
                                 }
                         }
 
-                        // Agregar usuarioConversado a la lista de conversados
+                        // Agregar usuarioConversado a la lista de usuarios conversados
                         val currentUserRef = database.child("users").child(currentUserId).child("usuariosConversados")
                         currentUserRef.child(usuarioConversadoId).setValue(true)
 
@@ -132,6 +143,7 @@ class PerfilAjenoActivity : AppCompatActivity() {
                         // Abrir la actividad de chat
                         val intent = Intent(this@PerfilAjenoActivity, ChatActivity::class.java)
                         intent.putExtra("chatId", chatId)
+                        intent.putExtra("otherUserId", usuarioConversadoId) // Pasa el ID del otro usuario
                         startActivity(intent)
                     }
 

@@ -17,7 +17,7 @@ import com.google.firebase.storage.FirebaseStorage
 class ContactosAdapter(
     private val contactos: List<Chat>,
     private val currentUserId: String,
-    private val onClick: (Chat) -> Unit
+    private val onClick: (Chat, String?) -> Unit
 ) : RecyclerView.Adapter<ContactosAdapter.ContactoViewHolder>() {
 
     inner class ContactoViewHolder(val binding: ActivityContactsAdapterBinding) :
@@ -77,6 +77,8 @@ class ContactosAdapter(
             // Mostrar último mensaje
             ultimoMensaje.text = chat.ultimoMensaje?.contenido ?: "Sin mensajes"
 
+
+
             // Cargar imagen de perfil del último remitente
             Glide.with(root.context)
                 .load(chat.ultimoMensaje?.remitente?.imagenPerfilUrl ?: R.drawable.perfil)
@@ -84,7 +86,9 @@ class ContactosAdapter(
                 .into(imagenPerfil)
 
             // Acción al hacer clic en un contacto
-            root.setOnClickListener { onClick(chat) }
+            root.setOnClickListener {
+                onClick(chat, otherUserId)
+            }
         }
     }
 
