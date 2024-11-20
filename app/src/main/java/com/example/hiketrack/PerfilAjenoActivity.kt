@@ -38,6 +38,8 @@ class PerfilAjenoActivity : AppCompatActivity() {
         binding = ActivityPerfilAjenoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        auth = FirebaseAuth.getInstance()
+
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.replace(binding.bottomMenuContainer.id, BottomMenuFragment())
         fragmentTransaction.commit()
@@ -46,6 +48,15 @@ class PerfilAjenoActivity : AppCompatActivity() {
 
         adapter = PublicacionAdapter(this, publicaciones)
         binding.feedRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        binding.iniciarConversacion.setOnClickListener {
+            val userId = intent.getStringExtra("userId") // Obtén el userId del usuario observado
+            if (userId != null) {
+                iniciarConversacion(userId)
+            } else {
+                Toast.makeText(this, "No se puede iniciar la conversación: Usuario no válido.", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         val dividerDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.custom_divider)
         val dividerItemDecoration = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
@@ -153,5 +164,56 @@ class PerfilAjenoActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun iniciarConversacion(userId: String) {
+        val currentUserUid = auth.currentUser?.uid
+        if (currentUserUid == null) {
+            Toast.makeText(this, "No se ha iniciado sesión.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Referencia al usuario actual en la base de datos
+        val currentUserRef = database.child("users").child(currentUserUid)
+        val observedUserRef = database.child("users").child(userId)
+
+        // Obtener datos del usuario observado
+        observedUserRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    // Crear objeto Usuario del usuario observado
+                    val observedUser = snapshot.getValue(Usuario::class.java)
+                    if (observedUser != null) {
+                        // Actualizar la lista de usuarios conversados del usuario actual
+                        currentUserRef.child("usuariosConversados").child(userId).setValue(observedUser)
+                            .addOnSuccessListener {
+                                Toast.makeText(
+                                    this@PerfilAjenoActivity,
+                                    "Conversación iniciada con ${observedUser.nombre}.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(
+                                    this@PerfilAjenoActivity,
+                                    "Error al iniciar conversación.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                    }
+                } else {
+                    Toast.makeText(this@PerfilAjenoActivity, "Usuario no encontrado.", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(
+                    this@PerfilAjenoActivity,
+                    "Error al obtener datos del usuario.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        })
+    }
+
 
 }
