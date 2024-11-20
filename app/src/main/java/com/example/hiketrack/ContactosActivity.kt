@@ -3,6 +3,7 @@ package com.example.hiketrack
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.hiketrack.adapters.ContactosAdapter
@@ -33,14 +34,22 @@ class ContactosActivity : AppCompatActivity() {
         fragmentTransaction.replace(binding.bottomMenuContainer.id, BottomMenuFragment())
         fragmentTransaction.commit()
 
-        adapter = ContactosAdapter(chats) { chat ->
-            Log.d("ContactosActivity", "Chat seleccionado: ${chat.nombre}")
+        val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
+
+        if (currentUserId != null) {
+            adapter = ContactosAdapter(chats, currentUserId) { chat ->
+                Log.d("ContactosActivity", "Chat seleccionado: ${chat.ultimoMensaje}")
+                // Acción al seleccionar un chat
+                val intent = Intent(this, ChatActivity::class.java)
+                intent.putExtra("chatId", chat.id)
+                startActivity(intent)
+            }
+            binding.contactosRecyclerView.layoutManager = LinearLayoutManager(this)
+            binding.contactosRecyclerView.adapter = adapter
+        } else {
+            Log.e("ContactosActivity", "Error: Usuario no autenticado.")
+            Toast.makeText(this, "Error al cargar contactos.", Toast.LENGTH_SHORT).show()
         }
-        binding.contactosRecyclerView.layoutManager = LinearLayoutManager(this)
-
-
-
-        binding.contactosRecyclerView.adapter = adapter
 
         cargarChats()
 
@@ -50,20 +59,22 @@ class ContactosActivity : AppCompatActivity() {
     private fun cargarChats() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
-        database.child("chats").orderByChild("usuarios/$userId").equalTo(true)
-            .addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    chats.clear()
-                    for (chatSnapshot in snapshot.children) {
-                        val chat = chatSnapshot.getValue(Chat::class.java)
-                        chat?.let { chats.add(it) }
+        database.child("chats").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                chats.clear()
+                for (chatSnapshot in snapshot.children) {
+                    val chat = chatSnapshot.getValue(Chat::class.java)
+                    if (chat != null && chat.usuarios.containsKey(userId)) {
+                        chat.id = chatSnapshot.key!!
+                        chats.add(chat)
                     }
-                    adapter.notifyDataSetChanged()
                 }
+                adapter.notifyDataSetChanged()
+            }
 
-                override fun onCancelled(error: DatabaseError) {
-                    Log.e("Firebase", "Error al cargar chats: ${error.message}")
-                }
-            })
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("Firebase", "Error al cargar chats: ${error.message}")
+            }
+        })
     }
 }
