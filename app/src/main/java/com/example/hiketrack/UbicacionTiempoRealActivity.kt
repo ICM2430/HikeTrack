@@ -23,17 +23,26 @@ class UbicacionTiempoRealActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.activity_ubicacion_tiempo_real)
 
         userId = intent.getStringExtra("userId") ?: return
+        val latitude = intent.getDoubleExtra("latitude", 0.0)
+        val longitude = intent.getDoubleExtra("longitude", 0.0)
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
         database = FirebaseDatabase.getInstance().reference
+
+        if (latitude != 0.0 && longitude != 0.0) {
+            val initialLatLng = LatLng(latitude, longitude)
+            userMarker = mMap.addMarker(MarkerOptions().position(initialLatLng).title("User Location"))
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(initialLatLng, 15f))
+        }
+
+        trackUserLocation()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-        trackUserLocation()
     }
 
     private fun trackUserLocation() {
@@ -55,6 +64,7 @@ class UbicacionTiempoRealActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
             override fun onCancelled(error: DatabaseError) {
+                // Handle error
             }
         })
     }

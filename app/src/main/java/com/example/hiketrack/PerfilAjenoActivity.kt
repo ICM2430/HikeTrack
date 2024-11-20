@@ -51,9 +51,32 @@ class PerfilAjenoActivity : AppCompatActivity() {
 
         binding.circularButton.setOnClickListener {
             val userId = intent.getStringExtra("userId") ?: return@setOnClickListener
-            val intent = Intent(this, UbicacionTiempoRealActivity::class.java)
-            intent.putExtra("userId", userId)
-            startActivity(intent)
+
+            // Retrieve latitude and longitude from the database
+            val userRef = database.child("users").child(userId)
+            userRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.exists()) {
+                        val latitude = snapshot.child("latitude").getValue(Double::class.java)
+                        val longitude = snapshot.child("longitude").getValue(Double::class.java)
+                        if (latitude != null && longitude != null) {
+                            val intent = Intent(this@PerfilAjenoActivity, UbicacionTiempoRealActivity::class.java)
+                            intent.putExtra("userId", userId)
+                            intent.putExtra("latitude", latitude)
+                            intent.putExtra("longitude", longitude)
+                            startActivity(intent)
+                        } else {
+                            Toast.makeText(this@PerfilAjenoActivity, "Ubicación no disponible.", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this@PerfilAjenoActivity, "Usuario no encontrado.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(this@PerfilAjenoActivity, "Error al obtener datos del usuario.", Toast.LENGTH_SHORT).show()
+                }
+            })
         }
 
         binding.iniciarConversacion.setOnClickListener {

@@ -12,6 +12,8 @@ class Usuario {
     var usuariosConversados: MutableList<Usuario> = mutableListOf()
     var listaRetos: MutableList<Reto> = mutableListOf()
     var listaRecorridos: MutableList<Recorrido> = mutableListOf()
+    var latitude: Double? = null
+    var longitude: Double? = null
 
     constructor()
     constructor(nombre: String, usuario: String, correo: String) {

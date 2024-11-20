@@ -1,22 +1,29 @@
 package com.example.hiketrack
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.hiketrack.databinding.ActivityRegisterBinding
 import com.example.hiketrack.model.Recorrido
 import com.example.hiketrack.model.Reto
 import com.example.hiketrack.model.Usuario
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import android.Manifest
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -25,6 +32,8 @@ class RegisterActivity : AppCompatActivity() {
     private val storageRef = FirebaseStorage.getInstance().reference
     private var selectedImageUri: Uri? = null
     private val TAG = "HIKETRACK_APP"
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+
 
     // Lanzador para galería
     private val galleryLauncher = registerForActivityResult(
@@ -42,6 +51,13 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+        // Verificar permisos de ubicación
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
+        }
 
         // Inicializar Firebase
         mAuth = FirebaseAuth.getInstance()
@@ -153,20 +169,40 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 
+    // RegisterActivity.kt
     private fun saveUserDataToDatabase(uid: String, user: Usuario) {
         user.usuariosConversados = mutableListOf(Usuario("Placeholder", "placeholder", "placeholder@example.com"))
         user.listaRetos = mutableListOf(Reto("Placeholder"))
         user.listaRecorridos = mutableListOf(Recorrido())
 
-
-        database.getReference("users").child(uid).setValue(user)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d(TAG, "Datos guardados en la base de datos")
-                } else {
-                    Log.e(TAG, "Error al guardar datos: ${task.exception?.message}")
-                }
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            return
+        }
+        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+            if (location != null) {
+                user.latitude = location.latitude
+                user.longitude = location.longitude
+            } else {
+                user.latitude = 0.0
+                user.longitude = 0.0
             }
+
+            database.getReference("users").child(uid).setValue(user)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d(TAG, "Datos guardados en la base de datos")
+                    } else {
+                        Log.e(TAG, "Error al guardar datos: ${task.exception?.message}")
+                    }
+                }
+        }
     }
 
 

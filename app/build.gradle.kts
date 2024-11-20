@@ -66,6 +66,9 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
     implementation("org.json:json:20210307")
 
+    implementation("com.google.firebase:firebase-appcheck-playintegrity:16.0.0")
+
+
     // google maps
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
