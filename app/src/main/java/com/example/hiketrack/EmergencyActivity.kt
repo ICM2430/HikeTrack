@@ -35,6 +35,8 @@ class EmergencyActivity : AppCompatActivity(), OnMapReadyCallback {
             val emergencyNumber = "123"
 
             val intent = Intent(Intent.ACTION_DIAL)
+            // toast llamando 123
+
             intent.data = Uri.parse("tel:$emergencyNumber")
         }
 
@@ -81,8 +83,10 @@ class EmergencyActivity : AppCompatActivity(), OnMapReadyCallback {
 
             //cambiar por numero de emergencia
 
-            val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:$emergencyNumber")
+            val intent = Intent(Intent.ACTION_DIAL).apply{
+             data = Uri.parse("tel:$emergencyNumber")}
+
+            startActivity(intent)
         }
 
         binding.cancelbutton.setOnClickListener {

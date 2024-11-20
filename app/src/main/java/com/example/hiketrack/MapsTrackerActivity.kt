@@ -784,7 +784,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     fun createLocationRequest() : com.google.android.gms.location.LocationRequest {
         val locationRequest = com.google.android.gms.location.LocationRequest.Builder(
             Priority.
-            PRIORITY_HIGH_ACCURACY, 10000)
+            PRIORITY_HIGH_ACCURACY, 5000)
             .setWaitForAccurateLocation(true)
             .setMinUpdateIntervalMillis(5000)
             .build()
