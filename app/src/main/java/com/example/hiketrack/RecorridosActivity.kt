@@ -12,11 +12,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -137,7 +139,8 @@ class RecorridosActivity : AppCompatActivity() {
     @Composable
     fun showRecorridos(recorridos: List<Recorrido>) {
 
-        LazyColumn {
+        LazyColumn{
+
             items(recorridos) { recorrido ->
                 RecorridoItem(recorrido)
 
@@ -153,9 +156,11 @@ class RecorridosActivity : AppCompatActivity() {
         ConstraintLayout(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(80.dp)
+                .height(100.dp)
+                .padding(8.dp)
+                .clip(RoundedCornerShape(20.dp))
                 .background(color = Color(0xFF594E2C))
-                .padding(16.dp)
+
         ) {
             val (image, direccion, distancia, tiempo) = createRefs()
 
@@ -168,7 +173,7 @@ class RecorridosActivity : AppCompatActivity() {
                         top.linkTo(parent.top)
                         bottom.linkTo(parent.bottom)
                     }
-                    .size(40.dp)
+                    .size(100.dp)
             )
 
             Text(
@@ -177,14 +182,15 @@ class RecorridosActivity : AppCompatActivity() {
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.constrainAs(direccion) {
                     start.linkTo(image.end, margin = 16.dp)
-                    top.linkTo(parent.top)
+                    top.linkTo(parent.top, margin = 8.dp)
+
                 }
             )
 
 
             Text(
                 text = "${recorrido.distancia}km",
-                color = Color.Gray,
+                color = Color.White,
                 modifier = Modifier.constrainAs(distancia) {
                     start.linkTo(direccion.end, margin = 8.dp)
                     top.linkTo(direccion.top)
@@ -194,7 +200,7 @@ class RecorridosActivity : AppCompatActivity() {
 
             Text(
                 text = "${recorrido.tiempoEstimado} min",
-                color = Color.Gray,
+                color = Color.White,
                 modifier = Modifier.constrainAs(tiempo) {
                     start.linkTo(distancia.end, margin = 8.dp)
                     top.linkTo(distancia.top)
