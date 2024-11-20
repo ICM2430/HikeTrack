@@ -50,12 +50,65 @@ class PerfilAjenoActivity : AppCompatActivity() {
         binding.feedRecyclerView.layoutManager = LinearLayoutManager(this)
 
         binding.iniciarConversacion.setOnClickListener {
-            val userId = intent.getStringExtra("userId") // Obtén el userId del usuario observado
-            if (userId != null) {
-                iniciarConversacion(userId)
-            } else {
-                Toast.makeText(this, "No se puede iniciar la conversación: Usuario no válido.", Toast.LENGTH_SHORT).show()
-            }
+            val usuarioConversadoId = intent.getStringExtra("userId") ?: return@setOnClickListener
+
+            val currentUserId = FirebaseAuth.getInstance().currentUser?.uid ?: return@setOnClickListener
+            val database = FirebaseDatabase.getInstance().reference
+
+            // Verificar si ya existe un chat
+            val chatsRef = database.child("chats")
+            chatsRef.orderByChild("usuarios/$currentUserId").equalTo(true)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        var chatId: String? = null
+
+                        for (chatSnapshot in snapshot.children) {
+                            val usuarios = chatSnapshot.child("usuarios").value as? Map<*, *>
+                            if (usuarios?.containsKey(usuarioConversadoId) == true) {
+                                chatId = chatSnapshot.key
+                                break
+                            }
+                        }
+
+                        if (chatId == null) {
+                            chatId = chatsRef.push().key
+
+                            // Crear el objeto Chat para guardar
+                            val newChat = hashMapOf(
+                                "usuarios" to mapOf(
+                                    currentUserId to true,
+                                    usuarioConversadoId to true
+                                ),
+                                "ultimoMensaje" to null
+                            )
+
+
+                            chatsRef.child(chatId!!).setValue(newChat)
+                                .addOnSuccessListener {
+                                    Log.i("Firebase", "Chat creado con éxito")
+                                }
+                                .addOnFailureListener { e ->
+                                    Log.e("Firebase", "Error al crear chat: ${e.message}")
+                                }
+                        }
+
+                        // Agregar usuarioConversado a la lista de conversados
+                        val currentUserRef = database.child("users").child(currentUserId).child("usuariosConversados")
+                        currentUserRef.child(usuarioConversadoId).setValue(true)
+
+                        val conversadoRef = database.child("users").child(usuarioConversadoId).child("usuariosConversados")
+                        conversadoRef.child(currentUserId).setValue(true)
+
+                        // Abrir la actividad de chat
+                        val intent = Intent(this@PerfilAjenoActivity, ChatActivity::class.java)
+                        intent.putExtra("chatId", chatId)
+                        startActivity(intent)
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.e("Firebase", "Error al buscar chats: ${error.message}")
+                    }
+                })
         }
 
         val dividerDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.custom_divider)
@@ -80,6 +133,7 @@ class PerfilAjenoActivity : AppCompatActivity() {
             val intent = Intent(this, ConfiguracionActivity::class.java)
             startActivity(intent)
         }
+
     }
 
     private fun cargarDatosUsuario(userId: String) {

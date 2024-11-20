@@ -1,0 +1,333 @@
+Subject: [PATCH] Uncommitted changes before rebase [Changes]
+---
+Index: app/src/main/java/com/example/hiketrack/MapsTrackerActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/hiketrack/MapsTrackerActivity.kt b/app/src/main/java/com/example/hiketrack/MapsTrackerActivity.kt
+--- a/app/src/main/java/com/example/hiketrack/MapsTrackerActivity.kt	
++++ b/app/src/main/java/com/example/hiketrack/MapsTrackerActivity.kt	
+@@ -14,20 +14,17 @@
+ import android.hardware.SensorManager
+ import android.location.Geocoder
+ import android.location.Location
+-import android.location.LocationRequest
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
+ import android.os.Handler
+ import android.os.Looper
+ import android.os.StrictMode
+ import android.util.Log
+-import android.view.inputmethod.EditorInfo
+ import android.widget.Toast
+ import androidx.activity.result.ActivityResultCallback
+ import androidx.activity.result.contract.ActivityResultContracts
+ import androidx.core.app.ActivityCompat
+ import androidx.core.content.ContextCompat
+-import com.example.hiketrack.R
+ import com.example.hiketrack.databinding.ActivityMapsTrackerBinding
+ import com.example.hiketrack.model.MyLocation
+ import com.google.android.gms.location.FusedLocationProviderClient
+@@ -66,8 +63,6 @@
+     private lateinit var mMap: GoogleMap
+     private lateinit var binding: ActivityMapsTrackerBinding
+ 
+-    // sensor
+-
+     // Giroscopio
+     private lateinit var sensorManager: SensorManager
+     private var rotationSensor: Sensor? = null
+@@ -150,6 +145,9 @@
+ 
+     private var currentMarker: com.google.android.gms.maps.model.Marker? = null
+ 
++    //locaciones
++    private var locaciones = ArrayList<MyLocation>()
++
+ 
+     // OnCreate
+ 
+@@ -176,14 +174,10 @@
+         //Acelerometro
+         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+ 
+-
+         //Geocoder
+         geocoder = Geocoder(baseContext)
+ 
+ 
+-
+-
+-
+         val mapFragment = supportFragmentManager
+             .findFragmentById(R.id.map) as SupportMapFragment
+         mapFragment.getMapAsync(this)
+@@ -232,45 +226,7 @@
+                         Toast.makeText(this, "Location is not enabled", Toast.LENGTH_SHORT).show()
+                     }
+                 })
+-
+-
+-        /*
+-                // rutas
+-
+-                binding.rutas.setOnClickListener {
+-                    drawRouteFromFile()
+-                }
+-
+-
+-                // Search address
+-
+-                binding.address.setOnEditorActionListener { v, actionId, event ->
+-                    if (actionId == EditorInfo.IME_ACTION_SEARCH){
+-                        val address = binding.address.text.toString()
+-                        val location = findLocation(address)
+-                        if (location != null){
+-                            drawMarker(location,address, R.drawable.baseline_location_black)
+-                            mMap.moveCamera(CameraUpdateFactory.zoomTo(18f))
+-
+-                            getCurrentLocation { NewcurrentLocation ->
+-                                if (NewcurrentLocation != null) {
+-                                    drawRoute(NewcurrentLocation, location)
+-                                } else {
+-                                    Toast.makeText(this, "No se pudo obtener localizacion", Toast.LENGTH_SHORT).show()
+-                                }
+-                            }
+-
+-
+-                        }
+-                    }
+-                    true
+-                }*/
+-
+-
+     }
+-
+-
+-
+     //Permision for location
+ 
+     private fun locationPermissionRequest(permission: String){
+@@ -329,12 +285,14 @@
+         // mover a pantalla de emergencia
+ 
+         binding.emergencybutton.setOnClickListener {
++            writeJSONObject()
+             val intent = Intent(this, EmergencyActivity::class.java)
+             startActivity(intent)
+         }
+ 
+         //mover a calificar
+         binding.finalizarbutton.setOnClickListener {
++            writeJSONObject()
+             val intent = Intent(this, CalificarActivity::class.java)
+             startActivity(intent)
+         }
+@@ -353,7 +311,7 @@
+             sensorManager.registerListener(object : SensorEventListener {
+                 override fun onSensorChanged(event: SensorEvent?) {
+                     event?.let {
+-                        val currentPressure = event.values[0] // Presión actual en hPa
++                        val currentPressure = event.values[0]
+ 
+                         if (pressureReference == -1f) {
+                             pressureReference = currentPressure
+@@ -460,7 +418,6 @@
+         sensorManager.unregisterListener(sensorEventListener)
+         sensorManager.unregisterListener(accelerometerEventListener)
+         stopLocationUpdates()
+-        writeJSONObject()
+     }
+ 
+     // Create sensor event listener
+@@ -516,20 +473,15 @@
+     private fun detectActivity(accelerationMagnitude: Float) {
+         when {
+             accelerationMagnitude < 1.5 -> {
+-                // Si la aceleración es baja, el usuario probablemente está parado
+                 activityState = "Parado"
+             }
+             accelerationMagnitude in 1.5..3.0 -> {
+-                // Aceleración moderada indica que el usuario está caminando
+                 activityState = "Caminando"
+             }
+             accelerationMagnitude > 3.0 -> {
+-                // Alta aceleración indica que el usuario está corriendo o en un vehículo
+                 activityState = "Corriendo"
+             }
+         }
+-
+-        // Actualizar el TextView en la interfaz con el estado de la actividad
+         runOnUiThread {
+             binding.textViewActivityState.text = activityState
+         }
+@@ -557,19 +509,8 @@
+ 
+             }
+         }
+-
+-
+-
+-
+         mMap.uiSettings.isZoomControlsEnabled = true
+         mMap.uiSettings.setAllGesturesEnabled(true)
+-
+-
+-
+-
+-
+-
+-
+     }
+ 
+ 
+@@ -633,8 +574,6 @@
+ 
+ 
+     // rutas
+-
+-    // Método para dibujar la ruta
+     private fun drawRoute(startLatLng: LatLng, endLatLng: LatLng) {
+         // Convertir LatLng a GeoPoint
+         val startGeoPoint = GeoPoint(startLatLng.latitude, startLatLng.longitude)
+@@ -710,31 +649,55 @@
+ 
+     // Guardar localizacion en json
+     fun writeJSONObject() {
+-        val myLocation = MyLocation.MyLocation(
+-            currentLocation.latitude,
+-            currentLocation.longitude,
+-            Date(System.currentTimeMillis()),
+-            totalDistance,
+-            stepCount,
+-            elapsedTime
++        val distanceString = binding.distancia.text.toString()
++        val distanceValue = distanceString.replace(" m", "").toFloat()
++
++        val timeString = binding.tiempo.text.toString()
++        val timeValue = timeString.replace(" min", "").toInt()
++
++        val recorrido = Recorrido(
++            elevacion = binding.altitud.text.toString(),
++            distancia = distanceValue,
++            tiempoEstimado = timeValue,
++            myLocations = locaciones
+         )
++
++        val recorridoJson = recorrido.toJSON()
+ 
+         val filename = "locations.json"
+         val file = File(
+             baseContext.getExternalFilesDir(null), filename)
+ 
+-        // Si el archivo existe, cargar las ubicaciones previas
++        // Si el archivo existe, cargar la información existente en sus respectivas lugares
+         if (file.exists() && file.length() > 0) {
+             val jsonContent = file.readText()
+-            val existingLocations = JSONArray(jsonContent)
+-            for (i in 0 until existingLocations.length()) {
+-                locations.add(existingLocations.getJSONObject(i))
++            val existingRecorrido = JSONObject(jsonContent)
++            binding.distancia.text = existingRecorrido.getString("distancia")
++            binding.altitud.text = existingRecorrido.getString("elevacion")
++            binding.tiempo.text = existingRecorrido.getString("tiempoEstimado")
++
++            val locationsArray = existingRecorrido.getJSONArray("myLocations")
++
++            for (i in 0 until locationsArray.length()) {
++                val location = locationsArray.getJSONObject(i)
++                val savedLocation = LatLng(location.getDouble("latitude"), location.getDouble("longitude"))
++                if (i == 0 || i == locationsArray.length() - 1) {
++                    drawMarker(savedLocation, null, R.drawable.location)
++                }
++                if (i > 0) {
++                    val previousLocation = locationsArray.getJSONObject(i - 1)
++                    drawRoute(
++                        LatLng(previousLocation.getDouble("latitude"), previousLocation.getDouble("longitude")),
++                        savedLocation
++                    )
++                }
+             }
++
+         }
+ 
+-        locations.add(myLocation.toJSON())
++
+         val output = BufferedWriter(FileWriter(file))
+-        output.write(locations.toString())
++        output.write(recorridoJson.toString())
+         output.close()
+ 
+         Log.i("LOCATION", "File modified at path: ${file}" )
+@@ -804,18 +767,25 @@
+             )
+ 
+             if (distance[0] > 5) {
+-
+-                //dibuja la ruta recorrida en el mapa
+                 drawRoute(currentLocation, newLocation)
+ 
+-
+                 currentLocation = newLocation
+-                totalDistance = totalDistance + distance[0].toInt()
++
++                totalDistance += distance[0].toInt()
+                 binding.distancia.text = "${totalDistance} m"
++
++<<<<<<< HEAD
++                val stepLengthInMeters = 0.678
++                val steps = (distance[0] / stepLengthInMeters).toInt()
++                stepCount += steps
++                binding.pasos.text = "$stepCount pasos"
++
+                 writeJSONObject()
++            }
++=======
+ 
+ 
+-
++                recordLocation()
+ 
+ 
+ 
+@@ -824,7 +794,8 @@
+             // Si no hay una ubicación anterior, se guarda la nueva ubicación
+             currentLocation = newLocation
+             binding.distancia.text = 0.toString()
+-            writeJSONObject()
++
++>>>>>>> e72729e (guardar recorrido en json)
+         }
+     }
+ 
+@@ -832,10 +803,6 @@
+         fusedLocationClient.removeLocationUpdates(locationCallback)
+     }
+ 
+-
+-
+-    // funcion para cargar el estado guardado
+-
+     private fun loadSavedState() {
+ 
+         val fileName = "locations.json"
+@@ -891,4 +858,17 @@
+         sensorManager.unregisterListener(rotationListener)
+     }
+ 
++
++    // Cada vez que se actualiza la ubicacion se llama a la funcion que guarda la locacion actual en la lista de locaciones
++
++    private fun recordLocation() {
++        val newLocation = MyLocation(
++            currentLocation.latitude,
++            currentLocation.longitude,
++            Date(System.currentTimeMillis())
++        )
++        locaciones.add(newLocation)
++        Log.i("LOCATION", "Locations recorded: $locaciones.size")
++    }
++
+ }
+\ No newline at end of file

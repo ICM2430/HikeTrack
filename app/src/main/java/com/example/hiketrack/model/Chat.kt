@@ -6,10 +6,27 @@
     import java.time.format.DateTimeFormatter
 
     class Chat {
-        var nombre: String = ""
+        var id: String = ""
+        var usuarios: MutableMap<String, Boolean> = mutableMapOf()
         var mensajes: MutableList<Mensaje> = mutableListOf()
-        var creacion: String =""
+        var creacion: String = ""
         var ultimoMensaje: Mensaje? = null
+
+        constructor()
+
+        constructor(
+            id: String,
+            usuarios: MutableMap<String, Boolean>,
+            mensajes: MutableList<Mensaje>,
+            creacion: String,
+            ultimoMensaje: Mensaje?
+        ) {
+            this.id = id
+            this.usuarios = usuarios
+            this.mensajes = mensajes
+            this.creacion = creacion
+            this.ultimoMensaje = ultimoMensaje
+        }
 
         fun enviarMensaje(mensaje: Mensaje) {
             mensajes.add(mensaje) // Agrega el mensaje a la lista
@@ -35,11 +52,5 @@
             mensajes.clear()
             ultimoMensaje = null
             println("Chat eliminado")
-        }
-
-        @RequiresApi(Build.VERSION_CODES.O)
-        fun obtenerFechaCreacionFormateada(): String {
-            val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-            return creacion.format(formatter)
         }
     }
