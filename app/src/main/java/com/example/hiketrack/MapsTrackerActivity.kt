@@ -770,6 +770,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                     lastLocation!!
                     val newLatLng = LatLng(newlocation.latitude, newlocation.longitude)
                     checkAndRecordLocation(newLatLng)
+                    mMap.clear()
                     mMap.addMarker(MarkerOptions().position(currentLocation).title("Your Current Location"))
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
                     Log.i("LOCATION", "New location: $newLatLng")
@@ -803,14 +804,14 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                 newLocation.latitude, newLocation.longitude, distance
             )
 
-            if (distance[0] > 10) {
+            if (distance[0] > 5) {
 
                 //dibuja la ruta recorrida en el mapa
                 drawRoute(currentLocation, newLocation)
 
 
                 currentLocation = newLocation
-                totalDistance = totalDistance + 10
+                totalDistance = totalDistance + distance[0].toInt()
                 binding.distancia.text = "${totalDistance} m"
                 writeJSONObject()
 
