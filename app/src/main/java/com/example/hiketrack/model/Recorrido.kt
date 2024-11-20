@@ -58,8 +58,8 @@ class Recorrido {
         obj.put("nombre", nombre)
         obj.put("elevacion", elevacion)
         obj.put("calificacion", calificacion)
-        obj.put("distancia", distancia)
-        obj.put("tiempoEstimado", tiempoEstimado)
+        obj.put("distancia", distancia.toDouble())
+        obj.put("tiempoEstimado", tiempoEstimado.toDouble())
 
         val locationsArray = JSONArray()
         for (location in myLocations) {
