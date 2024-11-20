@@ -66,8 +66,6 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsTrackerBinding
 
-    // sensor
-
     // Giroscopio
     private lateinit var sensorManager: SensorManager
     private var rotationSensor: Sensor? = null
@@ -176,12 +174,8 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         //Acelerometro
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
 
-
         //Geocoder
         geocoder = Geocoder(baseContext)
-
-
-
 
 
         val mapFragment = supportFragmentManager
@@ -232,45 +226,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                         Toast.makeText(this, "Location is not enabled", Toast.LENGTH_SHORT).show()
                     }
                 })
-
-
-        /*
-                // rutas
-
-                binding.rutas.setOnClickListener {
-                    drawRouteFromFile()
-                }
-
-
-                // Search address
-
-                binding.address.setOnEditorActionListener { v, actionId, event ->
-                    if (actionId == EditorInfo.IME_ACTION_SEARCH){
-                        val address = binding.address.text.toString()
-                        val location = findLocation(address)
-                        if (location != null){
-                            drawMarker(location,address, R.drawable.baseline_location_black)
-                            mMap.moveCamera(CameraUpdateFactory.zoomTo(18f))
-
-                            getCurrentLocation { NewcurrentLocation ->
-                                if (NewcurrentLocation != null) {
-                                    drawRoute(NewcurrentLocation, location)
-                                } else {
-                                    Toast.makeText(this, "No se pudo obtener localizacion", Toast.LENGTH_SHORT).show()
-                                }
-                            }
-
-
-                        }
-                    }
-                    true
-                }*/
-
-
     }
-
-
-
     //Permision for location
 
     private fun locationPermissionRequest(permission: String){
@@ -353,7 +309,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
             sensorManager.registerListener(object : SensorEventListener {
                 override fun onSensorChanged(event: SensorEvent?) {
                     event?.let {
-                        val currentPressure = event.values[0] // Presión actual en hPa
+                        val currentPressure = event.values[0]
 
                         if (pressureReference == -1f) {
                             pressureReference = currentPressure
@@ -516,20 +472,15 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun detectActivity(accelerationMagnitude: Float) {
         when {
             accelerationMagnitude < 1.5 -> {
-                // Si la aceleración es baja, el usuario probablemente está parado
                 activityState = "Parado"
             }
             accelerationMagnitude in 1.5..3.0 -> {
-                // Aceleración moderada indica que el usuario está caminando
                 activityState = "Caminando"
             }
             accelerationMagnitude > 3.0 -> {
-                // Alta aceleración indica que el usuario está corriendo o en un vehículo
                 activityState = "Corriendo"
             }
         }
-
-        // Actualizar el TextView en la interfaz con el estado de la actividad
         runOnUiThread {
             binding.textViewActivityState.text = activityState
         }
@@ -557,19 +508,8 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
             }
         }
-
-
-
-
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.uiSettings.setAllGesturesEnabled(true)
-
-
-
-
-
-
-
     }
 
 
@@ -633,8 +573,6 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     // rutas
-
-    // Método para dibujar la ruta
     private fun drawRoute(startLatLng: LatLng, endLatLng: LatLng) {
         // Convertir LatLng a GeoPoint
         val startGeoPoint = GeoPoint(startLatLng.latitude, startLatLng.longitude)
@@ -804,37 +742,26 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
             )
 
             if (distance[0] > 5) {
-
-                //dibuja la ruta recorrida en el mapa
                 drawRoute(currentLocation, newLocation)
 
-
                 currentLocation = newLocation
-                totalDistance = totalDistance + distance[0].toInt()
+
+                totalDistance += distance[0].toInt()
                 binding.distancia.text = "${totalDistance} m"
+
+                val stepLengthInMeters = 0.678
+                val steps = (distance[0] / stepLengthInMeters).toInt()
+                stepCount += steps
+                binding.pasos.text = "$stepCount pasos"
+
                 writeJSONObject()
-
-
-
-
-
-
             }
-        } else {
-            // Si no hay una ubicación anterior, se guarda la nueva ubicación
-            currentLocation = newLocation
-            binding.distancia.text = 0.toString()
-            writeJSONObject()
         }
     }
 
     private fun stopLocationUpdates() {
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
-
-
-
-    // funcion para cargar el estado guardado
 
     private fun loadSavedState() {
 
