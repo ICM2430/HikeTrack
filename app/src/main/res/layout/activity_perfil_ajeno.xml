@@ -50,19 +50,42 @@
         android:elevation="4dp"
         android:orientation="vertical"
         android:padding="16dp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/imagenPerfil"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_gravity="center"
-            android:scaleType="centerCrop" />
+            <ImageView
+                android:id="@+id/imagenPerfil"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.5" />
+
+
+            <ImageButton
+                android:id="@+id/circularButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/circular_button_background"
+                android:src="@drawable/ubicacion"
+                android:padding="8dp"
+                android:scaleType="centerInside"
+                app:layout_constraintStart_toEndOf="@id/imagenPerfil"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/nombrePerfil"
@@ -71,8 +94,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="@color/white"
-            android:gravity="center"
-            />
+            android:gravity="center" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,7 +107,6 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="vertical">
-
 
                 <Button
                     android:id="@+id/iniciarConversacion"
