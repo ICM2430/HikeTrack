@@ -506,8 +506,6 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                 mMap.addMarker(MarkerOptions().position(currentLocation).title("Your Current Location"))
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
 
-            } else {
-
             }
         }
         mMap.uiSettings.isZoomControlsEnabled = true
