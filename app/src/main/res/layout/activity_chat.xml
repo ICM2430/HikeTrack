@@ -72,10 +72,12 @@
             android:paddingHorizontal="12dp" />
 
         <!-- Botón de enviar -->
-        <ImageView
+        <ImageButton
             android:id="@+id/btnEnviar"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:backgroundTint="@android:color/transparent"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/send" />
     </LinearLayout>
 </LinearLayout>

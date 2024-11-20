@@ -37,12 +37,19 @@ class ContactosActivity : AppCompatActivity() {
         val currentUserId = FirebaseAuth.getInstance().currentUser?.uid
 
         if (currentUserId != null) {
-            adapter = ContactosAdapter(chats, currentUserId) { chat ->
-                Log.d("ContactosActivity", "Chat seleccionado: ${chat.ultimoMensaje}")
-                // Acción al seleccionar un chat
-                val intent = Intent(this, ChatActivity::class.java)
-                intent.putExtra("chatId", chat.id)
-                startActivity(intent)
+            adapter = ContactosAdapter(chats, currentUserId) { chat, otherUserId ->
+                if (otherUserId != null) {
+                    Log.d("ContactosActivity", "Chat seleccionado con usuario: $otherUserId")
+
+                    // Acción al seleccionar un chat
+                    val intent = Intent(this, ChatActivity::class.java)
+                    intent.putExtra("chatId", chat.id)
+                    intent.putExtra("otherUserId", otherUserId) // Pasar UID del otro usuario
+                    startActivity(intent)
+                } else {
+                    Log.e("ContactosActivity", "Error: No se pudo identificar al otro usuario.")
+                    Toast.makeText(this, "Error al abrir el chat.", Toast.LENGTH_SHORT).show()
+                }
             }
             binding.contactosRecyclerView.layoutManager = LinearLayoutManager(this)
             binding.contactosRecyclerView.adapter = adapter

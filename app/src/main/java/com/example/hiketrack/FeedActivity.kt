@@ -68,10 +68,6 @@ class FeedActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.searchContainer.setOnClickListener {
-            val intent = Intent (this, BuscarActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun cargarPublicaciones() {
