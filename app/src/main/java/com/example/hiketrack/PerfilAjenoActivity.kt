@@ -49,6 +49,13 @@ class PerfilAjenoActivity : AppCompatActivity() {
         adapter = PublicacionAdapter(this, publicaciones)
         binding.feedRecyclerView.layoutManager = LinearLayoutManager(this)
 
+        binding.circularButton.setOnClickListener {
+            val userId = intent.getStringExtra("userId") ?: return@setOnClickListener
+            val intent = Intent(this, UbicacionTiempoRealActivity::class.java)
+            intent.putExtra("userId", userId)
+            startActivity(intent)
+        }
+
         binding.iniciarConversacion.setOnClickListener {
             val usuarioConversadoId = intent.getStringExtra("userId") ?: return@setOnClickListener
 
