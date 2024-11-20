@@ -148,6 +148,8 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     //distancia
     private var totalDistance: Int = 0
 
+    private var currentMarker: com.google.android.gms.maps.model.Marker? = null
+
 
     // OnCreate
 
@@ -562,14 +564,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.uiSettings.setAllGesturesEnabled(true)
 
-        mMap.setOnMapLongClickListener {
-            val address = this.findAddress(it)
-            drawMarker(it, address, R.drawable.location)
 
-            distanceToCurrentPosition(currentLocation.latitude, currentLocation.longitude, it.latitude, it.longitude)
-            drawRoute(LatLng(currentLocation.latitude, currentLocation.longitude), it)
-
-        }
 
 
 
@@ -729,7 +724,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
             baseContext.getExternalFilesDir(null), filename)
 
         // Si el archivo existe, cargar las ubicaciones previas
-        if (file.exists()) {
+        if (file.exists() && file.length() > 0) {
             val jsonContent = file.readText()
             val existingLocations = JSONArray(jsonContent)
             for (i in 0 until existingLocations.length()) {
@@ -742,7 +737,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         output.write(locations.toString())
         output.close()
 
-        Log.i("LOCATION", "File modified at path: " + file)
+        Log.i("LOCATION", "File modified at path: ${file}" )
         Log.d("FILE_CONTENT", file.readText())
 
     }
@@ -770,8 +765,12 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                     lastLocation!!
                     val newLatLng = LatLng(newlocation.latitude, newlocation.longitude)
                     checkAndRecordLocation(newLatLng)
-                    mMap.clear()
-                    mMap.addMarker(MarkerOptions().position(currentLocation).title("Your Current Location"))
+
+                    if (currentMarker != null) {
+                        currentMarker?.remove()
+                    }
+
+                    currentMarker = mMap.addMarker(MarkerOptions().position(currentLocation).title("Your Current Location"))
                     mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
                     Log.i("LOCATION", "New location: $newLatLng")
                 }
