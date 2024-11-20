@@ -33,9 +33,8 @@ class RetosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRetosBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         auth = FirebaseAuth.getInstance()
-
-
         database = FirebaseDatabase.getInstance().reference.child("retos")
 
         val fragmentTransaction = supportFragmentManager.beginTransaction()
@@ -45,13 +44,11 @@ class RetosActivity : AppCompatActivity() {
         binding.retosRecyclerView.layoutManager = GridLayoutManager(
             this, 2, GridLayoutManager.VERTICAL, false
         )
-        binding.retosRecyclerView.addItemDecoration(GridSpacingItemDecoration(16)) // Opcional
+        binding.retosRecyclerView.addItemDecoration(GridSpacingItemDecoration(16))
 
 
         cargarUsuarioActual { usuario ->
             usuarioActual = usuario
-
-            Log.e("RETOS", "Usuario cargado: ${usuario.nombre}")
 
             // Inicializa el adaptador con el usuario actual
             adapter = RetoAdapter(retos, usuarioActual)
@@ -114,12 +111,8 @@ class RetosActivity : AppCompatActivity() {
                     val reto = retoSnapshot.getValue(Reto::class.java)
                     reto?.id = retoSnapshot.key // Incluye el ID asignado por Firebase
 
-                    // Verifica si el usuario actual está participando en el reto
                     if (reto != null) {
-                        Log.e("RETOS", "Reto cargado: ${reto.nombre}")
                         retosActualizados.add(reto)
-                    } else {
-                        Log.e("RETOS", "Reto nulo encontrado en snapshot")
                     }
                 }
                 Log.e("RETOS", "Número de retos cargados: ${retos.size}")

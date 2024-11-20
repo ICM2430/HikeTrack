@@ -47,9 +47,6 @@ class RetoAdapter(private val retos: List<Reto>, private val usuarioActual: Usua
                 Log.e("RETOS", "No se encontro imagen")
             }
 
-            Log.e("RETOS", "User: ${usuarioActual.correo}")
-            Log.e("RETOS", "Condicional: ${reto.estaUsuarioUnido(usuarioActual.correo)}")
-
 
             if (reto.estaUsuarioUnido(usuarioActual.correo)) {
                 botonUnirse.isSelected = true
@@ -57,7 +54,7 @@ class RetoAdapter(private val retos: List<Reto>, private val usuarioActual: Usua
             } else {
                 botonUnirse.isSelected = false
                 botonUnirse.text = "Unirse"
-            }/*
+            }
 
 
             botonUnirse.setOnClickListener {
@@ -75,7 +72,7 @@ class RetoAdapter(private val retos: List<Reto>, private val usuarioActual: Usua
                     botonUnirse.text = "Unido"
                     actualizarParticipantesEnFirebase(reto)
                 }
-            }*/
+            }
         }
     }
 

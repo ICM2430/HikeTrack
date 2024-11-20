@@ -1,13 +1,21 @@
 package com.example.hiketrack
 
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.hiketrack.adapters.PublicacionAdapter
 import com.example.hiketrack.databinding.ActivityPerfilAjenoBinding
+import com.example.hiketrack.fragments.BottomMenuFragment
+import com.example.hiketrack.model.Publicacion
 import com.example.hiketrack.model.Usuario
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -21,13 +29,33 @@ class PerfilAjenoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPerfilAjenoBinding
     private lateinit var database: DatabaseReference
     private val storageRef: StorageReference = FirebaseStorage.getInstance().reference
+    private val publicaciones = mutableListOf<Publicacion>()
+    private lateinit var adapter: PublicacionAdapter
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPerfilAjenoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(binding.bottomMenuContainer.id, BottomMenuFragment())
+        fragmentTransaction.commit()
+
         database = FirebaseDatabase.getInstance().reference
+
+        adapter = PublicacionAdapter(this, publicaciones)
+        binding.feedRecyclerView.layoutManager = LinearLayoutManager(this)
+
+        val dividerDrawable: Drawable? = ContextCompat.getDrawable(this, R.drawable.custom_divider)
+        val dividerItemDecoration = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
+        if (dividerDrawable != null) {
+            dividerItemDecoration.setDrawable(dividerDrawable)
+        }
+
+        binding.feedRecyclerView.addItemDecoration(dividerItemDecoration)
+        binding.feedRecyclerView.adapter = adapter
+        cargarPublicaciones()
 
         val userId = intent.getStringExtra("userId")
         if (userId != null) {
@@ -39,26 +67,6 @@ class PerfilAjenoActivity : AppCompatActivity() {
         // Configuración de botones de navegación
         binding.settingsButton.setOnClickListener {
             val intent = Intent(this, ConfiguracionActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.inicioButton.setOnClickListener {
-            val intent = Intent(this, FeedActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.retosButton.setOnClickListener {
-            val intent = Intent(this, RetosEnCursoActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.recorridosButton.setOnClickListener {
-            val intent = Intent(this, RecorridosActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.perfilButton.setOnClickListener {
-            val intent = Intent(this, EstadisticasActivity::class.java)
             startActivity(intent)
         }
     }
@@ -113,4 +121,37 @@ class PerfilAjenoActivity : AppCompatActivity() {
             tryLoadingImageForUser(userId, extensions, index + 1)
         }
     }
+
+    private fun cargarPublicaciones() {
+        val userId = intent.getStringExtra("userId") // Obtiene el userId del usuario ajeno desde el Intent
+        if (userId == null) {
+            Log.e("PerfilAjenoActivity", "No se proporcionó un userId en el Intent")
+            return
+        }
+
+        database.child("publicaciones").addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val publicacionesActualizadas = mutableListOf<Publicacion>()
+                for (childSnapshot in snapshot.children) {
+                    val publicacion = childSnapshot.getValue(Publicacion::class.java)
+                    publicacion?.id = childSnapshot.key
+
+                    // Filtrar solo las publicaciones que pertenecen al usuario ajeno
+                    if (publicacion != null && publicacion.userId == userId) {
+                        publicacionesActualizadas.add(publicacion)
+                    }
+                }
+                Log.e("PerfilAjenoActivity", "Número de publicaciones cargadas del usuario ajeno: ${publicacionesActualizadas.size}")
+
+                publicaciones.clear()
+                publicaciones.addAll(publicacionesActualizadas)
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("Firebase", "Error al recuperar publicaciones: ${error.message}")
+            }
+        })
+    }
+
 }

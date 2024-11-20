@@ -128,226 +128,37 @@
 
     </RelativeLayout>
 
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/menu_retos"
-        android:layout_margin="20dp">
-
-        <LinearLayout
-            android:id="@+id/reto_curso1"
-            android:layout_width="370dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="22dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/challenge_holder"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/reto_img"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/pumpkin_ic" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="25dp"
-                android:layout_marginStart="15sp">
-
-
-                <TextView
-                    android:id="@+id/titulo_reto1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter"
-                    android:text="Reto de Halloween"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@android:color/white" />
-
-
-                <TextView
-                    android:id="@+id/progreso_disp1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter"
-                    android:text="Progreso: 0%"
-                    android:textSize="16sp"
-                    android:textColor="@android:color/white" />
-
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/reto_curso_2"
-            android:layout_width="370dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/challenge_holder"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/reto_img2"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/running_ic" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:layout_marginTop="25dp"
-                android:orientation="vertical">
-
-
-                <TextView
-                    android:id="@+id/titulo_reto2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter"
-                    android:text="Reto de la semana"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/progreso_reto2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter"
-                    android:text="Progreso: 20%"
-                    android:textColor="@android:color/white"
-                    android:textSize="16sp" />
-
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/flotante"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="320dp"
-            android:layout_marginTop="170dp"
-            android:backgroundTint="@color/verdeClaro"
-            android:clickable="true"
-            android:scaleType="fitCenter"
-            app:srcCompat="@drawable/new_challenge" />
-
-    </LinearLayout>
-
-
-
-    <RelativeLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/retosRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/menu_retos"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="80dp"
+        android:layout_margin="16dp"
+        tools:listitem="@layout/item_reto" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/verdeOscuro"
-            android:layout_alignParentBottom="true">
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/flotante"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="600dp"
+        android:backgroundTint="@color/verdeClaro"
+        app:srcCompat="@drawable/new_challenge"
+        android:scaleType="fitCenter"/>
 
-            <LinearLayout
-                android:paddingTop="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+    <FrameLayout
+        android:id="@+id/bottom_menu_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black" />
 
-                <ImageView
-                    android:layout_marginLeft="33dp"
-                    android:id="@+id/inicioButton"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:contentDescription="Inicio"
-                    android:background="@drawable/home" />
 
-                <ImageView
-                    android:layout_marginLeft="69dp"
-                    android:id="@+id/retosButton"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:contentDescription="Retos"
-                    android:background="@drawable/target" />
 
-                <ImageView
-                    android:layout_marginLeft="65dp"
-                    android:id="@+id/recorridosButton"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:contentDescription="Recorridos"
-                    android:background="@drawable/map" />
 
-                <ImageView
-                    android:layout_marginLeft="70dp"
-                    android:id="@+id/perfilButton"
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:contentDescription="Perfil"
-                    android:background="@drawable/user" />
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_marginBottom="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/inicioText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Inicio"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"/>
-
-                <TextView
-                    android:id="@+id/retosText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Retos"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"/>
-
-                <TextView
-                    android:id="@+id/recorridosText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Recorridos"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"/>
-
-                <TextView
-                    android:id="@+id/perfilText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Perfil"
-                    android:textColor="@color/white"
-                    android:textSize="13sp"/>
-            </LinearLayout>
-        </LinearLayout>
-    </RelativeLayout>
 </RelativeLayout>

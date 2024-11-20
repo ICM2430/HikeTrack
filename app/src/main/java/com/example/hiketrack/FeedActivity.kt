@@ -50,9 +50,7 @@ class FeedActivity : AppCompatActivity() {
         }
 
         binding.feedRecyclerView.addItemDecoration(dividerItemDecoration)
-
         binding.feedRecyclerView.adapter = adapter
-
         cargarPublicaciones()
 
         binding.settingsButton.setOnClickListener {
