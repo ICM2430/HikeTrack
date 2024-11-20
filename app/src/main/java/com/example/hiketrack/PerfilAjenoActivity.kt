@@ -52,6 +52,13 @@ class PerfilAjenoActivity : AppCompatActivity() {
         fragmentTransaction.replace(binding.bottomMenuContainer.id, BottomMenuFragment())
         fragmentTransaction.commit()
 
+        binding.circularButton.setOnClickListener {
+            val userId = intent.getStringExtra("userId") ?: return@setOnClickListener
+            val intent = Intent(this, UbicacionTiempoRealActivity::class.java)
+            intent.putExtra("userId", userId)
+            startActivity(intent)
+        }
+
         binding.iniciarConversacion.setOnClickListener {
             val usuarioConversadoId = intent.getStringExtra("userId") ?: return@setOnClickListener
             val currentUserId = auth.currentUser?.uid ?: return@setOnClickListener

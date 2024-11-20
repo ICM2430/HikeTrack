@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.example.hiketrack.R
 import com.example.hiketrack.databinding.ActivityCalificarBinding
 import com.example.hiketrack.model.MyLocation
@@ -15,6 +16,8 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import org.json.JSONObject
 import java.io.File
 import java.util.Date
@@ -24,11 +27,15 @@ class CalificarActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityCalificarBinding
+    private lateinit var database: FirebaseDatabase
+    private val storageRef = FirebaseStorage.getInstance().reference
 
     var recorridoPublicar = Recorrido()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        database = FirebaseDatabase.getInstance()
 
         binding = ActivityCalificarBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -41,23 +48,27 @@ class CalificarActivity : AppCompatActivity(), OnMapReadyCallback {
         leerArchivo()
 
         binding.finalizarButton.setOnClickListener {
+
             val intent = Intent(this, RecorridosActivity::class.java)
             startActivity(intent)
         }
 
         binding.compartirButton.setOnClickListener {
 
-            //to be changed
-            val intent = Intent(this, RecorridosActivity::class.java)
-            startActivity(intent)
+            if (binding.nombreRecorrido.text.toString().isNotEmpty()) {
+                recorridoPublicar.nombre = binding.nombreRecorrido.text.toString()
+                recorridoEnBaseDeDatos()
+
+                val intent = Intent(this, RecorridosActivity::class.java)
+                startActivity(intent)
+            }else {
+                binding.nombreRecorrido.error = "Ingrese un nombre para el recorrido"
+            }
+
+
         }
 
-        binding.favoritoButton.setOnClickListener {
 
-            //to be changed
-            val intent = Intent(this, RecorridosActivity::class.java)
-            startActivity(intent)
-        }
     }
 
     /**
@@ -122,5 +133,24 @@ class CalificarActivity : AppCompatActivity(), OnMapReadyCallback {
         return Date(tiempoEnMilisegundos)
     }
 
+
+    fun recorridoEnBaseDeDatos() {
+        val ref = database.getReference("recorridos")
+        val key = ref.push().key
+        if (key != null) {
+            recorridoPublicar.id = key
+            ref.child(key).setValue(recorridoPublicar)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("Subido", "Recorrido guardado en la base de datos")
+                        Toast.makeText(baseContext, "Recorrido subido exitosamente", Toast.LENGTH_LONG).show()
+                    } else {
+                        Log.e("CalificarActivity", "Error al guardar recorrido: ${task.exception?.message}")
+                    }
+                }
+        }
+
+
+    }
 
 }

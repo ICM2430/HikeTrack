@@ -27,7 +27,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
             android:layout_height="550dp"
-            android:layout_marginBottom="4dp"
             android:background="#594E2C"
             android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -35,38 +34,38 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent">
 
-
             <Button
-                android:id="@+id/compartirButton"
+                android:id="@+id/calificarButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="#879957"
-                android:text="Comparte el recorrido"
+                android:text="Calificar Recorrido"
                 app:layout_constraintBottom_toTopOf="@+id/finalizarButton"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nombreRecorrido" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout15" />
 
             <Button
                 android:id="@+id/finalizarButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginTop="16dp"
                 android:backgroundTint="#879957"
                 android:text="Acabar Recorrido"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/compartirButton" />
+                app:layout_constraintTop_toBottomOf="@+id/calificarButton" />
 
             <TextView
                 android:id="@+id/textView40"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp"
                 android:text="Recorrido Finalizado"
                 android:textColor="@color/white"
                 android:textSize="20dp"
@@ -81,28 +80,75 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Comparte tu recorrido con el mundo"
+                android:layout_marginBottom="16dp"
+                android:text="Compartenos tu experiencia con una calificacion"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/nombreRecorrido"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout15"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
-            <EditText
-                android:id="@+id/nombreRecorrido"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout15"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:ems="10"
-                android:inputType="text"
-                android:text="Nombre"
-                android:textColor="@color/white"
-                android:textColorHighlight="@color/white"
-                app:layout_constraintBottom_toTopOf="@+id/compartirButton"
+                android:layout_height="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView41" />
+                app:layout_constraintTop_toBottomOf="@+id/textView41">
+
+                <ImageView
+                    android:id="@+id/star2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/star3"
+                    app:layout_constraintStart_toEndOf="@+id/star1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/star_inactive" />
+
+                <ImageView
+                    android:id="@+id/star3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/star4"
+                    app:layout_constraintStart_toEndOf="@+id/star2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/star_inactive" />
+
+                <ImageView
+                    android:id="@+id/star4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/star5"
+                    app:layout_constraintStart_toEndOf="@+id/star3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/star_inactive" />
+
+                <ImageView
+                    android:id="@+id/star1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/star2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/star_inactive" />
+
+                <ImageView
+                    android:id="@+id/star5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/star4"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/star_inactive" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

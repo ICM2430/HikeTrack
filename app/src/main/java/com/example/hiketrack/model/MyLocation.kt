@@ -15,4 +15,6 @@ class MyLocation(
         obj.put("date", date.time)
         return obj
     }
+
+    constructor() : this(0.0, 0.0, Date())
 }
