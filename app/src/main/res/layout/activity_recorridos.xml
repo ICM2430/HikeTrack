@@ -379,7 +379,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:background="#00000000"
-            android:text="Ver más >"
             app:layout_constraintBottom_toTopOf="@+id/nuevorecorrido"
             app:layout_constraintEnd_toEndOf="parent" />
 
