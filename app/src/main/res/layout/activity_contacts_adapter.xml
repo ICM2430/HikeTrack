@@ -1,51 +1,44 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:background="#8802660C"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#B7595F14"
     android:orientation="horizontal"
-    android:padding="4dp"
-    android:paddingStart="18dp"
-    android:gravity="center_vertical"
-    tools:context=".ContactsAdapter">
+    android:padding="8dp"
+    android:gravity="center_vertical">
 
+    <!-- Imagen de perfil -->
     <ImageView
-        android:id="@+id/pfp"
+        android:id="@+id/imagenPerfil"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:background="@drawable/roundcorner"
-        app:srcCompat="?attr/selectableItemBackground" />
+        app:srcCompat="@drawable/perfil" />
 
+    <!-- Detalles del contacto -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingStart="16dp"
-        android:padding="4dp"
         android:gravity="center_vertical"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/nombreContacto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:text="TextView" />
+            android:text="Nombre del Usuario" />
 
         <TextView
-            android:id="@+id/lastMessage"
+            android:id="@+id/ultimoMensaje"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:textColor="@color/white"
             android:textSize="12sp"
-            android:text="TextView" />
+            android:text="Último mensaje..." />
 
     </LinearLayout>
-
 </LinearLayout>
