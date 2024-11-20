@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.drawable.Drawable
@@ -55,13 +56,14 @@ import java.util.Date
 import kotlin.math.ln
 import kotlin.math.sqrt
 import com.example.hiketrack.model.Recorrido
-
+import com.example.hiketrack.service.TouristService
 
 
 class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsTrackerBinding
+    private val touristService = TouristService()
 
     // Giroscopio
     private lateinit var sensorManager: SensorManager
@@ -440,7 +442,6 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                 //sensor pasos
                 if (event?.sensor == stepCounterSensor && event != null) {
                     stepCount = event.values[0].toInt()
-                    binding.pasos.text = stepCount.toString()
                 }
 
             }
@@ -498,7 +499,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
+        markTouristPoints()
         getCurrentLocation { newcurrentLocation ->
             if (newcurrentLocation != null) {
                 currentLocation = newcurrentLocation
@@ -511,6 +512,28 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         mMap.uiSettings.isZoomControlsEnabled = true
         mMap.uiSettings.setAllGesturesEnabled(true)
+
+        mMap.setOnMarkerClickListener { marker ->
+            marker.showInfoWindow()
+            true
+        }
+    }
+
+    private fun markTouristPoints() {
+        Thread {
+            val points = touristService.getTouristPoints()
+            runOnUiThread {
+                for (point in points) {
+                    val markerIcon = BitmapFactory.decodeResource(resources, R.drawable.marker1)
+                    val scaledIcon = Bitmap.createScaledBitmap(markerIcon, 100, 100, false)
+                    val pointsMarker = BitmapDescriptorFactory.fromBitmap(scaledIcon)
+                    mMap.addMarker(MarkerOptions().position(point.location).title(point.name).icon(pointsMarker))
+                }
+                if (points.isNotEmpty()) {
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(points[0].location, 12f))
+                }
+            }
+        }.start()
     }
 
 
@@ -747,7 +770,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
     fun createLocationRequest() : com.google.android.gms.location.LocationRequest {
         val locationRequest = com.google.android.gms.location.LocationRequest.Builder(
             Priority.
-            PRIORITY_HIGH_ACCURACY, 5000)
+            PRIORITY_HIGH_ACCURACY, 10000)
             .setWaitForAccurateLocation(true)
             .setMinUpdateIntervalMillis(5000)
             .build()
@@ -778,7 +801,7 @@ class MapsTrackerActivity : AppCompatActivity(), OnMapReadyCallback {
                 val stepLengthInMeters = 0.678
                 val steps = (distance[0] / stepLengthInMeters).toInt()
                 stepCount += steps
-                binding.pasos.text = "$stepCount pasos"
+                binding.pasos.text = "$stepCount"
 
                 writeJSONObject()
             }
